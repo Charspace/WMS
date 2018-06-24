@@ -1,50 +1,3 @@
-<jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);">
-    <ul>
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('home')"><b>Home</b></a></li>
-
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('lcaf')"><b>About Us</b></a></li>
-
-          <li style="background:rgb(5, 0, 73); width:5%;border-right:1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('bar')"><b>Services</b></a></li>
-
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white">  <a style="cursor: pointer;" (click)="Routeform('rfp')"><b>Products</b></a></li>
-
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('fin')" ><b>Events</b></a></li>
-
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"><a style="cursor: pointer;" (click)="Routeform('pr')"><b>Careers</b> </a></li>
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"><b>Reports</b>
-              <ul>
-                <li style="background:rgb(5, 0, 73); color:white ; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('replinishmentreport')">Replenishment</a></li>
-                <li style="background:rgb(5, 0, 73); color:white; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('summaryreport')">Summary</a></li>
-                <li style="background:rgb(5, 0, 73); color:white;font-size:13px"><a style="cursor: pointer;" (click)="Routeform('viewolddoc')">View Old Doc</a></li>
-                <li type="separator"></li>
-              </ul>
-          </li>
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white" ><b>Contact</b>
-              <ul>
-                <li style="background:rgb(5, 0, 73);color:white;font-size:13px"><a style="cursor: pointer;" (click)="Routeform('refreshdata')">Refresh</a></li>
-              </ul>
-          </li>
-          <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('setting')"><b>Setting</b></a></li>
-
-          <!-- <li style="background:transparent; width:25%;border:1px;" *ngIf="showhidetoalign"></li> -->
-          <!--  <div style="width:10%;background-color:transparent"  *ngIf="showhideDataTab"></div> -->
-          <!-- <li style="background:transparent; width:20%;border:1px;" *ngIf="showhidetoalignA"></li> -->
-          <li style="background:transparent; width:15%;border:1px;"></li>
-
-
-          <li style="background:rgb(5, 0, 73); width:15%; color:rgb(247, 171, 9)"><b >{{username}}</b>
-            <ul>
-              <li style="background:rgb(5, 0, 73); color:white; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('changepw')">Change Password</a></li>
-            </ul>
-          </li>
-
-          <li style="background:rgb(5, 0, 73); width:5.3%; color:white">
-            <a style="cursor: pointer;" (click)="onlogout()"><b>Log Out</b></a>
-          </li>
-
-     </ul>
-</jqxMenu>
-                          
 <div  style="border:1px solid black;" class="row">
                 <div style="border:1px solid black;"  class="column">
                                 
@@ -66,7 +19,7 @@
                                 <td>
                                                 <jqxComboBox 
                                                 [width]='250' [height]='25' 
-                                                [source]='source' [selectedIndex]='0'>
+                                                 [selectedIndex]='0'>
                                             </jqxComboBox>
                                 </td>
                         </tr>
@@ -90,9 +43,71 @@
                 </div>
 
                 <div style="border:1px solid black;" class="column">
+                  <jqxPopover 
+                    [showCloseButton]="true" [selector]="'#container'" [title]="'Employees'"
+                    [arrowOffsetValue]="50" [offset]="{ left: left, top: top }">
+          <div #noti></div>
+        </jqxPopover>
+        <div style="height: 33px; border-width: 1px; border-style: solid; padding: 10px;" id="container" class="jqx-widget-header">
+          <jqxButton #buttonReference style="float: right" id="button"
+                     [width]="150" [height]="35" [template]="'inverse'">
+            Notification
+          </jqxButton>
+        </div>
+          </div>
+
+                <div style="border:1px solid black;" class="column">
                         UserName
                 </div>
 </div>
+
+<jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);">
+  <ul>
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('home')"><b>Home</b></a></li>
+
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('lcaf')"><b>About Us</b></a></li>
+
+        <li style="background:rgb(5, 0, 73); width:5%;border-right:1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('bar')"><b>Services</b></a></li>
+
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white">  <a style="cursor: pointer;" (click)="Routeform('rfp')"><b>Products</b></a></li>
+
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('fin')" ><b>Events</b></a></li>
+
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"><a style="cursor: pointer;" (click)="Routeform('pr')"><b>Careers</b> </a></li>
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"><b>Reports</b>
+            <ul>
+              <li style="background:rgb(5, 0, 73); color:white ; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('replinishmentreport')">Replenishment</a></li>
+              <li style="background:rgb(5, 0, 73); color:white; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('summaryreport')">Summary</a></li>
+              <li style="background:rgb(5, 0, 73); color:white;font-size:13px"><a style="cursor: pointer;" (click)="Routeform('viewolddoc')">View Old Doc</a></li>
+              <li type="separator"></li>
+            </ul>
+        </li>
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white" ><b>Contact</b>
+            <ul>
+              <li style="background:rgb(5, 0, 73);color:white;font-size:13px"><a style="cursor: pointer;" (click)="Routeform('refreshdata')">Refresh</a></li>
+            </ul>
+        </li>
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('setting')"><b>Setting</b></a></li>
+
+        <!-- <li style="background:transparent; width:25%;border:1px;" *ngIf="showhidetoalign"></li> -->
+        <!--  <div style="width:10%;background-color:transparent"  *ngIf="showhideDataTab"></div> -->
+        <!-- <li style="background:transparent; width:20%;border:1px;" *ngIf="showhidetoalignA"></li> -->
+        <li style="background:transparent; width:15%;border:1px;"></li>
+
+
+        <li style="background:rgb(5, 0, 73); width:15%; color:rgb(247, 171, 9)"><b></b>
+          <ul>
+            <li style="background:rgb(5, 0, 73); color:white; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('changepw')">Change Password</a></li>
+          </ul>
+        </li>
+
+        <li style="background:rgb(5, 0, 73); width:5.3%; color:white">
+          <a style="cursor: pointer;" ><b>Log Out</b></a>
+        </li>
+
+   </ul>
+</jqxMenu>
+                   
 <div style="border:1px solid black;" class="row">
     
         <div style="border:1px solid black;"  class="columnmenu">
@@ -106,26 +121,26 @@
                 <tr>
                 <td>
                 
-                <jqxButton [width]='120' [height]='40' class="buttoncolor" #button  (onClick)="btnnewclick()">
+                <jqxButton [width]='120' [height]='40' class="buttoncolor" #button  >
                 New
                 </jqxButton>
               
           
-                <jqxButton [width]='120' [height]='40' #button  (onClick)="buttonClicked()">
+                <jqxButton [width]='120' [height]='40' #button  >
                 Save
                 </jqxButton>
                
         
-                <jqxButton [width]='120' [height]='40' #button  (onClick)="buttonClicked()">
+                <jqxButton [width]='120' [height]='40' #button >
                 Edit
                 </jqxButton>
            
-                <jqxButton [width]='120' [height]='40' #button  (onClick)="buttonClicked()">
+                <jqxButton [width]='120' [height]='40' #button  >
                 Delete
                 </jqxButton>
            
               
-                <jqxButton [width]='120' [height]='40' #button  (onClick)="buttonClicked()">
+                <jqxButton [width]='120' [height]='40' #button >
                 Print
                 </jqxButton>
                
