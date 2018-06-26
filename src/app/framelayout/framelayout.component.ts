@@ -24,10 +24,12 @@ export class FramelayoutComponent implements OnInit {
 
   top: number = 0;
     left: number = -50;
+    username : any;
   
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   {      
     //bba git test
+    this.username = "Aung Aung";
   }
 
   ngAfterViewInit() {

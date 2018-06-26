@@ -1,4 +1,4 @@
-<div  style="border:1px solid black;" class="row">
+<!-- <div  style="border:1px solid black;" class="row">
                 <div style="border:1px solid black;"  class="column">
                                 
                                                 <img src='http://mruanova.com/img/1.jpg' alt='image'>
@@ -59,13 +59,13 @@
                 <div style="border:1px solid black;" class="column">
                         UserName
                 </div>
-</div>
+</div> -->
 
 <jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);">
   <ul>
         <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('home')"><b>Home</b></a></li>
 
-        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('lcaf')"><b>About Us</b></a></li>
+        <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('login')"><b>Login</b></a></li>
 
         <li style="background:rgb(5, 0, 73); width:5%;border-right:1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('bar')"><b>Services</b></a></li>
 
@@ -95,7 +95,7 @@
         <li style="background:transparent; width:15%;border:1px;"></li>
 
 
-        <li style="background:rgb(5, 0, 73); width:15%; color:rgb(247, 171, 9)"><b></b>
+        <li style="background:rgb(5, 0, 73); width:15%; color:rgb(247, 171, 9)"><b >{{username}}</b>
           <ul>
             <li style="background:rgb(5, 0, 73); color:white; font-size:13px"><a style="cursor: pointer;" (click)="Routeform('changepw')">Change Password</a></li>
           </ul>

@@ -33,7 +33,10 @@
     "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxpanel",
     "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxresponsivepanel",
     "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxdockpanel",
-    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxpopover"
+    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxresponsivepanel",
+    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxinput.ts" ,
+    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxpopover.ts"    
+
 
   ]
 }

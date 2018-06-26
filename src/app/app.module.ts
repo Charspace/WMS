@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -26,6 +27,10 @@ import { jqxResponsivePanelComponent } from 'jqwidgets-scripts/jqwidgets-ts/angu
 import { jqxDockPanelComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdockpanel';
 import { HomeComponent } from './home/home.component';
 import { jqxPopoverComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxpopover';
+import { LoginComponent } from './login/login.component';
+import { jqxInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxinput';
+
+
 
 
 
@@ -39,6 +44,12 @@ const appRoutes: Routes=[
   {
     path : 'home',
     component:HomeComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'login',
+    component:LoginComponent,
     //outlet:'homepath'
     
   }
@@ -60,7 +71,9 @@ const appRoutes: Routes=[
     jqxResponsivePanelComponent,
     jqxDockPanelComponent,
     HomeComponent,
-    jqxPopoverComponent
+    jqxPopoverComponent,
+    LoginComponent,
+    jqxInputComponent    
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -73,7 +86,11 @@ const appRoutes: Routes=[
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    BrowserModule,
+    FormsModule ,
+    HttpModule,
+    BrowserAnimationsModule
   ],
   providers: [BackendService],
   bootstrap: [AppComponent]

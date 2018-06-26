@@ -25,13 +25,16 @@ export class HomeComponent implements OnInit {
   employeesAdapter : any;
   ordersSource : any;
   ordersDataAdapter : any;
+  ordersSource2 : any;
+  ordersDataAdapter2 : any;
   headercolumns: any;
   detailcolumns: any;
+  detailcolumns2: any;
   nestedcolumns: any;
   nestedGrids : any =[];
   initRowDetails : any;
 
-  header = '{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon"}'
+  header = '{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"001"}'
   detail = '{"EmployeeID":"001","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"}';
 
 
@@ -53,7 +56,8 @@ export class HomeComponent implements OnInit {
             { name: 'LastName',type: 'string' },
             { name: 'Title',type: 'string' },
             { name: 'Address',type: 'string' },
-            { name: 'City',type: 'string' }
+            { name: 'City',type: 'string' },
+            { name: 'EmployeeID',type: 'string' }
         ],
         localdata: this.header,         
         root: 'Employees',
@@ -73,6 +77,7 @@ export class HomeComponent implements OnInit {
       { text: 'Title', datafield: 'Title', width: '10%',editable: false,hidden:false }, //readonly cell.
       { text: 'Address', datafield: 'Address', width: '10%',editable: false,hidden:false }, //readonly cell.
       { text: 'City', datafield: 'City', width: '10%',editable: false,hidden:false }, //readonly cell.                
+      { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.  
   ]
 
   
@@ -108,6 +113,38 @@ export class HomeComponent implements OnInit {
       { text: 'ShipCity', datafield: 'ShipCity', width: '10%',editable: false,hidden:false }, //readonly cell.
       { text: 'ShipCountry', datafield: 'ShipCountry', width: '10%',editable: false,hidden:false }, //readonly cell.                
   ]
+
+  this.ordersSource2 =
+  {
+    
+
+      datafields: [
+          { name: 'EmployeeID', type: 'string' },
+          { name: 'ShipName', type: 'string' },
+          { name: 'ShipAddress', type: 'string' },
+          { name: 'ShipCity', type: 'string' },
+          { name: 'ShipCountry', type: 'string' }
+          
+      ],
+      localdata: this.detail,
+      root: 'Orders',
+     // record: 'Order', 
+      datatype: 'json',
+       
+  };
+
+  this.ordersDataAdapter2 = new jqx.dataAdapter(this.ordersSource2, { autoBind: true });
+
+
+
+  this.detailcolumns2 =
+  [
+    { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.
+    { text: 'ShipName', datafield: 'ShipName', width: '10%',editable: false,hidden:false }, //readonly cell.
+    { text: 'ShipAddress', datafield: 'ShipAddress', width: '10%',editable: false,hidden:false }, //readonly cell.
+    { text: 'ShipCity', datafield: 'ShipCity', width: '10%',editable: false,hidden:false }, //readonly cell.
+    { text: 'ShipCountry', datafield: 'ShipCountry', width: '10%',editable: false,hidden:false }, //readonly cell.                
+]
   
    
 
@@ -116,7 +153,7 @@ export class HomeComponent implements OnInit {
         // create nested grid.
         this.initRowDetails = (index: number, parentElement: any, gridElement: any, record: any): void => {
           let id = record.uid.toString();
-          let nestedGridContainer = parentElement.children[0];
+          let nestedGridContainer = parentElement.children[0];          
           this.nestedGrids[index] = nestedGridContainer;
           let filtergroup = new jqx.filter();
           let filter_or_operator = 1;
@@ -128,7 +165,7 @@ export class HomeComponent implements OnInit {
           let ordersbyid = [];
           for (let i = 0; i < orders.length; i++) {
               let result = filter.evaluate(orders[i]['EmployeeID']);
-              if (result == false)
+              if (result)
                   ordersbyid.push(orders[i]);
           }
           let ordersSource = {
