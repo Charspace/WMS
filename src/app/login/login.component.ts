@@ -20,7 +20,10 @@ import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+
+    //testing tts
+  }
 
   ngOnInit() {
   }
