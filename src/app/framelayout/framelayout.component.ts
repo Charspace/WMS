@@ -30,6 +30,7 @@ export class FramelayoutComponent implements OnInit {
   {      
     //bba git test
     this.username = "Aung Aung";
+    this.username = window.sessionStorage.getItem("userid")
   }
 
   ngAfterViewInit() {
@@ -56,6 +57,14 @@ export class FramelayoutComponent implements OnInit {
   Routeform(formname)
   {
     this.router.navigate([formname]);
+  }
+
+  onlogout()
+  {
+    sessionStorage.clear();    
+    console.log("session storage length : " + sessionStorage.length);
+    //console.log("userid after logout: " + this.userid);
+    this.router.navigate(['login']);
   }
 
   ngOnInit() {

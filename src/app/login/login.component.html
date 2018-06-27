@@ -1,8 +1,70 @@
-<app-framelayout> </app-framelayout>
-<jqxInput #textbox1
-    [width]="200" [height]="25" [source]="countries"
-    [minLength]="1" [placeHolder]="'Enter a Country'">
-</jqxInput>
-<p>
-  welcome login
-</p>
+<html>
+    <style> 
+        body {
+            background-image: url("assets/img/warehouse.png");          
+            background-repeat: no-repeat;
+            background-size: auto;  
+        }
+        </style>
+  <head>
+  </head>
+  <body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+      <div class="container">
+      <table border="0" width="100%" >   
+          <tr>
+            <td align="left" style="padding-left: 28%">
+              <form (submit)="loginUser(f)" #f="ngForm">
+                  
+                <tr>
+                  <td>
+                    <label for="username" style="height:10px">UserName:</label>
+                  </td>
+                  <td   >
+                    <input style="background-color: #d1d1d1"  type="text"  id="username" name ="username" ngModel class = "form-control">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td  >
+                    <label for="password">Password:</label>
+                  </td>
+                  <td >
+                    <input type="password" id="password" name ="password" ngModel class = "form-control">
+                  </td>
+                  </tr>
+                   <tr>
+                     <td>
+
+                     </td>
+                     <td>
+                      <jqxButton [width]='120' [height]='40' class="buttoncolor"  click="loginUser()"  >
+                          Submit
+                          </jqxButton>
+                        </td>
+                        </tr>
+                </form>
+              </td>
+          </tr>  
+            </table>
+          </div>
+      
+  </body>
+</html>
+
+
+        <!-- <img src="assets/img/warehouse.png" width="100%" height="86%"> <br/> -->
+        <!-- <img src="assets/img/warehouse.png" width="80%" height="80%" > -->
+
+
+
+
+
+
+ 

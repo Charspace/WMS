@@ -11,6 +11,7 @@ import { jqxGridComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxgrid
 import { jqxButtonComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbuttons';
 import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
 import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxcombobox';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
 
 
 @Component({
@@ -20,13 +21,54 @@ import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { 
+  url : any;
 
-    var aaa = "1222"
+  constructor(private backendservice :BackendService, private router: Router,private route:ActivatedRoute) { 
+
     //testing tts
   }
 
   ngOnInit() {
+  }
+
+  loginUser(form: NgForm)
+  {
+    const userid = form.value.username;
+    const password = form.value.password;
+    console.log("userid: " + userid);
+    console.log("password: " + password);
+    window.sessionStorage.setItem("userid",userid);
+    this.router.navigate(['framelayout']);
+
+    /*
+    this.backendservice.Checklogin(userid,password).subscribe(data => {
+    console.log("status: " + data.Result);
+    let userdata = data.Result;
+    if(userdata.length > 0)
+    {
+      if(userdata ==='Fail')
+      {
+          window.alert('Username or Password is invalid. Please try again!');
+      }
+      else
+      {
+       // debugger;
+        this.isPRbar = true;
+        window.sessionStorage.setItem("userid",userid);
+        window.sessionStorage.setItem("bgtowner",userdata[0]["BudgetOwner"]);
+        window.sessionStorage.setItem("creditorno",userdata[0]["CreditorNo"]);
+        window.sessionStorage.setItem("creditorname", userdata[0]["CreditorName"]);
+        window.sessionStorage.setItem("department",userdata[0]["Department"]);
+        window.sessionStorage.setItem("costcenter",userdata[0]["CostCenterCode"]);
+        window.sessionStorage.setItem("userrole", userdata[0]["UserRole"]);
+        window.sessionStorage.setItem("reportaccess", userdata[0]["ReportAccess"]);
+        //this.router.navigate(['menupage', {userid: userid, queryParams: {some_data : 'test'}}]);
+        this.router.navigate(['framelayout']);
+      }
+    }
+
+    })
+    */
   }
 
 }

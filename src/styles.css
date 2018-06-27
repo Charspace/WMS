@@ -43,3 +43,19 @@
   background-color: #E6E6E6;
   width: 650px;
 }
+
+.input {
+  position: center;
+  text-align: center;
+  padding: 5px 2px;
+  font-size: 20px;
+  outline: 1;
+  size: 10px
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
