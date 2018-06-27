@@ -28,7 +28,10 @@
                     <label for="username" style="height:10px">UserName:</label>
                   </td>
                   <td   >
-                    <input style="background-color: #d1d1d1"  type="text"  id="username" name ="username" ngModel class = "form-control">
+                    <input type="text"  id="username" name ="username" ngModel class = "form-control">
+                  </td>
+                  <td *ngIf="showinvalidusername" >
+                    <label style="color: red">*</label>
                   </td>
                   </tr>
                   <tr>
@@ -37,6 +40,9 @@
                   </td>
                   <td >
                     <input type="password" id="password" name ="password" ngModel class = "form-control">
+                  </td>
+                  <td *ngIf="showinvalidpassword" >
+                    <label style="color:red">*</label>
                   </td>
                   </tr>
                    <tr>

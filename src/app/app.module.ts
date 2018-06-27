@@ -29,6 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { jqxPopoverComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxpopover';
 import { LoginComponent } from './login/login.component';
 import { jqxInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxinput';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 
 
@@ -52,6 +53,12 @@ const appRoutes: Routes=[
     component:LoginComponent,
     //outlet:'homepath'
     
+  },
+  {
+    path : 'changepw',
+    component:ChangepasswordComponent,
+    //outlet:'homepath'
+    
   }
 ]
 
@@ -73,7 +80,8 @@ const appRoutes: Routes=[
     HomeComponent,
     jqxPopoverComponent,
     LoginComponent,
-    jqxInputComponent    
+    jqxInputComponent,
+    ChangepasswordComponent    
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

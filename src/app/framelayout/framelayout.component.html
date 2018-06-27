@@ -60,7 +60,7 @@
                         UserName
                 </div>
 </div> -->
-
+<!-- 
 <jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);">
   <ul>
         <li style="background:rgb(5, 0, 73); width:5%;border-right: 1px solid rgb(185, 180, 180);color:white"> <a style="cursor: pointer;" (click)="Routeform('home')"><b>Home</b></a></li>
@@ -104,13 +104,20 @@
         </li>
 
    </ul>
+</jqxMenu> -->
+
+<jqxMenu #jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);color:white;" 
+(onItemclick)="itemclick($event)"
+[source]="records"
+[width]="405"
+[height]="30">
 </jqxMenu>
-                   
+              
 <div style="border:1px solid black;" class="row">
     
         <div style="border:1px solid black;"  class="columnmenu">
                                 
-            Label display
+            <!-- Label display -->
         
         </div>
         <div style="border:1px solid black;"  class="column">
@@ -148,6 +155,9 @@
  
       </div>
 </div>
+
+  <!-- <div  style="margin-top: 50px; font-size: 13px; font-family: Verdana;" #eventLog></div>   -->
+  
 
 
 <!-- <div style="border:1px solid black;" class="row">

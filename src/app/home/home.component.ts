@@ -204,7 +204,8 @@ export class HomeComponent implements OnInit {
 
   photoRenderer = (row: number, column: any, value: string): string => {
     let name = this.myGrid.getrowdata(row).FirstName;
-    let imgurl = '../images/' + name.toLowerCase() + '.png';
+    //let imgurl = '../images/' + name.toLowerCase() + '.png';
+    let imgurl = 'assets/img/supply.jpg';
     let img = '<div style="background: white;"><img style="margin: 2px; margin-left: 10px;" width="32" height="32" src="' + imgurl + '"></div>';
     return img;
 }

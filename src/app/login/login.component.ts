@@ -22,6 +22,9 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class LoginComponent implements OnInit {
 
   url : any;
+  showinvalidusername : any = false;
+  showinvalidpassword : any = false;
+  isloginfail : any = false;
 
   constructor(private backendservice :BackendService, private router: Router,private route:ActivatedRoute) { 
 
@@ -33,11 +36,30 @@ export class LoginComponent implements OnInit {
 
   loginUser(form: NgForm)
   {
+     this.showinvalidusername = false;
+     this.showinvalidpassword = false;
+     this.isloginfail = false;
     const userid = form.value.username;
     const password = form.value.password;
     console.log("userid: " + userid);
     console.log("password: " + password);
+    if(!userid)
+    {
+      this.showinvalidusername = true;
+      this.isloginfail = true;
+    }
+    if(!password)
+    {
+      this.showinvalidpassword = true;
+      this.isloginfail = true;
+    }
+    if(this.isloginfail)
+    {
+      return;
+    }
+
     window.sessionStorage.setItem("userid",userid);
+    window.sessionStorage.setItem("password",password);
     this.router.navigate(['framelayout']);
 
     /*
