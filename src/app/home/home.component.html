@@ -1,9 +1,9 @@
 <app-framelayout> </app-framelayout>
   
-    <h1>
-      <font color="blue"> Welcome to Home Page!</font>     
-    </h1>            
-    <table border="0" style="font-size:15px;font-family: fantasy;color: rgb(42, 3, 94)" >
+<!--     <h1>
+      <font color="blue"> Welcome to Dashboard!</font>     
+    </h1>   -->          
+    <!-- <table border="0" style="font-size:15px;font-family: fantasy;color: rgb(42, 3, 94)" >
       <tr>
         <td>
           My First 
@@ -12,11 +12,35 @@
           Home Page!
         </td>
       </tr>
-    </table>
-    <jqxGrid #myGrid
-    [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
-    [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
-    [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
-</jqxGrid>
+    </table> -->    
+    <label style="color: blueviolet;font-size: 30px" ><b>Dashboard</b></label>
+    <table style="width: 100%" border="0">    
+    <tr>
+      <td>
+          <label style="font-size: 15px" ><b>Status</b></label>
+      </td>
+      <td>
+          <label style="font-size: 15px" ><b>List</b></label>
+      </td>
+    </tr>
+      <tr>                 
+        <td style="width: 30%;height: 10%">            
+            <jqxBarGauge 
+            [width]="600" [height]="600" [max]="150" 
+            [colorScheme]="'scheme02'" [values]="values">
+            </jqxBarGauge>
+        </td>     
+        <td style="width: 30%">
+            
+            <jqxGrid #myGrid
+            [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
+            [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
+            [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+        </jqxGrid>
+        </td>
+      </tr>
+
+    </table>    
+
 
 

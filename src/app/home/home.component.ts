@@ -11,6 +11,7 @@ import { jqxGridComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxgrid
 import { jqxButtonComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbuttons';
 import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
 import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxcombobox';
+import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbargauge';
 
 @Component({
 
@@ -21,6 +22,7 @@ import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 })
 export class HomeComponent implements OnInit {
   @ViewChild('myGrid') myGrid: jqxGridComponent;
+  values: number[] = [102, 115, 130, 137];
   source : any;
   employeesAdapter : any;
   ordersSource : any;
