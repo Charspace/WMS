@@ -27,6 +27,168 @@ export class FramelayoutComponent implements OnInit {
     left: number = -50;
     username : any = window.sessionStorage.getItem("userid")
 
+    menudata = [
+      
+    {
+      'id': '35',
+      'text': 'DashBoard',
+      'parentid': '-1',
+      'subMenuWidth': '250px'
+  },
+        
+      {            
+          'id': '1',
+          'text': 'Import',
+          'parentid': '-1',
+          'subMenuWidth': '250px'
+      }, {
+          'id': '2',
+          'parentid': '1',
+          'text': ' Plan Receive (Excel)'
+      }, {
+          'id': '3',
+          'parentid': '1',
+          'text': 'Plan Receive'
+      }, {
+          'id': '4',
+          'parentid': '1',
+          'text': 'Tally Check'
+      }, {
+          'id': '5',
+          'parentid': '1',
+          'text': 'Checker'
+      }, {
+          'id': '6',          
+          'parentid': '1',
+    'text': 'Barcode Mapping',
+          'subMenuWidth': '200px'
+  }, {
+          'id': '7',
+          'text': 'Allocation',
+          'parentid': '1',
+          'subMenuWidth': '200px'
+  }, {
+          'id': '8',
+          'text': 'Pick List',
+          'parentid': '1',
+          'subMenuWidth': '200px'
+      }, {
+          'id': '9',
+          'parentid': '-1',
+          'text': 'Export'
+      }, {
+          'id': '10',
+          'text': 'Plan for Cargo Receive',
+          'parentid': '9'
+      }, {
+          'id': '11',
+          'text': 'Tally Check',
+          'parentid': '9'
+      }, {
+          'id': '12',
+          'text': 'Checker',
+          'parentid': '9'
+      }, {
+          'id': '13',
+          'text': 'Barcode Mapping',
+          'parentid': '9'
+      }, {
+          'id': '14',
+          'text': 'Allocation',
+          'parentid': '9'
+      }, {
+          'id': '15',
+          'text': 'Pick List',
+          'parentid': '9'
+      }, {
+          'id': '16',
+          'text': 'Stock',
+          'parentid': '-1'
+      }, {
+          'id': '17',
+          'text': 'Stock List',
+          'parentid': '16'
+      }, {
+          'id': '18',
+          'text': 'Report',
+          'parentid': '-1'
+   }, {
+          'id': '19',
+          'parentid': '18',
+          'text': 'Container Receiving'
+      }, {
+          'id': '20',
+          'parentid': '18',
+          'text': 'Proudct - Location'
+      }, {
+          'id': '21',
+          'parentid': '18',
+          'text': 'Stock Count Document'
+      }, {
+          'id': '22',          
+          'parentid': '18',
+    'text': 'Stock Adjustment',
+          'subMenuWidth': '200px'
+  }, {
+          'id': '23',
+          'text': 'Setting',
+          'parentid': '-1',
+          'subMenuWidth': '200px'
+  }, {
+          'id': '24',
+          'text': 'User Agent Consignee',
+          'parentid': '23',
+         
+      }, {
+          'id': '25',
+          'parentid': '24',
+          'text': 'User'
+      }, {
+          'id': '26',
+          'text': 'User Group',
+          'parentid': '24'
+      }, {
+          'id': '27',
+          'text': 'Agent',
+          'parentid': '24'
+      }, {
+          'id': '28',
+          'text': 'Consignee',
+          'parentid': '24'
+      }, {
+          'id': '29',
+          'text': 'Shipper',
+          'parentid': '24'
+      }, {
+          'id': '30',
+          'text': 'Warehouse/Stock',
+          'parentid': '23'
+      }, {
+          'id': '31',
+          'text': 'Location',
+          'parentid': '30'      
+      },
+      {
+        'id': '32',
+        'text': this.username,
+        'parentid': '-1',
+        'subMenuWidth': '250px'
+    },   
+      {
+        'id': '33',
+        'text': 'Change Password',
+        'parentid': '32',
+        'subMenuWidth': '250px'
+    },
+    {
+      'id': '34',
+      'text': 'Logout',
+      'parentid': '-1',
+      'subMenuWidth': '250px'
+    }
+  ];
+
+  /*
     data = [
       {
           'id': '1',
@@ -92,6 +254,7 @@ export class FramelayoutComponent implements OnInit {
 
     
     ];
+    */
 
   // prepare the data
   source =
@@ -104,7 +267,7 @@ export class FramelayoutComponent implements OnInit {
           { name: 'subMenuWidth' }
       ],
       id: 'id',
-      localdata: this.data
+      localdata: this.menudata
   };
 
   getAdapter(source: any): any {
@@ -116,15 +279,15 @@ export class FramelayoutComponent implements OnInit {
 
   itemclick(event: any): void {
       //this.eventLog.nativeElement.innerHTML = 'Id: ' + event.args.id + ', Text: ' + event.args.innerText;   
-      if(event.args.id == 1)
+      if(event.args.id == 35)
       {
         this.Routeform('home');
       }
-      else if(event.args.id == 3)
+      else if(event.args.id == 34)
       {
         this.onlogout();
       }
-      else if(event.args.id == 4)
+      else if(event.args.id == 33)
       {
         this.Routeform('changepw');
       }
