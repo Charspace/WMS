@@ -1,20 +1,6 @@
 <app-framelayout> </app-framelayout>
-  
-<!--     <h1>
-      <font color="blue"> Welcome to Dashboard!</font>     
-    </h1>   -->          
-    <!-- <table border="0" style="font-size:15px;font-family: fantasy;color: rgb(42, 3, 94)" >
-      <tr>
-        <td>
-          My First 
-        </td>
-        <td>
-          Home Page!
-        </td>
-      </tr>
-    </table> -->    
-    <label style="color: blueviolet;font-size: 30px" ><b>Dashboard</b></label>
-    <table style="width: 100%" border="0">    
+   <label style="color: blueviolet;font-size: 30px" ><b>Dashboard</b></label>
+    <table style="width: 100%;height: 10%"  border="0" >    
     <tr>
       <td>
           <label style="font-size: 15px" ><b>Status</b></label>
@@ -26,7 +12,7 @@
       <tr>                 
         <td style="width: 30%;height: 10%">            
             <jqxBarGauge 
-            [width]="600" [height]="600" [max]="150" 
+            [width]="400" [height]="400" [max]="150" 
             [colorScheme]="'scheme02'" [values]="values">
             </jqxBarGauge>
         </td>     
@@ -41,6 +27,41 @@
       </tr>
 
     </table>    
+    <div class="framebutton"  >
+                                
+      <table width="100%" border="0">
+          <tr>
+          <td>
+          
+          <jqxButton [width]='120' [height]='40' class="buttoncolor" #button  >
+          New
+          </jqxButton>
+        
+    
+          <jqxButton [width]='120' [height]='40' #button  >
+          Save
+          </jqxButton>
+         
+  
+          <jqxButton [width]='120' [height]='40' #button >
+          Edit
+          </jqxButton>
+     
+          <jqxButton [width]='120' [height]='40' #button  >
+          Delete
+          </jqxButton>
+     
+        
+          <jqxButton [width]='120' [height]='40' #button >
+          Print
+          </jqxButton>
+         
+          </td>
+          </tr>
+          </table>
+
+</div>
+    
 
 
 
