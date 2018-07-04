@@ -1,4 +1,6 @@
+import { LstmenugroupComponent } from './lstmenugroup/lstmenugroup.component';
 import { FormsModule } from '@angular/forms';
+import { LstuserComponent } from './lstuser/lstuser.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -30,6 +32,23 @@ import { jqxPopoverComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxp
 import { LoginComponent } from './login/login.component';
 import { jqxInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxinput';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { LstuploadexcelplanreceiveComponent } from './lstuploadexcelplanreceive/lstuploadexcelplanreceive.component';
+import { LstplanreceiveforexportComponent } from './lstplanreceiveforexport/lstplanreceiveforexport.component';
+import { LsttallycheckComponent } from './lsttallycheck/lsttallycheck.component';
+import { LstimportcheckerComponent } from './lstimportchecker/lstimportchecker.component';
+import { LstbarcodemappingComponent } from './lstbarcodemapping/lstbarcodemapping.component';
+import { LstpicklistcreateComponent } from './lstpicklistcreate/lstpicklistcreate.component';
+import { LsttallycheckforexportComponent } from './lsttallycheckforexport/lsttallycheckforexport.component';
+import { LstexportcheckerComponent } from './lstexportchecker/lstexportchecker.component';
+import { LstbarcodemappingforexportComponent } from './lstbarcodemappingforexport/lstbarcodemappingforexport.component';
+import { LstpicklistcreateforexportComponent } from './lstpicklistcreateforexport/lstpicklistcreateforexport.component';
+import { LstlstbarcodemappingforexportWComponent } from './lstlstbarcodemappingforexport-w/lstlstbarcodemappingforexport-w.component';
+import { LstexportcheckerWComponent } from './lstexportchecker-w/lstexportchecker-w.component';
+import { LstpicklistcreateWComponent } from './lstpicklistcreate-w/lstpicklistcreate-w.component';
+import { LstplanreceiveforexportWComponent } from './lstplanreceiveforexport-w/lstplanreceiveforexport-w.component';
+import { LsttallycheckforexportWComponent } from './lsttallycheckforexport-w/lsttallycheckforexport-w.component';
+import { LstplanreceiveforimportComponent } from './lstplanreceiveforimport/lstplanreceiveforimport.component';
+
 
 
 
@@ -59,6 +78,114 @@ const appRoutes: Routes=[
     component:ChangepasswordComponent,
     //outlet:'homepath'
     
+  },
+  {
+    path : 'lstbarcodemapping',
+    component:LstbarcodemappingComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstbarcodemappingforexport',
+    component:LstbarcodemappingforexportComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstexportchecker',
+    component:LstexportcheckerComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstexportchecker-w',
+    component:LstexportcheckerWComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstimportchecker',
+    component:LstimportcheckerComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstlstbarcodemappingforexport-w',
+    component:LstlstbarcodemappingforexportWComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstmenugroup',
+    component:LstmenugroupComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstpicklistcreate',
+    component:LstpicklistcreateComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstpicklistcreate-w',
+    component:LstpicklistcreateWComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstpicklistcreateforexport',
+    component:LstpicklistcreateforexportComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstplanreceiveforexport',
+    component:LstplanreceiveforexportComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstplanreceiveforexport-w',
+    component:LstplanreceiveforexportWComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lsttallycheck',
+    component:LsttallycheckComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lsttallycheckforexport',
+    component:LsttallycheckforexportComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lsttallycheckforexport-w',
+    component:LsttallycheckforexportWComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstuploadexcelplanreceive',
+    component:LstuploadexcelplanreceiveComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstuser',
+    component:LstuserComponent,
+    //outlet:'homepath'
+    
+  },
+  {
+    path : 'lstplanreceiveforimport',
+    component:LstplanreceiveforimportComponent,
+    //outlet:'homepath'
+    
   }
 ]
 
@@ -81,7 +208,26 @@ const appRoutes: Routes=[
     jqxPopoverComponent,
     LoginComponent,
     jqxInputComponent,
-    ChangepasswordComponent    
+    ChangepasswordComponent,
+    LstuploadexcelplanreceiveComponent,
+    LstplanreceiveforexportComponent,
+    LsttallycheckComponent,
+    LstimportcheckerComponent,
+    LstbarcodemappingComponent,
+    LstpicklistcreateComponent,
+    LsttallycheckforexportComponent,
+    LstexportcheckerComponent,
+    LstbarcodemappingforexportComponent,
+    LstpicklistcreateforexportComponent,
+    LstlstbarcodemappingforexportWComponent,
+    LstexportcheckerWComponent,
+    LstpicklistcreateWComponent,
+    LstplanreceiveforexportWComponent,
+    LsttallycheckforexportWComponent,
+    LstmenugroupComponent,
+    LstuserComponent,
+    LstplanreceiveforimportComponent 
+   
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

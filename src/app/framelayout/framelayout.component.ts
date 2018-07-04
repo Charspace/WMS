@@ -28,166 +28,169 @@ export class FramelayoutComponent implements OnInit {
     username : any = window.sessionStorage.getItem("userid")
 
     menudata = [
-      
-    {
-      'id': '35',
-      'text': 'DashBoard',
-      'parentid': '-1',
-      'subMenuWidth': '250px'
-  },
-        
-      {            
-          'id': '1',
-          'text': 'Import',
+        {
+            "SubMenuWidth": "250px",
+            "id": "1",
+            "parentid": "-1",
+            "text": "Dashboard"
+        },
+        {
+            "SubMenuWidth": "250px",
+            "id": "2",
+            "parentid": "-1",
+            "text": "Import"
+        },
+        {
+            "SubMenuWidth": "250px",
+            "id": "3",
+            "parentid": "-1",
+            "text": "Export"
+        },
+        {
+            "SubMenuWidth": "250px",
+            "id": "4",
+            "parentid": "-1",
+            "text": "Setting "
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "5",
+            "parentid": "3",
+            "text": "Direct Export"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "6",
+            "parentid": "3",
+            "text": "Warehouse"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "7",
+            "parentid": "2",
+            "text": "Upload Excel Plan Receive"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "8",
+            "parentid": "2",
+            "text": "Plan Receive For Import"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "9",
+            "parentid": "2",
+            "text": "Tally Check"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "10",
+            "parentid": "2",
+            "text": "Import Checker"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "11",
+            "parentid": "2",
+            "text": "Barcode Mapping"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "12",
+            "parentid": "2",
+            "text": "Pick List Create"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "13",
+            "parentid": "5",
+            "text": "Plan Receive For Export"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "14",
+            "parentid": "5",
+            "text": "Tally Check For Export"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "15",
+            "parentid": "5",
+            "text": "Export Checker"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "16",
+            "parentid": "5",
+            "text": "Barcode Mapping For Export"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "17",
+            "parentid": "5",
+            "text": "Pick List Create For Export"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "18",
+            "parentid": "6",
+            "text": "Plan Receive For Export (W)"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "19",
+            "parentid": "6",
+            "text": "Tally Check For Export (W)"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "20",
+            "parentid": "6",
+            "text": "Export Checker (W)"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "21",
+            "parentid": "6",
+            "text": "Barcode Mapping For Export (W)"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "22",
+            "parentid": "6",
+            "text": "Pick List Create(W)"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "23",
+            "parentid": "4",
+            "text": "User"
+        },
+        {
+            "SubMenuWidth": "",
+            "id": "24",
+            "parentid": "4",
+            "text": "MenuGroup"
+        },
+        {
+          'id': '25',
+          'text': this.username,
           'parentid': '-1',
           'subMenuWidth': '250px'
-      }, {
-          'id': '2',
-          'parentid': '1',
-          'text': ' Plan Receive (Excel)'
-      }, {
-          'id': '3',
-          'parentid': '1',
-          'text': 'Plan Receive'
-      }, {
-          'id': '4',
-          'parentid': '1',
-          'text': 'Tally Check'
-      }, {
-          'id': '5',
-          'parentid': '1',
-          'text': 'Checker'
-      }, {
-          'id': '6',          
-          'parentid': '1',
-    'text': 'Barcode Mapping',
-          'subMenuWidth': '200px'
-  }, {
-          'id': '7',
-          'text': 'Allocation',
-          'parentid': '1',
-          'subMenuWidth': '200px'
-  }, {
-          'id': '8',
-          'text': 'Pick List',
-          'parentid': '1',
-          'subMenuWidth': '200px'
-      }, {
-          'id': '9',
-          'parentid': '-1',
-          'text': 'Export'
-      }, {
-          'id': '10',
-          'text': 'Plan for Cargo Receive',
-          'parentid': '9'
-      }, {
-          'id': '11',
-          'text': 'Tally Check',
-          'parentid': '9'
-      }, {
-          'id': '12',
-          'text': 'Checker',
-          'parentid': '9'
-      }, {
-          'id': '13',
-          'text': 'Barcode Mapping',
-          'parentid': '9'
-      }, {
-          'id': '14',
-          'text': 'Allocation',
-          'parentid': '9'
-      }, {
-          'id': '15',
-          'text': 'Pick List',
-          'parentid': '9'
-      }, {
-          'id': '16',
-          'text': 'Stock',
-          'parentid': '-1'
-      }, {
-          'id': '17',
-          'text': 'Stock List',
-          'parentid': '16'
-      }, {
-          'id': '18',
-          'text': 'Report',
-          'parentid': '-1'
-   }, {
-          'id': '19',
-          'parentid': '18',
-          'text': 'Container Receiving'
-      }, {
-          'id': '20',
-          'parentid': '18',
-          'text': 'Proudct - Location'
-      }, {
-          'id': '21',
-          'parentid': '18',
-          'text': 'Stock Count Document'
-      }, {
-          'id': '22',          
-          'parentid': '18',
-    'text': 'Stock Adjustment',
-          'subMenuWidth': '200px'
-  }, {
-          'id': '23',
-          'text': 'Setting',
-          'parentid': '-1',
-          'subMenuWidth': '200px'
-  }, {
-          'id': '24',
-          'text': 'User Agent Consignee',
-          'parentid': '23',
-         
-      }, {
-          'id': '25',
-          'parentid': '24',
-          'text': 'User'
-      }, {
+      },   
+        {
           'id': '26',
-          'text': 'User Group',
-          'parentid': '24'
-      }, {
-          'id': '27',
-          'text': 'Agent',
-          'parentid': '24'
-      }, {
-          'id': '28',
-          'text': 'Consignee',
-          'parentid': '24'
-      }, {
-          'id': '29',
-          'text': 'Shipper',
-          'parentid': '24'
-      }, {
-          'id': '30',
-          'text': 'Warehouse/Stock',
-          'parentid': '23'
-      }, {
-          'id': '31',
-          'text': 'Location',
-          'parentid': '30'      
+          'text': 'Change Password',
+          'parentid': '25',
+          'subMenuWidth': '250px'
       },
       {
-        'id': '32',
-        'text': this.username,
+        'id': '27',
+        'text': 'Logout',
         'parentid': '-1',
         'subMenuWidth': '250px'
-    },   
-      {
-        'id': '33',
-        'text': 'Change Password',
-        'parentid': '32',
-        'subMenuWidth': '250px'
-    },
-    {
-      'id': '34',
-      'text': 'Logout',
-      'parentid': '-1',
-      'subMenuWidth': '250px'
-    }
-  ];
-
+      }
+     ]
   /*
     data = [
       {
@@ -279,17 +282,89 @@ export class FramelayoutComponent implements OnInit {
 
   itemclick(event: any): void {
       //this.eventLog.nativeElement.innerHTML = 'Id: ' + event.args.id + ', Text: ' + event.args.innerText;   
-      if(event.args.id == 35)
+      if(event.args.id == 1)
       {
         this.Routeform('home');
       }
-      else if(event.args.id == 34)
+      else if(event.args.id == 27)
       {
         this.onlogout();
       }
-      else if(event.args.id == 33)
+      else if(event.args.id == 26)
       {
         this.Routeform('changepw');
+      }
+      else if(event.args.id == 7)
+      {
+        this.Routeform('lstuploadexcelplanreceive');
+      }
+      else if(event.args.id == 8)
+      {
+        this.Routeform('lstplanreceiveforimport');
+      }
+      else if(event.args.id == 9)
+      {
+        this.Routeform('lsttallycheck');
+      }
+      else if(event.args.id == 10)
+      {
+        this.Routeform('lstimportchecker');
+      }
+      else if(event.args.id == 11)
+      {
+        this.Routeform('lstbarcodemapping');
+      }
+      else if(event.args.id == 12)
+      {
+        this.Routeform('lstpicklistcreate');
+      }
+      else if(event.args.id == 13)
+      {
+        this.Routeform('lstplanreceiveforexport');
+      }
+      else if(event.args.id == 14)
+      {
+        this.Routeform('lsttallycheckforexport');
+      }
+      else if(event.args.id == 15)
+      {
+        this.Routeform('lstexportchecker');
+      }
+      else if(event.args.id == 16)
+      {
+        this.Routeform('lstbarcodemappingforexport');
+      }
+      else if(event.args.id == 17)
+      {
+        this.Routeform('lstpicklistcreateforexport');
+      }
+      else if(event.args.id == 18)
+      {
+        this.Routeform('lstplanreceiveforexport-w');
+      }
+      else if(event.args.id == 19)
+      {
+        this.Routeform('lsttallycheckforexport-w');
+      }
+      else if(event.args.id == 20)
+      {
+        this.Routeform('lstexportchecker');
+      }
+      else if(event.args.id == 21)
+      {
+        this.Routeform('lstlstbarcodemappingforexport-w');
+      }
+      else if(event.args.id == 22)
+      {
+        this.Routeform('lstpicklistcreate-w');
+      }
+      else if(event.args.id == 23)
+      {
+        this.Routeform('lstuser');
+      }
+      else if(event.args.id == 24)
+      {
+        this.Routeform('lstmenugroup');
       }
   };
 
