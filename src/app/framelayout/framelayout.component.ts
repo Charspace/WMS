@@ -171,25 +171,7 @@ export class FramelayoutComponent implements OnInit {
             "id": "24",
             "parentid": "4",
             "text": "MenuGroup"
-        },
-        {
-          'id': '25',
-          'text': this.username,
-          'parentid': '-1',
-          'subMenuWidth': '250px'
-      },   
-        {
-          'id': '26',
-          'text': 'Change Password',
-          'parentid': '25',
-          'subMenuWidth': '250px'
-      },
-      {
-        'id': '27',
-        'text': 'Logout',
-        'parentid': '-1',
-        'subMenuWidth': '250px'
-      }
+        }
      ]
   /*
     data = [
@@ -286,14 +268,7 @@ export class FramelayoutComponent implements OnInit {
       {
         this.Routeform('home');
       }
-      else if(event.args.id == 27)
-      {
-        this.onlogout();
-      }
-      else if(event.args.id == 26)
-      {
-        this.Routeform('changepw');
-      }
+      
       else if(event.args.id == 7)
       {
         this.Routeform('lstuploadexcelplanreceive');

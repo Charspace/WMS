@@ -112,12 +112,39 @@
 [width]="405"
 [height]="30">
 </jqxMenu>
+
+<table   style="width: 100%;border: 1px solid black;background-color:paleturquoise">
+  <tr>
+    <td>
+        <img style="margin-top: 3px;" height="40" width="600"  src="assets/img/pakin.png"/>
+    </td>
+    
+    <td  style="width:10%;margin-right: 20px;border: 1px solid black;">
               
-<div style="border:1px solid black;" class="row">
+        <jqxMenu #menuReference [width]="'100%'"  [height]="'100%'" style="background:rgb(189, 184, 255);" >
+            <ul>
+                <li>
+                    <img style="width: 30px;height: 30px" src='assets/img/user.png' />
+                    {{username}}
+                    <ul>
+                      <li (click)="Routeform('changepw')">Change Password</li>
+                      <li (click)="onlogout()">Logout</li>
+                     
+                    </ul>
+                  </li>
+            </ul>
+          </jqxMenu>
+      
+    </td>
+
+  </tr>
+</table>
+              
+<!-- <div style="border:1px solid black;" class="row">
     
         <div style="border:1px solid black;"  class="columnmenu">
                                 
-            <!-- Label display -->
+            
             <img style="margin-top: 3px;" height="40" width="600"  src="assets/img/pakin.png"/>
         
         </div>
@@ -139,7 +166,7 @@
             </jqxMenu>
         </div>
 
-</div>
+</div> -->
 
   <!-- <div  style="margin-top: 50px; font-size: 13px; font-family: Verdana;" #eventLog></div>   -->
   
