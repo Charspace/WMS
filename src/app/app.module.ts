@@ -48,6 +48,7 @@ import { LstpicklistcreateWComponent } from './lstpicklistcreate-w/lstpicklistcr
 import { LstplanreceiveforexportWComponent } from './lstplanreceiveforexport-w/lstplanreceiveforexport-w.component';
 import { LsttallycheckforexportWComponent } from './lsttallycheckforexport-w/lsttallycheckforexport-w.component';
 import { LstplanreceiveforimportComponent } from './lstplanreceiveforimport/lstplanreceiveforimport.component';
+import { SetuserComponent } from './setuser/setuser.component';
 
 
 
@@ -186,6 +187,13 @@ const appRoutes: Routes=[
     component:LstplanreceiveforimportComponent,
     //outlet:'homepath'
     
+  },
+  {
+    path : 'setuser',
+    component:SetuserComponent,
+    outlet: 'userPopup'
+    //outlet:'homepath'
+    
   }
 ]
 
@@ -226,7 +234,8 @@ const appRoutes: Routes=[
     LsttallycheckforexportWComponent,
     LstmenugroupComponent,
     LstuserComponent,
-    LstplanreceiveforimportComponent 
+    LstplanreceiveforimportComponent,
+    SetuserComponent 
    
   ],
   imports: [
