@@ -508,16 +508,16 @@ CreateGrid()
         if(oldvalue != newvalue)
         {
         //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-        this.CellendeditShipper(index);
+        this.CellendeditShipper();
         }
 
     }
   }
 
-  CellendeditShipper(index)
+  CellendeditShipper()
 {
-  //////////////////////////////////;
-  //var index = this.shipperGrid.getselectedrowindex();
+  
+  var index = this.shipperGrid.getselectedrowindex();
   var rowdata = this.shipperGrid.getrowdata(index);   
 if(rowdata.ShipperName)
 {
@@ -554,16 +554,16 @@ CellvaluechangedTruck(event:any)
       if(oldvalue != newvalue)
       {
       //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-      this.CellendeditShipper(index);
+      this.CellendeditShipper();
       }
 
   }
 }
 
-CellendeditTruck(index)
+CellendeditTruck()
 {
-//////////////////////////////////;
-//var index = this.shipperGrid.getselectedrowindex();
+
+var index = this.shipperGrid.getselectedrowindex();
 var rowdata = this.shipperGrid.getrowdata(index);   
 if(rowdata.ShipperName)
 {
@@ -600,16 +600,16 @@ CellvaluechangedPO(event:any)
       if(oldvalue != newvalue)
       {
       //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-      this.CellendeditShipper(index);
+      this.CellendeditShipper();
       }
 
   }
 }
 
-CellendeditPO(index)
+CellendeditPO()
 {
-//////////////////////////////////;
-//var index = this.shipperGrid.getselectedrowindex();
+
+var index = this.shipperGrid.getselectedrowindex();
 var rowdata = this.poGrid.getrowdata(index);   
 if(rowdata.ShipperName)
 {
@@ -752,16 +752,16 @@ CellvaluechangedSKU(event:any)
       if(oldvalue != newvalue)
       {
       //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-      this.CellendeditShipper(index);
+      this.CellendeditShipper();
       }
 
   }
 }
 
-CellendeditSKU(index)
+CellendeditSKU()
 {
-//////////////////////////////////;
-//var index = this.shipperGrid.getselectedrowindex();
+
+var index = this.shipperGrid.getselectedrowindex();
 var rowdata = this.skuGrid.getrowdata(index);   
 if(rowdata.ShipperName)
 {

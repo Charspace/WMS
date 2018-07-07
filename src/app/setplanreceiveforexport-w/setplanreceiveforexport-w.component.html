@@ -46,7 +46,7 @@
                     <jqxComboBox #agentcombo style=" float: left"
                      (onSelect)="onAgentComboChange($event) "
                       [source]="agentcombo_Adapter" [valueMember]="'AgentName'"
-                    [placeHolder]="agentplaceholder" [displayMember]="'AgentName'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="agentdisable" >
+                    [placeHolder]="agentplaceholder" [displayMember]="'AgentName'" [searchMode]="'containsignorecase'" [autoComplete]="true"  >
                     </jqxComboBox> 
             </td>
 
@@ -96,7 +96,7 @@
     <td colspan="3">
         <br>
       <jqxTextArea  #myInput (onChange)="onremarkchange($event)"
-        [width]="'90%'" [height]="35" [(ngModel)]="remark" [disabled]="remarkdisabled" 
+        [width]="'90%'" [height]="35" [(ngModel)]="remark" 
         [placeHolder]="remarkplaceholder">
       </jqxTextArea >
     </td>  
@@ -108,8 +108,8 @@
   <jqxGrid #shipperGrid (onRowselect)="shipperGridOnRowSelect($event)"
        [source]="dataAdapter" (onCellvaluechanged)="CellvaluechangedShipper($event)"  (onCellendedit)="CellendeditShipper()"
       [keyboardnavigation]="false" [columns]="columns"
-      [width]="'100%'" [source]="dataAdapter" [filterable]="true" [disabled]="griddisable" 
-    [editable]="true" [altrows]="true"  [localization]="localization" 
+      [width]="'100%'" [source]="dataAdapter" [filterable]="true"  
+    [editable]="true" [altrows]="true"  
     [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
       >
   </jqxGrid>
@@ -121,8 +121,8 @@
 
   <jqxGrid #truckGrid  (onRowselect)="truckGridOnRowSelect($event)"  (onCellvaluechanged)="CellvaluechangedTruck($event)"  (onCellendedit)="CellendeditTruck()"    
       [keyboardnavigation]="false" [columns]="columns2"
-      [width]="'100%'" [source]="dataAdapter2" [filterable]="true" [disabled]="griddisable" 
-    [editable]="true" [altrows]="true"  [localization]="localization" 
+      [width]="'100%'" [source]="dataAdapter2" [filterable]="true" 
+    [editable]="true" [altrows]="true"  
     [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
       >
   </jqxGrid>
@@ -132,8 +132,8 @@
   <h3>PO</h3>
   <jqxGrid #poGrid      (onRowselect)="poGridOnRowSelect($event)"  (onCellvaluechanged)="CellvaluechangedPO($event)"  (onCellendedit)="CellendeditPO()"
   [keyboardnavigation]="false" [columns]="columns3"
-  [width]="'100%'" [source]="dataAdapter3" [filterable]="true" [disabled]="griddisable" 
-[editable]="true"  [altrows]="true"  [localization]="localization" 
+  [width]="'100%'" [source]="dataAdapter3" [filterable]="true"  
+[editable]="true"  [altrows]="true"  
 [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
   >
 </jqxGrid>
@@ -143,8 +143,8 @@
         <h3>SKU</h3>
         <jqxGrid #skuGrid      
         [keyboardnavigation]="false" [columns]="columns4"  (onCellvaluechanged)="CellvaluechangedSKU($event)"  (onCellendedit)="CellendeditSKU()"
-        [width]="'100%'" [source]="dataAdapter4" [filterable]="true" [disabled]="griddisable" 
-      [editable]="true"  [altrows]="true"  [localization]="localization" 
+        [width]="'100%'" [source]="dataAdapter4" [filterable]="true"  
+      [editable]="true"  [altrows]="true"  
       [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
         >
       </jqxGrid>
