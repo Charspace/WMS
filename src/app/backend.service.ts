@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 export class BackendService {
 
   //serverip : any = "aepmyanmar-001-site1.ctempurl.com/book.svc";
-  serverip : any = "localhost:8588/WMS.svc";
+  serverip : any = "zawpyaethan-001-site1.btempurl.com/WMS.svc";
   serverport : any = "";
 
   constructor(public http: Http ) 
