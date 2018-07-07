@@ -21,10 +21,10 @@ import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
   styleUrls: ['./setplanreceiveforexport-w.component.css']
 })
 export class SetplanreceiveforexportWComponent implements OnInit {
-  @ViewChild('customersGrid') myGrid: jqxGridComponent;
-  @ViewChild('ordersGrid') ordersGrid: jqxGridComponent;
-  @ViewChild('ordersDetailGrid') ordersDetailGrid: jqxGridComponent;
-  @ViewChild('ordersDetailandDetailGrid') ordersDetailandDetailGrid: jqxGridComponent;
+  @ViewChild('shipperGrid') shipperGrid: jqxGridComponent;
+  @ViewChild('truckGrid') truckGrid: jqxGridComponent;
+  @ViewChild('poGrid') poGrid: jqxGridComponent;
+  @ViewChild('skuGrid') skuGrid: jqxGridComponent;
   
 
   @ViewChild('agentcombo') agentcombo: jqxComboBoxComponent;
@@ -72,10 +72,14 @@ export class SetplanreceiveforexportWComponent implements OnInit {
 
   //agentcombo
   agentcombo_Adapter : any;  
+  AgentList : any = [];
+  agentsource : any = [];
 
   //countrycombo
   countrycombo_Adapter : any;
   countrycombodisable : any;
+  CountryList : any = [];
+  countrysource : any = [];
 
   //cargoreceiveddate
   cargoreceiveddatevalue : any;
@@ -110,6 +114,7 @@ export class SetplanreceiveforexportWComponent implements OnInit {
     this.remarkplaceholder = "Remark";
 
     this.CreateGrid();
+
     
   }
 
@@ -146,7 +151,163 @@ onremarkchange(event)
 
 }
 
-  CreateGrid()
+CreateGrid()
+{
+  this.source  =
+  {
+      datafields: [
+          { name: 'BookingAsk' },
+          { name: 'ShipperAsk' },
+          { name: 'ShipperDetails' },
+          { name: 'ShipperDisplaySequence' },
+          { name: 'ShipperName' },
+          { name: 'ShipperRemark' },
+          { name: 'ShipperStatus' }
+      ],
+      localdata:
+      [
+
+      ]
+  }
+
+  this.dataAdapter = new jqx.dataAdapter(this.source);
+
+  this.columns =
+  [
+      { text: 'Shipper Name', datafield: 'ShipperName', width: 250 },
+      { text: 'Shipper Details', datafield: 'ShipperDetails', width: 150 },
+      { text: 'Remark', datafield: 'ShipperRemark', width: 180 }    
+  ];
+
+  this.dataFields2 =
+  [
+      { name: 'BookingAsk' },
+      { name: 'ShipperAsk' },
+      { name: 'TruckAsk' },
+      { name: 'TruckDisplaySequence' },
+      { name: 'TruckID' },
+      { name: 'TruckRemark' },
+      { name: 'TruckStatus' },
+      { name: 'TruckTypeAsk' },
+      { name: 'Tracktype' },
+      { name: 'weight' },
+      { name: 'cm' }
+  ];
+
+  this.source2 =
+  {
+      datafields: this.dataFields2,
+      localdata:
+      [
+          
+      ]
+  }
+
+  this.dataAdapter2 = new jqx.dataAdapter(this.source2, { autoBind: true } );
+
+  this.columns2 = 
+  [
+      { text: 'Track ID', datafield: 'TruckID', width: 100 },
+      { text: 'Track Type', datafield: 'TrackType', width: 100 },
+      { text: 'weight', datafield: 'weight', width: 100 },
+      { text: 'cm', datafield: 'cm', width: 100 },
+      { text: 'Remark', datafield: 'TruckRemark', width: 150 }
+ 
+  ];
+
+  this.dataFields3 =
+  [
+      { name: 'BookingAsk' },
+      { name: 'POAsk' },
+      { name: 'PODisplaySequence' },
+      { name: 'PONo', },
+      { name: 'POReferenceNo', },
+      { name: 'PORemark' },
+      { name: 'POShippingMark' },
+      { name: 'POStatus' },
+      { name: 'ShipperAsk' },
+      { name: 'TruckAsk' }
+  ];
+
+  this.source3 =
+  {
+      datafields: this.dataFields3,
+      localdata:
+      [
+         
+      ]
+  }
+
+  this.dataAdapter3 = new jqx.dataAdapter(this.source3, { autoBind: true } );
+
+  this.columns3 = 
+  [
+      { text: 'PO No', datafield: 'PONo', width: 100 },
+      { text: 'Shiping Mark ', datafield: 'POShippingMark', width: 100 },
+      { text: 'Reference No', datafield: 'POReferenceNo',  width: 150 },
+      { text: 'Remark', datafield: 'PORemark', width: 150 }      
+  ];
+
+  this.dataFields4 =
+  [
+      { name: 'BookingAsk' },
+      { name: 'POAsk' },
+      { name: 'SKUAsk' },
+      { name: 'SKUDamageQty' },
+      { name: 'SKUDamagephoto' },
+      { name: 'SKUDetails'},
+      { name: 'SKUDimensionBase' },
+      { name: 'SKUDimensionHeight' },
+      { name: 'SKUDimensionWidth' },
+      { name: 'SKUDisplaySequence' },
+      { name: 'SKUGoodQty' },
+      { name: 'SKUGoodphoto' },
+      { name: 'SKUName' },
+      { name: 'SKUOverlandQty' },
+      { name: 'SKUOverlandphoto' },
+      { name: 'SKUPlanQty' },
+      { name: 'SKUReceivedQty' },
+      { name: 'SKUReference' },
+      { name: 'SKURemark' },
+      { name: 'SKUShortLandQty' },
+      { name: 'SKUShortLandphoto' },
+      { name: 'SKUStatus' },
+      { name: 'SKUTruckID' },
+      { name: 'SKUTruckType' },
+      { name: 'SKUUOMAsk' },
+      { name: 'SKUTruckType' },
+      { name: 'SKUWeight' },
+      { name: 'ShipperAsk' },
+      { name: 'TruckAsk' },
+      {name:'UOM'}
+  ];
+
+  this.source4 =
+  {
+      datafields: this.dataFields4,
+      localdata:
+      [
+          
+      ]
+  }
+
+  this.dataAdapter4 = new jqx.dataAdapter(this.source4, { autoBind: true } );
+
+  this.columns4 = 
+  [
+      { text: 'SKU Name', datafield: 'SKUName'},      
+      { text: 'Dimension Width', datafield: 'SKUDimensionWidth' },
+
+      { text: 'Dimension Height', datafield: 'SKUDimensionHeight' },
+      { text: 'Dimension Base', datafield: 'SKUDimensionBase' },
+      { text: 'Plan Qty', datafield: 'SKUPlanQty' },
+      { text: 'UOM', datafield: 'UOM' },
+      { text: 'Remark', datafield: 'SKURemark' }    
+  ];
+
+}
+
+  BindGrid()
   {
     this.source  =
     {
@@ -300,7 +461,368 @@ onremarkchange(event)
 
   }
 
-  customersGridOnRowSelect(event: any): void {
+  btnSave()
+  {
+      var Bookinglist = [];
+      var Shipperlist = [];
+      var Trucklist = [];
+      var SKUlist = [];
+      
+            
+      this.backendservice.SaveReceived().then(data =>
+        {
+            alert(JSON.stringify(data)); 
+        })
+
+  }
+
+  btnNew()
+  {
+                
+    this.truckGrid.addrow(null,0)           
+    this.poGrid.addrow(null,0)
+    this.shipperGrid.addrow(null,0)
+    this.skuGrid.addrow(null,0)
+    this.BindCountry();
+    this.BindAgent();
+
+  /*  let datarow3 = this.generaterow3();              
+    this.shipperGrid.addrow(null, datarow3);     
+
+    let datarow4 = this.generaterow4();              
+    this.skuGrid.addrow(null, datarow4);      */
+
+     
+
+  }
+
+  CellvaluechangedShipper(event:any)
+  {
+    var index = this.shipperGrid.getselectedrowindex();
+    var rowdata = this.shipperGrid.getrowdata(index);   
+    var columnname = event.args.datafield;
+    if(columnname == "ShipperName")
+    {
+        let oldvalue = event.args.oldvalue;
+        let newvalue = event.args.newvalue;
+        if(oldvalue != newvalue)
+        {
+        //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
+        this.CellendeditShipper(index);
+        }
+
+    }
+  }
+
+  CellendeditShipper(index)
+{
+  //////////////////////////////////;
+  //var index = this.shipperGrid.getselectedrowindex();
+  var rowdata = this.shipperGrid.getrowdata(index);   
+if(rowdata.ShipperName)
+{
+ // this.addnewrowwhencellleaveShipper()
+}
+
+}
+
+addnewrowwhencellleaveShipper()
+{
+  
+  var index = this.shipperGrid.getselectedrowindex();
+  var rowcount = this.shipperGrid.getrows();
+  var rowlength = rowcount.length - 1;
+  if(rowlength == index)
+  {
+  //this.griddisable = false;
+  let datarow = this.generaterow();              
+      this.shipperGrid.addrow(null, datarow);      
+  }
+  //this.shipperGrid.setcolumnproperty('GLCode','editable',true);
+  
+}
+
+CellvaluechangedTruck(event:any)
+{
+  var index = this.shipperGrid.getselectedrowindex();
+  var rowdata = this.shipperGrid.getrowdata(index);   
+  var columnname = event.args.datafield;
+  if(columnname == "ShipperName")
+  {
+      let oldvalue = event.args.oldvalue;
+      let newvalue = event.args.newvalue;
+      if(oldvalue != newvalue)
+      {
+      //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
+      this.CellendeditShipper(index);
+      }
+
+  }
+}
+
+CellendeditTruck(index)
+{
+//////////////////////////////////;
+//var index = this.shipperGrid.getselectedrowindex();
+var rowdata = this.shipperGrid.getrowdata(index);   
+if(rowdata.ShipperName)
+{
+//this.addnewrowwhencellleaveShipper()
+}
+
+}
+
+addnewrowwhencellleaveTruck()
+{
+
+var index = this.truckGrid.getselectedrowindex();
+var rowcount = this.truckGrid.getrows();
+var rowlength = rowcount.length - 1;
+if(rowlength == index)
+{
+//this.griddisable = false;
+let datarow = this.generaterow();              
+    this.truckGrid.addrow(null, datarow);      
+}
+//this.shipperGrid.setcolumnproperty('GLCode','editable',true);
+
+}
+
+CellvaluechangedPO(event:any)
+{
+  var index = this.poGrid.getselectedrowindex();
+  var rowdata = this.poGrid.getrowdata(index);   
+  var columnname = event.args.datafield;
+  if(columnname == "ShipperName")
+  {
+      let oldvalue = event.args.oldvalue;
+      let newvalue = event.args.newvalue;
+      if(oldvalue != newvalue)
+      {
+      //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
+      this.CellendeditShipper(index);
+      }
+
+  }
+}
+
+CellendeditPO(index)
+{
+//////////////////////////////////;
+//var index = this.shipperGrid.getselectedrowindex();
+var rowdata = this.poGrid.getrowdata(index);   
+if(rowdata.ShipperName)
+{
+//this.addnewrowwhencellleaveShipper()
+}
+
+}
+
+addnewrowwhencellleavePO()
+{
+
+var index = this.poGrid.getselectedrowindex();
+var rowcount = this.poGrid.getrows();
+var rowlength = rowcount.length - 1;
+if(rowlength == index)
+{
+//this.griddisable = false;
+let datarow = this.generaterow();              
+    this.poGrid.addrow(null, datarow);      
+}
+//this.shipperGrid.setcolumnproperty('GLCode','editable',true);
+
+}
+
+BindCountry()
+{    
+this.CountryList =
+[
+    {
+        "Ask": "1",
+        "CountryDetails": " ",
+        "CountryName": "Myanmar",
+        "DisplaySequence": "0",
+        "Remark": " ",
+        "Status": "0",
+        "TS": "1",
+        "UD": "1"
+    },
+    {
+        "Ask": "2",
+        "CountryDetails": " ",
+        "CountryName": "ThaiLand",
+        "DisplaySequence": "0",
+        "Remark": " ",
+        "Status": "0",
+        "TS": "1",
+        "UD": "1"
+    },
+    {
+        "Ask": "3",
+        "CountryDetails": "",
+        "CountryName": "Singapore",
+        "DisplaySequence": "0",
+        "Remark": "",
+        "Status": "0",
+        "TS": "1",
+        "UD": "1"
+    }
+]
+
+       
+  this.countrysource =
+{
+ dataType: 'json',
+ dataFields: [
+   { name: 'CountryName' }],
+
+ localdata: this.CountryList
+};
+
+this.countrycombo_Adapter = new jqx.dataAdapter(this.countrysource);
+}
+
+BindAgent()
+{    
+this.AgentList = 
+[
+    {
+        "Address": " ",
+        "AgentDetails": " ",
+        "AgentName": "Agent1",
+        "Ask": "1",
+        "BillingAddress": " ",
+        "CompanyName": " ",
+        "ContactPersonMobile": " ",
+        "ContactPersonName": " ",
+        "DisplaySequence": "0",
+        "Email": " ",
+        "Mobile": " ",
+        "NationalID": " ",
+        "Remark": " ",
+        "ShippinggAddress": " ",
+        "TS": "1",
+        "UD": "1",
+        "Website": " "
+    },
+    {
+        "Address": " ",
+        "AgentDetails": " ",
+        "AgentName": "Agent2",
+        "Ask": "2",
+        "BillingAddress": " ",
+        "CompanyName": " ",
+        "ContactPersonMobile": " ",
+        "ContactPersonName": " ",
+        "DisplaySequence": "0",
+        "Email": " ",
+        "Mobile": " ",
+        "NationalID": " ",
+        "Remark": " ",
+        "ShippinggAddress": " ",
+        "TS": "1",
+        "UD": "1",
+        "Website": " "
+    }
+]
+
+       
+  this.agentsource =
+{
+ dataType: 'json',
+ dataFields: [
+   { name: 'AgentName' }],
+
+ localdata: this.AgentList
+};
+
+this.agentcombo_Adapter = new jqx.dataAdapter(this.agentsource);
+}
+
+CellvaluechangedSKU(event:any)
+{
+  var index = this.skuGrid.getselectedrowindex();
+  var rowdata = this.skuGrid.getrowdata(index);   
+  var columnname = event.args.datafield;
+  if(columnname == "ShipperName")
+  {
+      let oldvalue = event.args.oldvalue;
+      let newvalue = event.args.newvalue;
+      if(oldvalue != newvalue)
+      {
+      //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
+      this.CellendeditShipper(index);
+      }
+
+  }
+}
+
+CellendeditSKU(index)
+{
+//////////////////////////////////;
+//var index = this.shipperGrid.getselectedrowindex();
+var rowdata = this.skuGrid.getrowdata(index);   
+if(rowdata.ShipperName)
+{
+//this.addnewrowwhencellleaveShipper()
+}
+
+}
+
+addnewrowwhencellleaveSKU()
+{
+
+var index = this.skuGrid.getselectedrowindex();
+var rowcount = this.skuGrid.getrows();
+var rowlength = rowcount.length - 1;
+if(rowlength == index)
+{
+//this.griddisable = false;
+let datarow = this.generaterow();              
+    this.skuGrid.addrow(null, datarow);      
+}
+//this.shipperGrid.setcolumnproperty('GLCode','editable',true);
+
+}
+
+
+
+
+
+  generaterow(): any {   
+    let row = {};
+    // row['DeleteRow'] = 'X'
+    // row['LocalAmt'] = 0;
+    // row['SourceAmt'] = 0;
+    return row;
+  }
+
+  generaterow2(): any {   
+    let row = {};
+    // row['DeleteRow'] = 'X'
+    // row['LocalAmt'] = 0;
+    // row['SourceAmt'] = 0;
+    return row;
+  }
+
+  generaterow3(): any {   
+    let row = {};
+    // row['DeleteRow'] = 'X'
+    // row['LocalAmt'] = 0;
+    // row['SourceAmt'] = 0;
+    return row;
+  }
+
+  generaterow4(): any {   
+    let row = {};
+    // row['DeleteRow'] = 'X'
+    // row['LocalAmt'] = 0;
+    // row['SourceAmt'] = 0;
+    return row;
+  }
+
+  shipperGridOnRowSelect(event: any): void {
     let customerID = event.args.row.CustomerID;
     let records = new Array();
     let dataAdapter = this.dataAdapter2;
@@ -320,12 +842,12 @@ onremarkchange(event)
     let adapter = new jqx.dataAdapter(dataSource);
 
 
-    this.ordersGrid.source(adapter);
+    this.truckGrid.source(adapter);
 
-    this.ordersGrid.selectrow(0);
+    this.truckGrid.selectrow(0);
 }
 
-ordersGridOnRowSelect(event: any): void {
+truckGridOnRowSelect(event: any): void {
 
     let orderid = event.args.row.OrderID;
     let records = new Array();
@@ -346,14 +868,14 @@ ordersGridOnRowSelect(event: any): void {
     let adapter = new jqx.dataAdapter(dataSource);
 
 
-    this.ordersDetailGrid.source(adapter);
-    this.ordersDetailGrid.selectrow(0);
-    //this.ordersGrid.selectrow(0);
+    this.poGrid.source(adapter);
+    this.poGrid.selectrow(0);
+    //this.truckGrid.selectrow(0);
 
 }
 
 
-ordersDetailGridOnRowSelect(event: any): void {
+poGridOnRowSelect(event: any): void {
 
     let orderdetailid = event.args.row.OrderDetailID;
     let records = new Array();
@@ -374,9 +896,9 @@ ordersDetailGridOnRowSelect(event: any): void {
     let adapter = new jqx.dataAdapter(dataSource);
 
 
-    this.ordersDetailandDetailGrid.source(adapter);
+    this.skuGrid.source(adapter);
 
-    //this.ordersGrid.selectrow(0);
+    //this.truckGrid.selectrow(0);
 
 }
 
