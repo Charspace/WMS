@@ -36,8 +36,8 @@ export class HomeComponent implements OnInit {
   nestedGrids : any =[];
   initRowDetails : any;
 
-  header = '{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"001"}'
-  detail = '{"EmployeeID":"001","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"}';
+  header = '[{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"001"},{"FirstName":"Hla","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"002"}]'
+  detail = '[{"EmployeeID":"001","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"},{"EmployeeID":"002","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"}]';
 
 
   constructor() {

@@ -35,7 +35,10 @@
     "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxdockpanel",
     "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxresponsivepanel",
     "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxinput.ts" ,
-    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxpopover.ts"    
+    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxpopover.ts",
+
+    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput.ts",
+    "node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea.ts"
 
 
   ]

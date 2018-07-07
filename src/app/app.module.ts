@@ -49,7 +49,11 @@ import { LstplanreceiveforexportWComponent } from './lstplanreceiveforexport-w/l
 import { LsttallycheckforexportWComponent } from './lsttallycheckforexport-w/lsttallycheckforexport-w.component';
 import { LstplanreceiveforimportComponent } from './lstplanreceiveforimport/lstplanreceiveforimport.component';
 import { SetuserComponent } from './setuser/setuser.component';
+import { SetplanreceiveforexportComponent } from './setplanreceiveforexport/setplanreceiveforexport.component';
+import { SetplanreceiveforexportWComponent } from './setplanreceiveforexport-w/setplanreceiveforexport-w.component';
 
+import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
+import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';
 
 
 
@@ -194,6 +198,12 @@ const appRoutes: Routes=[
     outlet: 'userPopup'
     //outlet:'homepath'
     
+  },
+  {
+    path : 'setplanreceiveforexport-w',
+    component:SetplanreceiveforexportWComponent    
+    //outlet:'homepath'
+    
   }
 ]
 
@@ -216,6 +226,8 @@ const appRoutes: Routes=[
     jqxPopoverComponent,
     LoginComponent,
     jqxInputComponent,
+    jqxDateTimeInputComponent,
+    jqxTextAreaComponent,
     ChangepasswordComponent,
     LstuploadexcelplanreceiveComponent,
     LstplanreceiveforexportComponent,
@@ -235,7 +247,9 @@ const appRoutes: Routes=[
     LstmenugroupComponent,
     LstuserComponent,
     LstplanreceiveforimportComponent,
-    SetuserComponent 
+    SetuserComponent,
+    SetplanreceiveforexportComponent,
+    SetplanreceiveforexportWComponent 
    
   ],
   imports: [

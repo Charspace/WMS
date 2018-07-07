@@ -1,0 +1,119 @@
+<app-framelayout> </app-framelayout>
+
+<table style="width: 100%"  border="0" >
+    <tr>        
+            
+        <td colspan="1" >
+                <jqxInput  [height]="25" [placeHolder]="bookidplaceholder" [disabled]="false"   [(ngModel)]="bookingid" [minLength]="1">
+                </jqxInput>               
+        </td>
+       
+            <td colspan="1" >
+                    <jqxComboBox #agentcombo style=" float: left"
+                     (onSelect)="onAgentComboChange($event) "
+                      [source]="agentcombo_Adapter" [valueMember]="'Agent'"
+                    [placeHolder]="agentplaceholder" [displayMember]="'Agent'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="agentdisable" >
+                    </jqxComboBox> 
+            </td>
+
+                <td colspan="1" >
+                    <jqxComboBox #countrycombo style=" float: left"
+                    (onSelect)="onCountryComboChange($event) "
+                     [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
+                   [placeHolder]="countryplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="countrycombodisable" >
+                   </jqxComboBox> 
+                </td>
+
+                
+    <td colspan="1" >
+            <jqxInput [disabled]="false" [height]="25"  [(ngModel)]="nooftrack" [minLength]="1" [placeHolder]="nooftrackplaceholder">
+            </jqxInput>               
+    </td>
+
+    <td colspan="1" >
+            <jqxInput [disabled]="false" [height]="25"   [(ngModel)]="noofcontainer" [minLength]="1" [placeHolder]="noofcontainerplaceholder">
+            </jqxInput>               
+    </td>            
+
+    </tr>
+    <tr>
+             
+
+     <td colspan="1">
+            <label >Cargo Received Date</label>
+        <jqxDateTimeInput #cargoreceiveddate class="label" 
+        (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+       </jqxDateTimeInput>
+   </td>
+   
+   <td colspan="1">
+        <label >Customer Issued Date</label>
+       <jqxDateTimeInput #customerissueddate class="label" 
+       (onValueChanged)="onCustomerIssueddate($event)" [disabled]="false">
+      </jqxDateTimeInput>
+  </td>
+  
+  <td colspan="1">
+        <label >Transaction Date</label>
+      <jqxDateTimeInput #transactiondate class="label" 
+      (onValueChanged)="onTransactionDateChange($event)" [disabled]="false">
+     </jqxDateTimeInput>
+ </td>       
+    <td colspan="3">
+        <br>
+      <jqxTextArea  #myInput (onChange)="onremarkchange($event)"
+        [width]="'90%'" [height]="35" [(ngModel)]="remark" [disabled]="remarkdisabled" 
+        [placeHolder]="remarkplaceholder">
+      </jqxTextArea >
+    </td>  
+    </table>
+
+<div style='margin-left:5px; margin-right:5px'>
+  <h3>Customers</h3>
+
+  <jqxGrid #customersGrid (onRowselect)="customersGridOnRowSelect($event)"
+       [source]="dataAdapter"
+      [keyboardnavigation]="false" [columns]="columns"
+      [width]="'100%'" [source]="dataAdapter" [filterable]="true" [disabled]="griddisable" 
+    [editable]="true" [columns]="columns" [altrows]="true"  [localization]="localization" 
+    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
+      >
+  </jqxGrid>
+</div>
+
+
+<div style='margin-left:5px; margin-right:5px'>
+  <h3>Orders by Customer</h3>
+
+  <jqxGrid #ordersGrid  (onRowselect)="ordersGridOnRowSelect($event)"     
+      [keyboardnavigation]="false" [columns]="columns2"
+      [width]="'100%'" [source]="dataAdapter" [filterable]="true" [disabled]="griddisable" 
+    [editable]="true" [columns]="columns" [altrows]="true"  [localization]="localization" 
+    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
+      >
+  </jqxGrid>
+  </div>
+
+  <div style='margin-left:5px; margin-right:5px'>
+  <h3>Orders Detail by Customer</h3>
+  <jqxGrid #ordersDetailGrid      (onRowselect)="ordersDetailGridOnRowSelect($event)" 
+  [keyboardnavigation]="false" [columns]="columns2"
+  [width]="'100%'" [source]="dataAdapter" [filterable]="true" [disabled]="griddisable" 
+[editable]="true" [columns]="columns" [altrows]="true"  [localization]="localization" 
+[showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
+  >
+</jqxGrid>
+</div>
+
+<div style='margin-left:5px; margin-right:5px'>
+        <h3>Orders Detail and Detail by Customer</h3>
+        <jqxGrid #ordersDetailandDetailGrid      
+        [keyboardnavigation]="false" [columns]="columns2"
+        [width]="'100%'" [source]="dataAdapter" [filterable]="true" [disabled]="griddisable" 
+      [editable]="true" [columns]="columns" [altrows]="true"  [localization]="localization" 
+      [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
+        >
+      </jqxGrid>
+      </div>
+
+
