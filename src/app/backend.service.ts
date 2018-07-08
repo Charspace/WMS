@@ -17,12 +17,12 @@ export class BackendService {
 
   }
 
-  public SaveReceived()
+  public SaveReceived(body)
   {
     return new Promise((resolve,reject) => {
 
     //var body = '{"Ask":"0","BookAsk":"1","ExpiredDate":"","ExtendTime":"","Libray":"1","MarkAsk":"","MemberAsk":"4","Pwd":"wj4IdPsXzjygAFKHFdRpuw==","ReadDate":"","ReadStatus":"1","Remark":"","ReturnDate":"","Ts":"0","UD":"","User":"thura"}'
-    var body = {
+    /* var body = {
       "UserID" : "admin",
       "Password" : "123",
       "ProductAsk":"11",
@@ -113,7 +113,7 @@ export class BackendService {
          }
      ]
      
-     }
+     } */
     var  headers = new Headers();
     headers.append('Content-Type', 'application/json')
     headers.append('Accept', 'application/json')

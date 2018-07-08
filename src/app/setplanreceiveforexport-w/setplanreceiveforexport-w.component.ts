@@ -467,24 +467,182 @@ CreateGrid()
       var Shipperlist = [];
       var Trucklist = [];
       var SKUlist = [];
+
+      var shipperselectedrowindex  = this.shipperGrid.getselectedrowindex();     
+      var shipperrowdata = this.shipperGrid.getrowdata(shipperselectedrowindex);      
+      var selectedshippergridarray  = [];
+     
+        selectedshippergridarray.push({'ASK':'0'});
+        selectedshippergridarray.push({'ShipperName':shipperrowdata.ShipperName});
+        selectedshippergridarray.push({'ShipperDetails':shipperrowdata.ShipperDetails});
+            
+      let  shipperselectedjson = JSON.stringify(selectedshippergridarray);      
+
+      var truckselectedrowindex  = this.truckGrid.getselectedrowindex();     
+      var truckrowdata = this.truckGrid.getrowdata(truckselectedrowindex);      
+      var selectedtruckgridarray  = [];
+
+      
+      
+        selectedtruckgridarray.push({'Ask':'0'})
+        selectedtruckgridarray.push({'TruckID':truckrowdata.TruckID})
+        selectedtruckgridarray.push({'TruckTypeAsk':truckrowdata.TruckTypeAsk})            
+      
+
+
+      let  truckselectedjson = JSON.stringify(selectedtruckgridarray);
+      //truckselectedjson = "["+truckselectedjson+"]";
+
+      var poselectedrowindex  = this.poGrid.getselectedrowindex();     
+      var porowdata = this.poGrid.getrowdata(poselectedrowindex);      
+      var selectedpogridarray = []
+
+      
+      
+        selectedpogridarray.push({'Ask':'0'})
+        selectedpogridarray.push({'PONo':porowdata.PONo})
+        selectedpogridarray.push({'ShippingMark':porowdata.POShippingMark})            
+        selectedpogridarray.push({'ReferenceNo':porowdata.POReferenceNo})         
+      
+      let  poselectedjson = JSON.stringify(selectedpogridarray);
+      //poselectedjson = "["+poselectedjson+"]";
+
+      
+
+
+      
+      let shippergridarray = [];
+      shippergridarray = this.shipperGrid.getrows();     
+      var selectedshippergridid = this.shipperGrid.getselectedrowindex();
+      shippergridarray.splice(selectedshippergridid,1);
+
+      let shipperarray = [];
+      for(let i=0; i < shippergridarray.length;i++)
+      {
+        shipperarray.push({'ASK':'0'});
+        shipperarray.push({'ShipperName':shippergridarray[i].ShipperName});
+        shipperarray.push({'ShipperDetails':shippergridarray[i].ShipperDetails});
+      }
+       let shippergridjson = JSON.stringify(shipperarray);
+
+      let truckgridarray = [];
+      truckgridarray = this.truckGrid.getrows();    
+
+      var selectedtruckgridid = this.truckGrid.getselectedrowindex();
+      truckgridarray.splice(selectedtruckgridid,1);
+
+      let truckarray = []; 
+      for(let i=0; i < truckgridarray.length;i++)
+      {
+            truckarray.push({'Ask':'0'})
+            truckarray.push({'TruckID':truckgridarray[i].TruckID})
+            truckarray.push({'TruckTypeAsk':truckgridarray[i].TruckTypeAsk})            
+      }
+      let truckgridjson = JSON.stringify(truckarray);
+
+      let pogridarray = [];
+      pogridarray = this.poGrid.getrows();   
+      var selectedpogridid = this.poGrid.getselectedrowindex();
+      pogridarray.splice(selectedpogridid,1);
+      
+      let poarray = []; 
+      for(let i=0; i < truckgridarray.length;i++)
+      {
+        poarray.push({'Ask':'0'})
+        poarray.push({'PONo':pogridarray[i].PONo})
+        poarray.push({'ShippingMark':pogridarray[i].POShippingMark})            
+        poarray.push({'ReferenceNo':pogridarray[i].POReferenceNo})         
+      }
+      let pogridjson = JSON.stringify(poarray);
+
+      let skugridarray = [];
+      skugridarray = this.skuGrid.getrows();     
+
+      let skuarray = []; 
+      for(let i=0; i < skugridarray.length;i++)
+      {
+        skuarray.push({'Ask':'0'})
+        skuarray.push({'SKUName':skugridarray[i].SKUName})
+        skuarray.push({'SKUDetails':skugridarray[i].SKUDetails})            
+        skuarray.push({'DimensionWidth':skugridarray[i].SKUDimensionWidth})         
+        skuarray.push({'DimensionHeight':skugridarray[i].SKUDimensionHeight})    
+        skuarray.push({'DimensionBase':skugridarray[i].SKUDimensionBase})    
+        skuarray.push({'SKUWeight':skugridarray[i].SKUWeight})    
+        skuarray.push({'PlanQty':skugridarray[i].SKUPlanQty})    
+        skuarray.push({'UOMAsk':skugridarray[i].SKUUOMAsk})    
+        skuarray.push({'ReceivedQty':skugridarray[i].SKUReceivedQty})    
+        skuarray.push({'Reference':skugridarray[i].SKUReference})    
+        skuarray.push({'TruckID':skugridarray[i].SKUTruckID})    
+        skuarray.push({'TruckType':skugridarray[i].SKUTruckType})    
+        skuarray.push({'GoodQty':skugridarray[i].SKUGoodQty})    
+        skuarray.push({'DamageQty':skugridarray[i].SKUDamageQty})    
+        skuarray.push({'ShortLandQty':skugridarray[i].SKUShortLandQty})    
+        skuarray.push({'OverlandQty':skugridarray[i].SKUOverlandQty})    
+        skuarray.push({'Goodphoto':skugridarray[i].SKUGoodphoto})    
+        skuarray.push({'Damagephoto':skugridarray[i].SKUDamagephoto})    
+        skuarray.push({'ShortLandphoto':skugridarray[i].SKUShortLandphoto})    
+        skuarray.push({'Overlandphoto':skugridarray[i].SKUOverlandphoto})    
+
+      }
+
+      let skugridjson = JSON.stringify(skuarray);
+
+      
+        
+      shipperselectedjson = shipperselectedjson.replace('}]','')
+      truckselectedjson = truckselectedjson.replace('}]','')
+      poselectedjson = poselectedjson.replace('}]','')
+      
+      
+     
+      var body = {
+        "UserID" : "admin",
+        "Password" : "123",
+        "ProductAsk":"11",
+        "Ask":"0",
+        "BookingID":this.bookingid,
+        "AgentAsk":this.agentcombo.getSelectedItem().value,
+        "Shipper":"",
+        "CountryAsk":this.countrycombo.getSelectedItem().value,
+        "CargoReceivedDate":this.cargoreceiveddate.getText(),
+        "CustomIssuedDate":this.customerissueddate.getText(),
+        "TransactionDate":this.transactiondate.getText(),
+        "Signature":"",
+        "SignatureDate":"",
+        "BookingStautsAsk":"",
+        "NoOfTruck":this.nooftrack,
+        "NoOfContainer":this.noofcontainer,
+        "DisplaySequence":"",
+        "Remark":this.remark,
+       "ShipperList": shipperselectedjson+truckselectedjson+poselectedjson+skugridjson   
+      }
       
             
-      this.backendservice.SaveReceived().then(data =>
+    /*   this.backendservice.SaveReceived(body).then(data =>
         {
             alert(JSON.stringify(data)); 
-        })
+        }) */
 
   }
 
   btnNew()
   {
                 
-    this.truckGrid.addrow(null,0)           
-    this.poGrid.addrow(null,0)
-    this.shipperGrid.addrow(null,0)
-    this.skuGrid.addrow(null,0)
+
     this.BindCountry();
     this.BindAgent();
+
+    let shipperdatarow = this.generaterowshipper();             
+    this.shipperGrid.addrow(null, shipperdatarow);
+
+    let truckdatarow = this.generaterowshipper();             
+    this.truckGrid.addrow(null, truckdatarow);
+    
+    let podatarow = this.generaterowshipper();             
+    this.poGrid.addrow(null, podatarow);
+
+    let skudatarow = this.generaterowshipper();             
+    this.skuGrid.addrow(null, skudatarow);
 
   /*  let datarow3 = this.generaterow3();              
     this.shipperGrid.addrow(null, datarow3);     
@@ -535,8 +693,8 @@ addnewrowwhencellleaveShipper()
   if(rowlength == index)
   {
   //this.griddisable = false;
-  let datarow = this.generaterow();              
-      this.shipperGrid.addrow(null, datarow);      
+//   let datarow = this.generaterow();              
+//       this.shipperGrid.addrow(null, datarow);      
   }
   //this.shipperGrid.setcolumnproperty('GLCode','editable',true);
   
@@ -581,8 +739,8 @@ var rowlength = rowcount.length - 1;
 if(rowlength == index)
 {
 //this.griddisable = false;
-let datarow = this.generaterow();              
-    this.truckGrid.addrow(null, datarow);      
+// let datarow = this.generaterow();              
+//     this.truckGrid.addrow(null, datarow);      
 }
 //this.shipperGrid.setcolumnproperty('GLCode','editable',true);
 
@@ -627,8 +785,8 @@ var rowlength = rowcount.length - 1;
 if(rowlength == index)
 {
 //this.griddisable = false;
-let datarow = this.generaterow();              
-    this.poGrid.addrow(null, datarow);      
+// let datarow = this.generaterow();              
+//     this.poGrid.addrow(null, datarow);      
 }
 //this.shipperGrid.setcolumnproperty('GLCode','editable',true);
 
@@ -779,8 +937,8 @@ var rowlength = rowcount.length - 1;
 if(rowlength == index)
 {
 //this.griddisable = false;
-let datarow = this.generaterow();              
-    this.skuGrid.addrow(null, datarow);      
+// let datarow = this.generaterow();              
+//     this.skuGrid.addrow(null, datarow);      
 }
 //this.shipperGrid.setcolumnproperty('GLCode','editable',true);
 
@@ -790,7 +948,7 @@ let datarow = this.generaterow();
 
 
 
-  generaterow(): any {   
+  generaterowshipper(): any {   
     let row = {};
     // row['DeleteRow'] = 'X'
     // row['LocalAmt'] = 0;
@@ -798,7 +956,7 @@ let datarow = this.generaterow();
     return row;
   }
 
-  generaterow2(): any {   
+  generaterowtruck(): any {   
     let row = {};
     // row['DeleteRow'] = 'X'
     // row['LocalAmt'] = 0;
@@ -806,7 +964,7 @@ let datarow = this.generaterow();
     return row;
   }
 
-  generaterow3(): any {   
+  generaterowpo(): any {   
     let row = {};
     // row['DeleteRow'] = 'X'
     // row['LocalAmt'] = 0;
@@ -814,7 +972,7 @@ let datarow = this.generaterow();
     return row;
   }
 
-  generaterow4(): any {   
+  generaterowsku(): any {   
     let row = {};
     // row['DeleteRow'] = 'X'
     // row['LocalAmt'] = 0;
