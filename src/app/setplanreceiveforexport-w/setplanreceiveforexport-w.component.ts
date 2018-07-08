@@ -519,9 +519,7 @@ CreateGrid()
       let shipperarray = [];
       for(let i=0; i < shippergridarray.length;i++)
       {
-        shipperarray.push({'ASK':'0'});
-        shipperarray.push({'ShipperName':shippergridarray[i].ShipperName});
-        shipperarray.push({'ShipperDetails':shippergridarray[i].ShipperDetails});
+        shipperarray.push({'ASK':'0','ShipperName':shippergridarray[i].ShipperName,'ShipperDetails':shippergridarray[i].ShipperDetails});       
       }
        let shippergridjson = JSON.stringify(shipperarray);
 
@@ -534,9 +532,7 @@ CreateGrid()
       let truckarray = []; 
       for(let i=0; i < truckgridarray.length;i++)
       {
-            truckarray.push({'Ask':'0'})
-            truckarray.push({'TruckID':truckgridarray[i].TruckID})
-            truckarray.push({'TruckTypeAsk':truckgridarray[i].TruckTypeAsk})            
+            truckarray.push({'Ask':'0','TruckID':truckgridarray[i].TruckID,'TruckTypeAsk':truckgridarray[i].TruckTypeAsk})                 
       }
       let truckgridjson = JSON.stringify(truckarray);
 
@@ -548,10 +544,7 @@ CreateGrid()
       let poarray = []; 
       for(let i=0; i < truckgridarray.length;i++)
       {
-        poarray.push({'Ask':'0'})
-        poarray.push({'PONo':pogridarray[i].PONo})
-        poarray.push({'ShippingMark':pogridarray[i].POShippingMark})            
-        poarray.push({'ReferenceNo':pogridarray[i].POReferenceNo})         
+        poarray.push({'Ask':'0','PONo':pogridarray[i].PONo,'ShippingMark':pogridarray[i].POShippingMark,'ReferenceNo':pogridarray[i].POReferenceNo})          
       }
       let pogridjson = JSON.stringify(poarray);
 
@@ -561,38 +554,64 @@ CreateGrid()
       let skuarray = []; 
       for(let i=0; i < skugridarray.length;i++)
       {
-        skuarray.push({'Ask':'0'})
-        skuarray.push({'SKUName':skugridarray[i].SKUName})
-        skuarray.push({'SKUDetails':skugridarray[i].SKUDetails})            
-        skuarray.push({'DimensionWidth':skugridarray[i].SKUDimensionWidth})         
-        skuarray.push({'DimensionHeight':skugridarray[i].SKUDimensionHeight})    
-        skuarray.push({'DimensionBase':skugridarray[i].SKUDimensionBase})    
-        skuarray.push({'SKUWeight':skugridarray[i].SKUWeight})    
-        skuarray.push({'PlanQty':skugridarray[i].SKUPlanQty})    
-        skuarray.push({'UOMAsk':skugridarray[i].SKUUOMAsk})    
-        skuarray.push({'ReceivedQty':skugridarray[i].SKUReceivedQty})    
-        skuarray.push({'Reference':skugridarray[i].SKUReference})    
-        skuarray.push({'TruckID':skugridarray[i].SKUTruckID})    
-        skuarray.push({'TruckType':skugridarray[i].SKUTruckType})    
-        skuarray.push({'GoodQty':skugridarray[i].SKUGoodQty})    
-        skuarray.push({'DamageQty':skugridarray[i].SKUDamageQty})    
-        skuarray.push({'ShortLandQty':skugridarray[i].SKUShortLandQty})    
-        skuarray.push({'OverlandQty':skugridarray[i].SKUOverlandQty})    
-        skuarray.push({'Goodphoto':skugridarray[i].SKUGoodphoto})    
-        skuarray.push({'Damagephoto':skugridarray[i].SKUDamagephoto})    
-        skuarray.push({'ShortLandphoto':skugridarray[i].SKUShortLandphoto})    
-        skuarray.push({'Overlandphoto':skugridarray[i].SKUOverlandphoto})    
-
+        skuarray.push({'Ask':'0','SKUName':skugridarray[i].SKUName,'SKUDetails':skugridarray[i].SKUDetails,'DimensionWidth':skugridarray[i].SKUDimensionWidth,
+        'DimensionHeight':skugridarray[i].SKUDimensionHeight,'DimensionBase':skugridarray[i].SKUDimensionBase,'SKUWeight':skugridarray[i].SKUWeight,
+'PlanQty':skugridarray[i].SKUPlanQty,'UOMAsk':skugridarray[i].SKUUOMAsk,'ReceivedQty':skugridarray[i].SKUReceivedQty,
+'Reference':skugridarray[i].SKUReference,'TruckID':skugridarray[i].SKUTruckID,'TruckType':skugridarray[i].SKUTruckType,
+'GoodQty':skugridarray[i].SKUGoodQty,'DamageQty':skugridarray[i].SKUDamageQty,
+'ShortLandQty':skugridarray[i].SKUShortLandQty,'OverlandQty':skugridarray[i].SKUOverlandQty,
+'Goodphoto':skugridarray[i].SKUGoodphoto,'Damagephoto':skugridarray[i].SKUDamagephoto,'ShortLandphoto':skugridarray[i].SKUShortLandphoto,
+'Overlandphoto':skugridarray[i].SKUOverlandphoto    
+    })
+        
       }
 
       let skugridjson = JSON.stringify(skuarray);
 
       
-        
-      shipperselectedjson = shipperselectedjson.replace('}]','')
-      truckselectedjson = truckselectedjson.replace('}]','')
-      poselectedjson = poselectedjson.replace('}]','')
+      shipperselectedjson = shipperselectedjson.replace('[','')
+      shipperselectedjson = shipperselectedjson.replace(']','')
+      shipperselectedjson = shipperselectedjson.replace(/{/g,'')
+      shipperselectedjson = shipperselectedjson.replace(/}/g,'')
+    
+
+      truckselectedjson = truckselectedjson.replace("[",'')
+      truckselectedjson = truckselectedjson.replace("]",'')
+      truckselectedjson = truckselectedjson.replace(/{/g,'')
+      truckselectedjson = truckselectedjson.replace(/}/g,'')
+
+      poselectedjson = poselectedjson.replace("[",'')
+      poselectedjson = poselectedjson.replace("]",'')
+      poselectedjson = poselectedjson.replace(/{/g,'')
+      poselectedjson = poselectedjson.replace(/}/g,'')
+
+      shippergridjson = shippergridjson.replace("[",'')
+      shippergridjson = shippergridjson.replace("]",'')
+
+      shippergridjson = shippergridjson.replace(/{/g,'')
+      shippergridjson = shippergridjson.replace(/}/g,'')
+
+      pogridjson = pogridjson.replace(/{/g,'')
+      pogridjson = pogridjson.replace(/}/g,'') 
+
+      truckgridjson = truckgridjson.replace(/{/g,'')
+      truckgridjson = truckgridjson.replace(/}/g,'')
       
+
+
+  
+      skugridjson = skugridjson.replace("[",'')
+      skugridjson = skugridjson.replace("]",'')
+
+      
+      pogridjson = pogridjson.replace("[",'')
+      pogridjson = pogridjson.replace("]",'')
+
+      
+      truckgridjson = truckgridjson.replace("[",'')
+      truckgridjson = truckgridjson.replace("]",'')
+            
+            
       
      
       var body = {
@@ -601,9 +620,9 @@ CreateGrid()
         "ProductAsk":"11",
         "Ask":"0",
         "BookingID":this.bookingid,
-        "AgentAsk":this.agentcombo.getSelectedItem().value,
+        "AgentAsk":"",//this.agentcombo.getSelectedItem().value,
         "Shipper":"",
-        "CountryAsk":this.countrycombo.getSelectedItem().value,
+        "CountryAsk":"",//this.countrycombo.getSelectedItem().value,
         "CargoReceivedDate":this.cargoreceiveddate.getText(),
         "CustomIssuedDate":this.customerissueddate.getText(),
         "TransactionDate":this.transactiondate.getText(),
@@ -614,15 +633,15 @@ CreateGrid()
         "NoOfContainer":this.noofcontainer,
         "DisplaySequence":"",
         "Remark":this.remark,
-       "ShipperList": shipperselectedjson+truckselectedjson+poselectedjson+skugridjson   
+        "ShipperList":"[{"+ shipperselectedjson+",TruckList:[{"+truckselectedjson+",POList:[{"+poselectedjson+",SKUList:["+skugridjson+"]},{"+pogridjson+"}"+"]},{"+truckgridjson+"}"+"]},{"+shippergridjson+"}]"
       }
       
             
-    /*   this.backendservice.SaveReceived(body).then(data =>
+      this.backendservice.SaveReceived(body).then(data =>
         {
             alert(JSON.stringify(data)); 
-        }) */
-
+        }) 
+        console.log("body is "+JSON.stringify(body));
   }
 
   btnNew()
@@ -666,7 +685,7 @@ CreateGrid()
         if(oldvalue != newvalue)
         {
         //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-        this.CellendeditShipper();
+        //this.CellendeditShipper();
         }
 
     }
@@ -712,7 +731,7 @@ CellvaluechangedTruck(event:any)
       if(oldvalue != newvalue)
       {
       //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-      this.CellendeditShipper();
+      //this.CellendeditShipper();
       }
 
   }
@@ -758,7 +777,7 @@ CellvaluechangedPO(event:any)
       if(oldvalue != newvalue)
       {
       //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
-      this.CellendeditShipper();
+      //this.CellendeditShipper();
       }
 
   }
