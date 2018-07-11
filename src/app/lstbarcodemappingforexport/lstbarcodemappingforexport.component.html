@@ -1,38 +1,73 @@
 <app-framelayout> </app-framelayout>
-<p>
-  lstbarcodemappingforexport works!
-</p>
-<div class="framebutton"  >
-                                
-  <table width="100%" border="0">
+<div style="width: 100%; height: 100%;">
+  <div style="width: 100%; height: 5%;"> 
+    <table style="width: 100%;height: 10%"  border="0">
       <tr>
-      <td>
-      
-      <jqxButton [width]='120' [height]='40' class="buttoncolor" #button  >
-      New
-      </jqxButton>
-    
-
-      <jqxButton [width]='120' [height]='40' #button  >
-      Save
-      </jqxButton>
-     
-
-      <jqxButton [width]='120' [height]='40' #button >
-      Edit
-      </jqxButton>
- 
-      <jqxButton [width]='120' [height]='40' #button  >
-      Delete
-      </jqxButton>
- 
-    
-      <jqxButton [width]='120' [height]='40' #button >
-      Print
-      </jqxButton>
-     
-      </td>
-      </tr>
-      </table>
-
+          <td  >
+            <jqxInput  [height]="25" [width]='120' [placeHolder]="" [disabled]="false" > </jqxInput>               
+          </td>
+          <td  >
+            <jqxInput  [height]="25" [placeHolder]="" [disabled]="false" >  </jqxInput>               
+          </td>
+          <td >
+            <jqxInput  [height]="25" [placeHolder]="" [disabled]="false" >  </jqxInput>               
+          </td>
+          <td >
+          <jqxComboBox #countrycombo style=" float: left"
+            (onSelect)="onCountryComboChange($event) "
+            [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
+            [placeHolder]="countryplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="countrycombodisable" >
+            </jqxComboBox> 
+          </td>
+          <td >      
+            <jqxDateTimeInput #cargoreceiveddate class="label"  (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+            </jqxDateTimeInput>
+          </td>
+          <td >
+            <jqxButton [width]='120' [height]='30' class="buttoncolor" #button  > Refresh  </jqxButton> 
+          </td>
+        </tr>
+    </table> 
+  </div>    
+  <div style="width: 100%; height: 70%;">
+    <table style="width: 100%;height: 10%"  border="1" > 
+        <tr>
+          <td>
+              <label style="font-size: 15px" ><b>Status</b></label>
+          </td>
+          <td>
+              <label style="font-size: 15px" ><b>List</b></label>
+          </td>
+        </tr>
+        <tr>                 
+          <td style="width: 25%;height: 10%">            
+              <jqxBarGauge 
+              [width]="400" [height]="400" [max]="150" 
+              [colorScheme]="'scheme02'" [values]="values">
+              </jqxBarGauge>
+          </td>     
+          <td style="width: 30%">
+              
+              <jqxGrid #myGrid
+              [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
+              [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
+              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+          </jqxGrid>
+          </td>
+        </tr>
+    </table>    
+  </div>
+  <div class="framebutton" style="width: 100%; height: 5%; "  >                                
+    <table width="100%" border="0">
+        <tr>       
+            <td>          
+              <jqxButton [width]='120' [height]='30' #button  >       Tally       </jqxButton>     
+              <jqxButton [width]='120' [height]='30' #button >       Preview       </jqxButton>    
+              <jqxButton [width]='120' [height]='30' #button  >       Print       </jqxButton>   
+              <jqxButton [width]='120' [height]='30' #button  >       Delete       </jqxButton>        
+              <jqxButton [width]='120' [height]='30' #button >       Genearate Excel       </jqxButton>        
+            </td>
+        </tr>
+    </table>
+  </div>
 </div>

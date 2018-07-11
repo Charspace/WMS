@@ -1,35 +1,62 @@
 <app-framelayout> </app-framelayout>
-<div class="framebutton"  >
-                                
-    <table width="100%" border="0">
-        <tr>
-        <td>
-        
-        <jqxButton [width]='120' [height]='40' class="buttoncolor" #button  >
-        New
-        </jqxButton>
-      
-  
-        <jqxButton [width]='120' [height]='40' #button  >
-        Save
-        </jqxButton>
-       
-  
-        <jqxButton [width]='120' [height]='40' #button >
-        Edit
-        </jqxButton>
-   
-        <jqxButton [width]='120' [height]='40' #button  >
-        Delete
-        </jqxButton>
-   
-      
-        <jqxButton [width]='120' [height]='40' #button >
-        Print
-        </jqxButton>
-       
-        </td>
+<div style="width: 100%; height: 100%;">
+  <div style="width: 100%; height: 5%;"> 
+    <table style="width: 100%;height: 10%"  border="0">
+      <tr>
+          <td >
+                <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="true">             </jqxInput>              
+          </td>
+          <td >
+              <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="true">             </jqxInput>              
+        </td>  
+          <td >
+                <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="agentplaceholder" [disabled]="true">            </jqxInput>              
+          </td>            
+          <td >
+                <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="statusplaceholder" [disabled]="true">             </jqxInput>              
+          </td>  
+          <td >
+                <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="trdateplaceholder" [disabled]="true">             </jqxInput>              
+          </td>  
+
         </tr>
-        </table>
-  
+    </table> 
+  </div>    
+  <div style="width: 100%; height: 80%;">
+    <table style="width: 100%;height: 100%"  border="1" >         
+        <tr style="width: 100%">         
+          <td style="width: 100%">              
+              <jqxGrid #myGrid (onRowselect)="MyGridRowSelect($event)" 
+              (onCellvaluechanged)="MyGridCellValueChange($event)" 
+              (onCellendedit)="MyGridCellEndEdit()"
+              [keyboardnavigation]="false"
+              [filterable]="true" 
+              [editable]="true" 
+              [altrows]="true" 
+              [showstatusbar]="true" 
+              [showaggregates]="true" 
+              [autoheight]="true"
+              [statusbarheight]="35"
+              [width]="'100%'" [height]="850" [source]="dataAdapter" [columns]="columns" 
+              [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
+              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+              </jqxGrid>
+          </td>
+        </tr>
+    </table>    
   </div>
+  <div class="framebutton" style="width: 100%; height: 5%; "  >                                
+    <table width="100%" border="1">
+        <tr >       
+            <td>    
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()"  >  New </jqxButton>
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnSave()" >      Save       </jqxButton>              
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnDelete()">       Delete       </jqxButton>              
+              <jqxButton [width]='120' [height]='30' #button  (onClick)="btnSuveyReport()">      Suvey Report       </jqxButton>             
+              <!-- <jqxInput  [width]="200" [height]="30" [source]="countries"[minLength]="1" [placeHolder]="'Signature - ********'" [disabled]="false"> </jqxInput>               -->
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnSubmit()">       Submit       </jqxButton>        
+            </td>
+        </tr>
+    </table>
+  </div>
+</div>

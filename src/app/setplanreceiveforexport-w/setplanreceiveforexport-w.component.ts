@@ -24,13 +24,9 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   @ViewChild('shipperGrid') shipperGrid: jqxGridComponent;
   @ViewChild('truckGrid') truckGrid: jqxGridComponent;
   @ViewChild('poGrid') poGrid: jqxGridComponent;
-  @ViewChild('skuGrid') skuGrid: jqxGridComponent;
-  
-
+  @ViewChild('skuGrid') skuGrid: jqxGridComponent;  
   @ViewChild('agentcombo') agentcombo: jqxComboBoxComponent;
-
   @ViewChild('countrycombo') countrycombo: jqxComboBoxComponent;
-
   @ViewChild('cargoreceiveddate') cargoreceiveddate: jqxDateTimeInputComponent;
   @ViewChild('transactiondate') transactiondate: jqxDateTimeInputComponent;
   @ViewChild('customerissueddate') customerissueddate: jqxDateTimeInputComponent;
@@ -113,9 +109,7 @@ export class SetplanreceiveforexportWComponent implements OnInit {
     this.noofcontainerplaceholder = "NoOfContainer";
     this.remarkplaceholder = "Remark";
 
-    this.CreateGrid();
-
-    
+    this.CreateGrid();    
   }
 
   ngOnInit() {

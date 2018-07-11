@@ -5,10 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbargauge';
-import { CommonModule } from '@angular/common';
 import { jqxGridComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxgrid';
 import { RouterModule,Routes } from '@angular/router';
-import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { jqxMenuComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxmenu';
 import { jqxButtonComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbuttons';
@@ -55,8 +53,6 @@ import { SetplanreceiveforexportWComponent } from './setplanreceiveforexport-w/s
 import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
 import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';
 import { SettallycheckforexportWComponent } from './settallycheckforexport-w/settallycheckforexport-w.component';
-
-
 
 
 

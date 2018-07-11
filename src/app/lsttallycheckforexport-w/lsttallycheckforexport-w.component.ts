@@ -37,6 +37,7 @@ export class LsttallycheckforexportWComponent implements OnInit {
 
   header = '[{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"001"},{"FirstName":"Hla","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"002"}]'
   detail = '[{"EmployeeID":"001","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"},{"EmployeeID":"002","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"}]';
+    router: any;
 
   constructor() { 
     this.BindNestedGrid();
@@ -231,5 +232,10 @@ columns: any[] =
     { text: 'Address', datafield: 'Address', width: 300, cellsrenderer: this.renderer },
     { text: 'City', datafield: 'City', width: 170, cellsrenderer: this.renderer }
 ];
+
+btnNew()
+{  
+    //this.router.navigate(['settallycheckforexport-w']);
+}
 
 }
