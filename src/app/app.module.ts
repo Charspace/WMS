@@ -49,6 +49,7 @@ import { LstplanreceiveforimportComponent } from './lstplanreceiveforimport/lstp
 import { SetuserComponent } from './setuser/setuser.component';
 import { SetplanreceiveforexportComponent } from './setplanreceiveforexport/setplanreceiveforexport.component';
 import { SetplanreceiveforexportWComponent } from './setplanreceiveforexport-w/setplanreceiveforexport-w.component';
+import { LstallocationforexportWComponent } from './lstallocationforexport-w/lstallocationforexport-w.component';
 
 import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
 import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';

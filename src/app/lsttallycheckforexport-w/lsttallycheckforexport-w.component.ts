@@ -20,7 +20,6 @@ import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 })
 export class LsttallycheckforexportWComponent implements OnInit {
   @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
-//   @ViewChild('Detail') myGrid: jqxGridComponent;
   //Place holder
   bookingnoplaceholder: string;
   shipperlaceholder: string;
@@ -38,16 +37,16 @@ export class LsttallycheckforexportWComponent implements OnInit {
   detailcolumns: any;
   nestedGrids : any =[];
   initRowDetails : any;
-  HeaderJson = '[{"BookingAsk":"001","BookingNo":"Maung","ShipperName":"Mrs","AgentName":"Bahan","Status":"Yangon","TransactionDate":"Aung"},{"BookingAsk":"002","BookingNo":"Maung","ShipperName":"Mrs","AgentName":"Bahan","Status":"Yangon","TransactionDate":"Hla"}]'
-  DetailJson = '[{"BookingAsk":"001","DocNo":"Yangonship","ShippingMark":"Bahan","SKUDetail":"Bahan","D_W":"Myanmar","D_W":"Myanmar","D_D":"Myanmar","D_L":"Myanmar","ReceivedQTY":"Myanmar","UOM":"Myanmar","TotalCBM":"Myanmar","Remark":"Myanmar"},{"BookingAsk":"002","DocNo":"AA","ShippingMark":"AA","SKUDetail":"AA","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"6566","UOM":"Ton","TotalCBM":"434","Remark":"remark"}]';
+  HeaderJson = '[{"BookingAsk":"003","BookingNo":"B00003","ShipperName":"Mr. Jeffy","AgentName":"Joshier","Status":"Tally","TransactionDate":"12/7/2018","Remark":"VIP"},{"BookingAsk":"004","BookingNo":"B00004","ShipperName":"Mr. Edwen Poh","AgentName":"Miss. Rebecca","Status":"Tally","TransactionDate":"12/7/2018","Remark":"VIP"}]'
+  DetailJson = '[{"BookingAsk":"003","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"},{"BookingAsk":"004","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}]';
             
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
-    this.bookingnoplaceholder = "Booking No - B000001";
-    this.shipperlaceholder = 'Shipper Name - Thura'
-    this.agentplaceholder = "Agent Name - Rayroom"
-    this.statusplaceholder = "Status - Tally";
-    this.trdateplaceholder = "Transactoin Date - 10/01/2018";
+    this.bookingnoplaceholder = "Booking No";
+    this.shipperlaceholder = 'Shipper Name'
+    this.agentplaceholder = "Agent Name"
+    this.statusplaceholder = "Status";
+    this.trdateplaceholder = "Transactoin Date";
     this.CreateGrid();       
   }  
 
@@ -61,7 +60,8 @@ export class LsttallycheckforexportWComponent implements OnInit {
             { name: 'ShipperName' , type: 'string' },
             { name: 'AgentName' , type: 'string' },
             { name: 'Status' , type: 'string' },
-            { name: 'TransactionDate'  , type: 'string' }       
+            { name: 'TransactionDate'  , type: 'string' } , 
+            { name: 'Remark'  , type: 'string' }     
         ],
         localdata: this.HeaderJson, 
         root: 'Header',
@@ -72,12 +72,13 @@ export class LsttallycheckforexportWComponent implements OnInit {
     this.HeaderAdapter = new jqx.dataAdapter(this.HeaderSource);  
     this.headercolumns =
     [
-        { text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
+       // { text: 'BookingAsk', datafield: 'BookingAsk', width: 120,  },
         { text: 'Booking No', datafield: 'BookingNo', width: 120 },
         { text: 'Shipper Name', datafield: 'ShipperName', width: 120 },
         { text: 'Agent Name', datafield: 'AgentName', width: 120 }  ,
         { text: 'Status', datafield: 'Status', width: 120 }   ,
-        { text: 'Transaction Date', datafield: 'TransactionDate', width: 250 }         
+        { text: 'Transaction Date', datafield: 'TransactionDate', width: 250 }  ,
+        { text: 'Remark', datafield: 'Remark', width: 150 }         
     ];    
     this.DetailSource =
     {     
@@ -102,7 +103,7 @@ export class LsttallycheckforexportWComponent implements OnInit {
     this.DetailAdapter = new jqx.dataAdapter(this.DetailSource, { autoBind: true });
     this.detailcolumns =
     [
-      { text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
+      //{ text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
       { text: 'Doc No', datafield: 'DocNo', width: '10%',editable: false,hidden:false }, //readonly cell.
       { text: 'Shipping Mark', datafield: 'ShippingMark', width: '10%',editable: false,hidden:false }, //readonly cell.
       { text: 'SKU Detail', datafield: 'SKUDetail', width: '10%',editable: false,hidden:false }, //readonly cell.
@@ -136,7 +137,7 @@ export class LsttallycheckforexportWComponent implements OnInit {
           }
           let DetailSource1 = {
               datafields: [
-                { name: 'BookingAsk', type: 'string' },
+                //{ name: 'BookingAsk', type: 'string' },
                 { name: 'DocNo', type: 'string' },
                 { name: 'ShippingMark', type: 'string' },
                 { name: 'SKUDetail', type: 'string' },
@@ -158,7 +159,7 @@ export class LsttallycheckforexportWComponent implements OnInit {
                   height: 200,
                   HeaderSource: nestedGridAdapter, 
                   columns: [
-                    { text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    //{ text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
                     { text: 'Doc No', datafield: 'DocNo', width: '10%',editable: false,hidden:false }, //readonly cell.
                     { text: 'Shipping Mark', datafield: 'ShippingMark', width: '10%',editable: false,hidden:false }, //readonly cell.
                     { text: 'SKU Detail', datafield: 'SKUDetail', width: '10%',editable: false,hidden:false }, //readonly cell.
@@ -177,7 +178,6 @@ export class LsttallycheckforexportWComponent implements OnInit {
   };
   ngOnInit() {    
 }
-
 
 
 photoRenderer = (row: number, column: any, value: string): string => {
@@ -202,12 +202,13 @@ ready = (): void => {
 
 columns: any[] =
 [
-    { text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
+    //{ text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
     { text: 'Booking No', datafield: 'BookingNo', width: 120 },
     { text: 'Shipper Name', datafield: 'ShipperName', width: 120 },
     { text: 'Agent Name', datafield: 'AgentName', width: 120 }  ,
     { text: 'Status', datafield: 'Status', width: 120 }   ,
-    { text: 'Transaction Date', datafield: 'TransactionDate', width: 250 }         
+    { text: 'Transaction Date', datafield: 'TransactionDate', width: 150 } , 
+    { text: 'Remark', datafield: 'Remark', width: 200 }         
 ]; 
 
 btnNew()
