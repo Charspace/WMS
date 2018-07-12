@@ -21,6 +21,7 @@ import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 })
 export class LstexportcheckerComponent implements OnInit {
   @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
+  values: number[] = [102, 115, 130, 137];
   //Place holder
   bookingnoplaceholder: string;
   shipperlaceholder: string;

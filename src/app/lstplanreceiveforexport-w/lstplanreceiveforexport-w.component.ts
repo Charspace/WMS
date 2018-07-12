@@ -20,6 +20,7 @@ import { HomeComponent } from '../home/home.component';
 })
 export class LstplanreceiveforexportWComponent implements OnInit {
   @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
+  values: number[] = [102, 115, 130, 137];
   //Place holder
   bookingnoplaceholder: string;
   shipperlaceholder: string;
