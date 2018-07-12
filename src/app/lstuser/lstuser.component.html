@@ -14,13 +14,13 @@
           </td>
           <td >
           <jqxComboBox #countrycombo style=" float: left"
-            (onSelect)="onCountryComboChange($event) "
-            [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
-            [placeHolder]="countryplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="countrycombodisable" >
+             
+             [valueMember]="'CountryName'"
+              [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="true"   >
             </jqxComboBox> 
           </td>
           <td >      
-            <jqxDateTimeInput #cargoreceiveddate class="label"  (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+            <jqxDateTimeInput #cargoreceiveddate class="label"    [disabled]="false" >
             </jqxDateTimeInput>
           </td>
           <td >
@@ -43,15 +43,15 @@
           <td style="width: 25%;height: 10%">            
               <jqxBarGauge 
               [width]="400" [height]="400" [max]="150" 
-              [colorScheme]="'scheme02'" [values]="values">
+              [colorScheme]="'scheme02'" >
               </jqxBarGauge>
           </td>     
           <td style="width: 30%">
               
               <jqxGrid #myGrid
-              [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
-              [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
-              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+              [width]="850" [height]="365"  
+              [rowdetails]="true" [rowsheight]="35"  
+                 >
           </jqxGrid>
           </td>
         </tr>

@@ -63,7 +63,8 @@ import { SetallocationforexportWComponent } from './setallocationforexport-w/set
 import { LstdeliverforexportWComponent } from './lstdeliverforexport-w/lstdeliverforexport-w.component';
 import { LstmaterialusageforexportWComponent } from './lstmaterialusageforexport-w/lstmaterialusageforexport-w.component';
 import { SetmaterialusageforexportWComponent } from './setmaterialusageforexport-w/setmaterialusageforexport-w.component';
-// import { LstallocationComponent } from './lstallocation/lstallocation.component';
+ import { LstallocationComponent } from './lstallocation/lstallocation.component';
+import { jqxWindowComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxwindow';
 
 
 
@@ -274,8 +275,9 @@ const appRoutes: Routes=[
     LstdeliverforexportWComponent,
     LstmaterialusageforexportWComponent,
     SetmaterialusageforexportWComponent,
-    // LstallocationComponent,
-    // LstallocationforexportWComponent
+    jqxWindowComponent,
+     LstallocationComponent,
+     LstallocationforexportWComponent
    
   ],
   imports: [

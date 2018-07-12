@@ -4,27 +4,27 @@
     <table style="width: 100%;height: 10%"  border="0">
       <tr>
           <td >alloc
-              <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
+              <jqxInput  [width]="200" [height]="25"     [minLength]="1"   [disabled]="false">             </jqxInput>              
         </td>
         <td >
-            <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="false">             </jqxInput>              
+            <jqxInput  [width]="200" [height]="25"   [minLength]="1"  [disabled]="false">             </jqxInput>              
         </td>
         <td >
             <jqxComboBox #countrycombo style=" float: left"
-              (onSelect)="onCountryComboChange($event) "
-              [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
-              [placeHolder]="agentplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false" [disabled]="countrycombodisable" >
+              
+               [valueMember]="'CountryName'"
+               [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"  >
               </jqxComboBox> 
         </td>              
         <td >
             <jqxComboBox #countrycombo style=" float: left"
-              (onSelect)="onCountryComboChange($event) "
-              [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
-              [placeHolder]="statusplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false" [disabled]="countrycombodisable" >
+            
+               [valueMember]="'CountryName'"
+               [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"  >
               </jqxComboBox> 
         </td>       
         <td >      
-            <jqxDateTimeInput #cargoreceiveddate class="label"  (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+            <jqxDateTimeInput #cargoreceiveddate class="label"  [disabled]="false" >
             </jqxDateTimeInput>
         </td> 
 		<td >
@@ -48,14 +48,14 @@
           <td style="width: 25%;height: 10%">            
               <jqxBarGauge 
               [width]="400" [height]="400" [max]="150" 
-              [colorScheme]="'scheme02'" [values]="values">
+              [colorScheme]="'scheme02'" >
               </jqxBarGauge>
           </td>     
           <td style="width: 30%">              
               <jqxGrid #HeaderGrid
-              [width]="850" [height]="365" [source]="HeaderAdapter" [columns]="columns" 
-              [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
-              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+              [width]="850" [height]="365"  
+              [rowdetails]="true" [rowsheight]="35"  
+                >
           </jqxGrid>
           </td>
         </tr>
@@ -65,8 +65,8 @@
     <table width="100%" border="0">
         <tr>       
             <td>   aefefe
-              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()" >       Tally Count     </jqxButton>     
-              <jqxButton [width]='120' [height]='30' #button (onClick)="btnSubmit()">       Submit       </jqxButton>  
+              <jqxButton [width]='120' [height]='30' #button >       Tally Count     </jqxButton>     
+              <jqxButton [width]='120' [height]='30' #button >       Submit       </jqxButton>  
               <jqxButton [width]='120' [height]='30' #button >       Preview       </jqxButton>    
               <jqxButton [width]='120' [height]='30' #button  >       Print       </jqxButton>   
               <jqxButton [width]='120' [height]='30' #button  >       Delete       </jqxButton>        
