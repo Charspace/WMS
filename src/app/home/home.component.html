@@ -1,67 +1,98 @@
 <app-framelayout> </app-framelayout>
-   <label style="color: blueviolet;font-size: 30px" ><b>Dashboard</b></label>
-    <table style="width: 100%;height: 10%"  border="0" >    
-    <tr>
-      <td>
-          <label style="font-size: 15px" ><b>Status</b></label>
-      </td>
-      <td>
-          <label style="font-size: 15px" ><b>List</b></label>
-      </td>
-    </tr>
-      <tr>                 
-        <td style="width: 30%;height: 10%">            
-            <jqxBarGauge 
-            [width]="400" [height]="400" [max]="150" 
-            [colorScheme]="'scheme02'" [values]="values">
-            </jqxBarGauge>
-        </td>     
-        <td style="width: 30%">
-            
-            <jqxGrid #myGrid
-            [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
-            [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
-            [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
-        </jqxGrid>
+<div style="width: 100%; height: 100%;">
+  <!-- <div style="width: 100%; height: 5%; visibility: hidden;"> 
+    <table style="width: 100%;height: 10%"  border="0">
+      <tr>
+          <td >
+              <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
         </td>
-      </tr>
-
-    </table>    
-    <div class="framebutton"  >
-                                
-      <table width="100%" border="0">
-          <tr>
-          <td>
-          
-          <jqxButton [width]='120' [height]='40' class="buttoncolor" #button  >
-          New
-          </jqxButton>
-        
-    
-          <jqxButton [width]='120' [height]='40' #button  >
-          Save
-          </jqxButton>
-         
-  
-          <jqxButton [width]='120' [height]='40' #button >
-          Edit
-          </jqxButton>
-     
-          <jqxButton [width]='120' [height]='40' #button  >
-          Delete
-          </jqxButton>
-     
-        
-          <jqxButton [width]='120' [height]='40' #button >
-          Print
-          </jqxButton>
-         
+        <td >
+            <jqxInput  [width]="200" [height]="25" [source]="source"   [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="false">             </jqxInput>              
+        </td>
+        <td >
+            <jqxComboBox #countrycombo style=" float: left"
+              (onSelect)="onCountryComboChange($event) "
+              [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
+              [placeHolder]="agentplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false" [disabled]="countrycombodisable" >
+              </jqxComboBox> 
+        </td>              
+        <td >
+            <jqxComboBox #countrycombo style=" float: left"
+              (onSelect)="onCountryComboChange($event) "
+              [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
+              [placeHolder]="statusplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false" [disabled]="countrycombodisable" >
+              </jqxComboBox> 
+        </td>       
+        <td >      
+            <jqxDateTimeInput #cargoreceiveddate class="label"  (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+            </jqxDateTimeInput>
+        </td> 
+		<td >
+            <jqxButton [width]='120' [height]='30' class="buttoncolor" #button  > Refresh  </jqxButton> 
           </td>
-          </tr>
-          </table>
-
+   
+      </tr>
+    </table> 
+  </div>     -->
+  <div style="width: 100%; height: 70%; ">
+    <table style="width: 100%;height: 10%"  border="1" > 
+            <tr  >
+                    <td colspan="2">
+                        <p style="font-style: normal; font-size: 13px;font-family: Arial, Helvetica, sans-serif">
+                                Warehouse Management System <br />
+                                1. Why WMS? 
+                                Simply because it’s always a pleasure. It is easy and convenient, both for you and your clients.<br />
+                                2. How to give your clients data access for update of your warehouse and logistric?
+                                You can give your clients an access to the Warehouse Management System if you wish for them to receive something tangible
+                                Or save the earth and give them electronic form. Your clients need only download the mobile app, which can be found
+                                even if you gave an access to the Warehouse Management System, your clients can easily “electronise” or “e” the form via
+                                 mobile app.
+                                <br />
+                                3. Benefits.Your clients will enjoy the “e” attributes of mobile app,
+                                They will receive reminders to manage and use their properties when they connect the mobile app or Warehouse Management System.
+                                Your clients can change default reminder alerts and receive reminders of e-form service.
+                                That way, your goodwill will extend to its fullest when they actually use the mobile app.
+                        </p>
+                    </td>
+                </tr>
+        <tr>
+          <!-- <td>
+              <label style="font-size: 15px" ><b>Status</b></label>
+          </td>
+          <td>
+              <label style="font-size: 15px" ><b>List</b></label>
+          </td> -->
+        </tr>
+        <tr  border="0">                 
+          <td style="width: 25%;height: 10%">            
+              <jqxBarGauge 
+              [width]="400" [height]="400" [max]="150" 
+              [colorScheme]="'scheme02'" [values]="values">
+              </jqxBarGauge>
+          </td>     
+          <td style="width: 30%">    
+                <jqxGrid #DashboardGrid
+                [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
+                [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
+                [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+            </jqxGrid>
+          </td>
+        </tr>
+        
+    </table>    
+  </div>
+  <div class="framebutton" style="width: 100%; height: 5%;visibility: hidden "   >                                
+    <table width="100%" border="0">
+        <tr>       
+            <td>   
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()" >       Tally Count     </jqxButton>     
+              <jqxButton [width]='120' [height]='30' #button >       Submit       </jqxButton>  
+              <jqxButton [width]='120' [height]='30' #button >       Preview       </jqxButton>    
+              <jqxButton [width]='120' [height]='30' #button  >       Print       </jqxButton>   
+              <jqxButton [width]='120' [height]='30' #button  >       Delete       </jqxButton>        
+              <jqxButton [width]='120' [height]='30' #button >       Genearate Excel       </jqxButton>        
+            </td>
+        </tr>
+    </table>
+  </div>
 </div>
-    
-
-
-

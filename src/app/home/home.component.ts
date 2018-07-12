@@ -21,7 +21,7 @@ import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('myGrid') myGrid: jqxGridComponent;
+  @ViewChild('DashboardGrid') myGrid: jqxGridComponent;
   values: number[] = [102, 115, 130, 137];
   source : any;
   employeesAdapter : any;

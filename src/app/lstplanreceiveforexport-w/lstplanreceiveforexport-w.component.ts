@@ -215,5 +215,10 @@ btnNew()
 {  
     //this.router.navigate(['settallycheckforexport-w']);
 }
+btnNewReceived()
+{   
+    this.router.navigate(['setplanreceiveforexport-w']);
+}
+
 
 }

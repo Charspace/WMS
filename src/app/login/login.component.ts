@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
 
     window.sessionStorage.setItem("userid",userid);
     window.sessionStorage.setItem("password",password);
-    this.router.navigate(['framelayout']);
+    this.router.navigate(['home']);
 
     /*
     this.backendservice.Checklogin(userid,password).subscribe(data => {

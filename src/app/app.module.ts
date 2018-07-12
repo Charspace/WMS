@@ -55,6 +55,7 @@ import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angula
 import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';
 import { SettallycheckforexportWComponent } from './settallycheckforexport-w/settallycheckforexport-w.component';
 import { getLocalization } from 'jqwidgets-scripts/localization';
+// import { LstallocationComponent } from './lstallocation/lstallocation.component';
 
 
 
@@ -256,7 +257,9 @@ const appRoutes: Routes=[
     SetuserComponent,
     SetplanreceiveforexportComponent,
     SetplanreceiveforexportWComponent,
-    SettallycheckforexportWComponent 
+    SettallycheckforexportWComponent,
+    // LstallocationComponent,
+    // LstallocationforexportWComponent
    
   ],
   imports: [

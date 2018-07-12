@@ -213,7 +213,11 @@ columns: any[] =
 
 btnNew()
 {  
-    //this.router.navigate(['settallycheckforexport-w']);
+    this.router.navigate(['settallycheckforexport-w']);
+}
+btnSubmit()
+{  
+    //this.router.navigate(['lstallocationforexport-w']);
 }
 
 }
