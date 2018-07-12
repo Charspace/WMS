@@ -12,5 +12,6 @@ export class AppComponent {
   constructor(private router:Router)
     {
      this.router.navigate(['lsttallycheckforexport-w']);
+     //tally check
     }
 }
