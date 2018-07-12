@@ -213,7 +213,7 @@ columns: any[] =
 
 btnNew()
 {  
-    //this.router.navigate(['settallycheckforexport-w']);
+    this.router.navigate(['setcheckerforexport']);
 }
 
   ngOnInit() {

@@ -55,6 +55,14 @@ import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angula
 import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';
 import { SettallycheckforexportWComponent } from './settallycheckforexport-w/settallycheckforexport-w.component';
 import { getLocalization } from 'jqwidgets-scripts/localization';
+import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
+import { SetbarcodemappingforexportWComponent } from './setbarcodemappingforexport-w/setbarcodemappingforexport-w.component';
+import { SetdeliverforexportWComponent } from './setdeliverforexport-w/setdeliverforexport-w.component';
+import { SetpicklistforexportWComponent } from './setpicklistforexport-w/setpicklistforexport-w.component';
+import { SetallocationforexportWComponent } from './setallocationforexport-w/setallocationforexport-w.component';
+import { LstdeliverforexportWComponent } from './lstdeliverforexport-w/lstdeliverforexport-w.component';
+import { LstmaterialusageforexportWComponent } from './lstmaterialusageforexport-w/lstmaterialusageforexport-w.component';
+import { SetmaterialusageforexportWComponent } from './setmaterialusageforexport-w/setmaterialusageforexport-w.component';
 // import { LstallocationComponent } from './lstallocation/lstallocation.component';
 
 
@@ -258,6 +266,14 @@ const appRoutes: Routes=[
     SetplanreceiveforexportComponent,
     SetplanreceiveforexportWComponent,
     SettallycheckforexportWComponent,
+    SetcheckerforexportWComponent,
+    SetbarcodemappingforexportWComponent,
+    SetdeliverforexportWComponent,
+    SetpicklistforexportWComponent,
+    SetallocationforexportWComponent,
+    LstdeliverforexportWComponent,
+    LstmaterialusageforexportWComponent,
+    SetmaterialusageforexportWComponent,
     // LstallocationComponent,
     // LstallocationforexportWComponent
    
