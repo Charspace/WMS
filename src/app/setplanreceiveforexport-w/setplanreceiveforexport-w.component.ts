@@ -14,6 +14,7 @@ import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 import { HomeComponent } from '../home/home.component';
 import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
 import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';
+import { getLocalization } from 'jqwidgets-scripts/localization';
 
 @Component({
   selector: 'app-setplanreceiveforexport-w',
@@ -98,7 +99,7 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   agentplaceholder : any;
   countryplaceholder : any;
 
-
+  localization: any = getLocalization('en'); 
   
 
   
@@ -250,36 +251,36 @@ CreateGrid()
 
   this.dataFields4 =
   [
-      { name: 'BookingAsk' },
-      { name: 'POAsk' },
-      { name: 'SKUAsk' },
-      { name: 'SKUDamageQty' },
-      { name: 'SKUDamagephoto' },
-      { name: 'SKUDetails'},
-      { name: 'SKUDimensionBase' },
-      { name: 'SKUDimensionHeight' },
-      { name: 'SKUDimensionWidth' },
-      { name: 'SKUDisplaySequence' },
-      { name: 'SKUGoodQty' },
-      { name: 'SKUGoodphoto' },
-      { name: 'SKUName' },
-      { name: 'SKUOverlandQty' },
-      { name: 'SKUOverlandphoto' },
-      { name: 'SKUPlanQty' },
-      { name: 'SKUReceivedQty' },
-      { name: 'SKUReference' },
-      { name: 'SKURemark' },
-      { name: 'SKUShortLandQty' },
-      { name: 'SKUShortLandphoto' },
-      { name: 'SKUStatus' },
-      { name: 'SKUTruckID' },
-      { name: 'SKUTruckType' },
-      { name: 'SKUUOMAsk' },
-      { name: 'SKUTruckType' },
-      { name: 'SKUWeight' },
-      { name: 'ShipperAsk' },
-      { name: 'TruckAsk' },
-      {name:'UOM'}
+      { name: 'BookingAsk'  },
+      { name: 'POAsk',type: 'string' },
+      { name: 'SKUAsk',type: 'string' },
+      { name: 'SKUDamageQty',type: 'number' },
+      { name: 'SKUDamagephoto',type: 'string' },
+      { name: 'SKUDetails',type: 'string'},
+      { name: 'SKUDimensionBase',type: 'number' },
+      { name: 'SKUDimensionHeight',type: 'number' },
+      { name: 'SKUDimensionWidth',type: 'number' },
+      { name: 'SKUDisplaySequence',type: 'string' },
+      { name: 'SKUGoodQty',type: 'number' },
+      { name: 'SKUGoodphoto',type: 'string' },
+      { name: 'SKUName',type: 'string' },
+      { name: 'SKUOverlandQty',type: 'number' },
+      { name: 'SKUOverlandphoto',type: 'string' },
+      { name: 'SKUPlanQty',type: 'number' },
+      { name: 'SKUReceivedQty',type: 'number' },
+      { name: 'SKUReference',type: 'string' },
+      { name: 'SKURemark',type: 'string' },
+      { name: 'SKUShortLandQty',type: 'number' },
+      { name: 'SKUShortLandphoto',type: 'string' },
+      { name: 'SKUStatus',type: 'string' },
+      { name: 'SKUTruckID',type: 'string' },
+      { name: 'SKUTruckType',type: 'string' },
+      { name: 'SKUUOMAsk',type: 'string' },
+      { name: 'SKUTruckType',type: 'string' },
+      { name: 'SKUWeight',type: 'number' },
+      { name: 'ShipperAsk',type: 'string' },
+      { name: 'TruckAsk',type: 'string' },
+      {name:'UOM',type: 'string'}
   ];
 
   this.source4 =
@@ -296,11 +297,11 @@ CreateGrid()
   this.columns4 = 
   [
       { text: 'SKU Name', datafield: 'SKUName'},      
-      { text: 'Dimension Width', datafield: 'SKUDimensionWidth' },
+      { text: 'Dimension Width', datafield: 'SKUDimensionWidth', cellsformat: 'd2' },
 
-      { text: 'Dimension Height', datafield: 'SKUDimensionHeight' },
-      { text: 'Dimension Base', datafield: 'SKUDimensionBase' },
-      { text: 'Plan Qty', datafield: 'SKUPlanQty' },
+      { text: 'Dimension Height', datafield: 'SKUDimensionHeight', cellsformat: 'd2' },
+      { text: 'Dimension Base', datafield: 'SKUDimensionBase', cellsformat: 'd2' },
+      { text: 'Plan Qty', datafield: 'SKUPlanQty', cellsformat: 'd2' },
       { text: 'UOM', datafield: 'UOM' },
       { text: 'Remark', datafield: 'SKURemark' }    
   ];
@@ -472,7 +473,7 @@ CreateGrid()
       var shipperrowdata = this.shipperGrid.getrowdata(shipperselectedrowindex);      
       var selectedshippergridarray  = [];
      
-        selectedshippergridarray.push({'ASK':'0'});
+        selectedshippergridarray.push({'Ask':'0'});
         selectedshippergridarray.push({'ShipperName':shipperrowdata.ShipperName});
         selectedshippergridarray.push({'ShipperDetails':shipperrowdata.ShipperDetails});
             
@@ -519,7 +520,7 @@ CreateGrid()
       let shipperarray = [];
       for(let i=0; i < shippergridarray.length;i++)
       {
-        shipperarray.push({'ASK':'0','ShipperName':shippergridarray[i].ShipperName,'ShipperDetails':shippergridarray[i].ShipperDetails});       
+        shipperarray.push({'Ask':'0','ShipperName':shippergridarray[i].ShipperName,'ShipperDetails':shippergridarray[i].ShipperDetails});       
       }
        let shippergridjson = JSON.stringify(shipperarray);
 
@@ -611,8 +612,14 @@ CreateGrid()
       truckgridjson = truckgridjson.replace("[",'')
       truckgridjson = truckgridjson.replace("]",'')
             
-            
       
+      
+      
+      var allgridjson =  "[{"+ shipperselectedjson+",\"TruckList\""+":[{"+truckselectedjson+",\"POList\""+":[{"+poselectedjson+",\"SKUList\""+":["+skugridjson+"]},{"+pogridjson+"}"+"]},{"+truckgridjson+"}"+"]},{"+shippergridjson+"}]"     
+      allgridjson = "ShipperList\":"+allgridjson;
+      //allgridjson = allgridjson.replace(/["']/g, "")
+
+    
      
       var body = {
         "UserID" : "admin",
@@ -632,12 +639,20 @@ CreateGrid()
         "NoOfTruck":this.nooftrack,
         "NoOfContainer":this.noofcontainer,
         "DisplaySequence":"",
-        "Remark":this.remark,
-        "ShipperList":"[{"+ shipperselectedjson+",TruckList:[{"+truckselectedjson+",POList:[{"+poselectedjson+",SKUList:["+skugridjson+"]},{"+pogridjson+"}"+"]},{"+truckgridjson+"}"+"]},{"+shippergridjson+"}]"
+        "Remark":this.remark+'"'+","+'"'+allgridjson
       }
+
+      var jsonbodystring = '';
+      jsonbodystring = JSON.stringify(body);
+      jsonbodystring = jsonbodystring.replace(/}]"/g,'}]')
+      jsonbodystring =  jsonbodystring.replace(/\\/g, '')
       
+
+      
+    
+
             
-      this.backendservice.SaveReceived(body).then(data =>
+      this.backendservice.SaveReceived(jsonbodystring).then(data =>
         {
             alert(JSON.stringify(data)); 
         }) 
@@ -660,7 +675,7 @@ CreateGrid()
     let podatarow = this.generaterowshipper();             
     this.poGrid.addrow(null, podatarow);
 
-    let skudatarow = this.generaterowshipper();             
+    let skudatarow = this.generaterowsku();          
     this.skuGrid.addrow(null, skudatarow);
 
   /*  let datarow3 = this.generaterow3();              
@@ -993,9 +1008,11 @@ if(rowlength == index)
 
   generaterowsku(): any {   
     let row = {};
-    // row['DeleteRow'] = 'X'
-    // row['LocalAmt'] = 0;
-    // row['SourceAmt'] = 0;
+
+     row['SKUDimensionWidth'] = 0;
+     row['SKUDimensionHeight'] = 0;
+     row['SKUDimensionBase'] = 0;
+     row['SKUPlanQty'] = 0;
     return row;
   }
 
