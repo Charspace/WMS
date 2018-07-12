@@ -180,11 +180,6 @@ export class LsttallycheckforexportWComponent implements OnInit {
 
 
 
-
-
-
-
-
 photoRenderer = (row: number, column: any, value: string): string => {
     let name = this.HeaderGrid.getrowdata(row).FirstName;
     //let imgurl = '../images/' + name.toLowerCase() + '.png';
