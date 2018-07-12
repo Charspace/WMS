@@ -12,7 +12,7 @@ export class LstlstbarcodemappingforexportWComponent implements OnInit {
   ngOnInit(): void {
     throw new Error("Method not implemented.");
   }
-  @ViewChild('windowReference') window: jqxWindowComponentdowComponent;
+  @ViewChild('windowReference') window: jqxWindowComponent;
   @ViewChild('jqxWidget') jqxWidget: ElementRef;
   
   ngAfterViewInit(): void {
