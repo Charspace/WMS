@@ -32,12 +32,12 @@
   <div style="width: 100%; height: 70%;">
     <table style="width: 100%;height: 10%"  border="1" > 
         <tr>
-          <td>
+          <!-- <td>
               <label style="font-size: 15px" ><b>Status</b></label>
           </td>
           <td>
               <label style="font-size: 15px" ><b>List</b></label>
-          </td>
+          </td> -->
         </tr>
         <tr>                 
           <td style="width: 25%;height: 10%">            
@@ -46,10 +46,9 @@
               [colorScheme]="'scheme02'" [values]="values">
               </jqxBarGauge>
           </td>     
-          <td style="width: 30%">
-              
-              <jqxGrid #myGrid
-              [width]="850" [height]="365" [source]="employeesAdapter" [columns]="columns" 
+          <td style="width: 30%">              
+              <jqxGrid #HeaderGrid
+              [width]="850" [height]="365" [source]="HeaderAdapter" [columns]="columns" 
               [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
               [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
           </jqxGrid>

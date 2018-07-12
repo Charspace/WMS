@@ -19,138 +19,103 @@ import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
   styleUrls: ['./lsttallycheckforexport-w.component.css']
 })
 export class LsttallycheckforexportWComponent implements OnInit {
+  @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
+//   @ViewChild('Detail') myGrid: jqxGridComponent;
+  //Place holder
+  bookingnoplaceholder: string;
+  shipperlaceholder: string;
+  statusplaceholder: string;
+  trdateplaceholder: string;
+  agentplaceholder : any;
 
-  @ViewChild('myGrid') myGrid: jqxGridComponent;
-  values: number[] = [102, 115, 130, 137];
-  source : any;
-  employeesAdapter : any;
-  ordersSource : any;
-  ordersDataAdapter : any;
-  ordersSource2 : any;
-  ordersDataAdapter2 : any;
+  //grid 
+  HeaderSource: any;
+  DetailSource: any;
+  DetailSource1: any;
+  HeaderAdapter : any;
+  DetailAdapter: any;  
   headercolumns: any;
   detailcolumns: any;
-  detailcolumns2: any;
-  nestedcolumns: any;
   nestedGrids : any =[];
   initRowDetails : any;
+  HeaderJson = '[{"BookingAsk":"001","BookingNo":"Maung","ShipperName":"Mrs","AgentName":"Bahan","Status":"Yangon","TransactionDate":"Aung"},{"BookingAsk":"002","BookingNo":"Maung","ShipperName":"Mrs","AgentName":"Bahan","Status":"Yangon","TransactionDate":"Hla"}]'
+  DetailJson = '[{"BookingAsk":"001","DocNo":"Yangonship","ShippingMark":"Bahan","SKUDetail":"Bahan","D_W":"Myanmar","D_W":"Myanmar","D_D":"Myanmar","D_L":"Myanmar","ReceivedQTY":"Myanmar","UOM":"Myanmar","TotalCBM":"Myanmar","Remark":"Myanmar"},{"BookingAsk":"002","DocNo":"AA","ShippingMark":"AA","SKUDetail":"AA","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"6566","UOM":"Ton","TotalCBM":"434","Remark":"remark"}]';
+            
+  constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
+  { 
+    this.bookingnoplaceholder = "Booking No - B000001";
+    this.shipperlaceholder = 'Shipper Name - Thura'
+    this.agentplaceholder = "Agent Name - Rayroom"
+    this.statusplaceholder = "Status - Tally";
+    this.trdateplaceholder = "Transactoin Date - 10/01/2018";
+    this.CreateGrid();       
+  }  
 
-  header = '[{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"001"},{"FirstName":"Hla","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"002"}]'
-  detail = '[{"EmployeeID":"001","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"},{"EmployeeID":"002","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"}]';
-    router: any;
+  CreateGrid()
+  {this.HeaderSource  =
+    {
 
-  constructor() { 
-    this.BindNestedGrid();
-  }
-
-  ngOnInit() {
-  }
-
-  BindNestedGrid()
-  {
-    
-    this.source =
-    {      
-      datatype: 'json',
         datafields: [
-            { name: 'FirstName' , type: 'string' },
-            { name: 'LastName',type: 'string' },
-            { name: 'Title',type: 'string' },
-            { name: 'Address',type: 'string' },
-            { name: 'City',type: 'string' },
-            { name: 'EmployeeID',type: 'string' }
+            { name: 'BookingAsk', type: 'string' },
+            { name: 'BookingNo', type: 'string' },
+            { name: 'ShipperName' , type: 'string' },
+            { name: 'AgentName' , type: 'string' },
+            { name: 'Status' , type: 'string' },
+            { name: 'TransactionDate'  , type: 'string' }       
         ],
-        localdata: this.header,         
-        root: 'Employees',
-        //record: 'Employee',
-        id: 'EmployeeID', 
-        
-         
+        localdata: this.HeaderJson, 
+        root: 'Header',
+        //record: 'Header',       
+        id: 'BookingAsk',  
+        datatype: 'json', 
     };
-
-    this.employeesAdapter = new jqx.dataAdapter(this.source);
-
-      
+    this.HeaderAdapter = new jqx.dataAdapter(this.HeaderSource);  
     this.headercolumns =
     [
-      { text: 'FirstName', datafield: 'FirstName', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'LastName', datafield: 'LastName', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'Title', datafield: 'Title', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'Address', datafield: 'Address', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'City', datafield: 'City', width: '10%',editable: false,hidden:false }, //readonly cell.                
-      { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.  
-  ]
-
-  
-  
-     this.ordersSource =
-    {
-      
-
+        { text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
+        { text: 'Booking No', datafield: 'BookingNo', width: 120 },
+        { text: 'Shipper Name', datafield: 'ShipperName', width: 120 },
+        { text: 'Agent Name', datafield: 'AgentName', width: 120 }  ,
+        { text: 'Status', datafield: 'Status', width: 120 }   ,
+        { text: 'Transaction Date', datafield: 'TransactionDate', width: 250 }         
+    ];    
+    this.DetailSource =
+    {     
         datafields: [
-            { name: 'EmployeeID', type: 'string' },
-            { name: 'ShipName', type: 'string' },
-            { name: 'ShipAddress', type: 'string' },
-            { name: 'ShipCity', type: 'string' },
-            { name: 'ShipCountry', type: 'string' }
-            
+            { name: 'BookingAsk', type: 'string' },
+            { name: 'DocNo', type: 'string' },
+            { name: 'ShippingMark', type: 'string' },
+            { name: 'SKUDetail', type: 'string' },
+            { name: 'D_W', type: 'string' },
+            { name: 'D_D', type: 'string' },
+            { name: 'D_L', type: 'string' },
+            { name: 'ReceivedQTY', type: 'string' },
+            { name: 'UOM', type: 'string' },
+            { name: 'TotalCBM', type: 'string' },
+            { name: 'Remark', type: 'string' }             
         ],
-        localdata: this.detail,
-        root: 'Orders',
-       // record: 'Order', 
-        datatype: 'json',
-         
+        localdata: this.DetailJson,
+        root: 'Details',
+        //record: 'Detail',      
+        datatype: 'json',         
     };
-
-    this.ordersDataAdapter = new jqx.dataAdapter(this.ordersSource, { autoBind: true });
-
-
-
+    this.DetailAdapter = new jqx.dataAdapter(this.DetailSource, { autoBind: true });
     this.detailcolumns =
     [
-      { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipName', datafield: 'ShipName', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipAddress', datafield: 'ShipAddress', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipCity', datafield: 'ShipCity', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipCountry', datafield: 'ShipCountry', width: '10%',editable: false,hidden:false }, //readonly cell.                
-  ]
-
-  this.ordersSource2 =
-  {
-    
-
-      datafields: [
-          { name: 'EmployeeID', type: 'string' },
-          { name: 'ShipName', type: 'string' },
-          { name: 'ShipAddress', type: 'string' },
-          { name: 'ShipCity', type: 'string' },
-          { name: 'ShipCountry', type: 'string' }
-          
-      ],
-      localdata: this.detail,
-      root: 'Orders',
-     // record: 'Order', 
-      datatype: 'json',
-       
-  };
-
-  this.ordersDataAdapter2 = new jqx.dataAdapter(this.ordersSource2, { autoBind: true });
-
-
-
-  this.detailcolumns2 =
-  [
-    { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipName', datafield: 'ShipName', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipAddress', datafield: 'ShipAddress', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipCity', datafield: 'ShipCity', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipCountry', datafield: 'ShipCountry', width: '10%',editable: false,hidden:false }, //readonly cell.                
-]
+      { text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Doc No', datafield: 'DocNo', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Shipping Mark', datafield: 'ShippingMark', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'SKU Detail', datafield: 'SKUDetail', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Width', datafield: 'D_W', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Heigh', datafield: 'D_D', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Length', datafield: 'D_L', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Received QTY', datafield: 'ReceivedQTY', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'UOM', datafield: 'UOM', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Total CBM', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell. 
+      { text: 'Remark', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell.               
+    ]    
   
-   
-
     this.nestedGrids = new Array();
-
         // create nested grid.
         this.initRowDetails = (index: number, parentElement: any, gridElement: any, record: any): void => {
           let id = record.uid.toString();
@@ -162,49 +127,66 @@ export class LsttallycheckforexportWComponent implements OnInit {
           let filtercondition = 'equal';
           let filter = filtergroup.createfilter('stringfilter', filtervalue, filtercondition);
           // fill the orders depending on the id.
-          let orders = this.ordersDataAdapter.records;
-          let ordersbyid = [];
-          for (let i = 0; i < orders.length; i++) {
-              let result = filter.evaluate(orders[i]['EmployeeID']);
+          let Details = this.DetailAdapter.records;
+          let Detailsbyid = [];
+          for (let i = 0; i < Details.length; i++) {
+              let result = filter.evaluate(Details[i]['BookingAsk']);
               if (result)
-                  ordersbyid.push(orders[i]);
+              Detailsbyid.push(Details[i]);
           }
-          let ordersSource = {
+          let DetailSource1 = {
               datafields: [
-                  { name: 'EmployeeID', type: 'string' },
-                  { name: 'ShipName', type: 'string' },
-                  { name: 'ShipAddress', type: 'string' },
-                  { name: 'ShipCity', type: 'string' },
-                  { name: 'ShipCountry', type: 'string' },
-                  { name: 'ShippedDate', type: 'date' }
+                { name: 'BookingAsk', type: 'string' },
+                { name: 'DocNo', type: 'string' },
+                { name: 'ShippingMark', type: 'string' },
+                { name: 'SKUDetail', type: 'string' },
+                { name: 'D_W', type: 'string' },
+                { name: 'D_D', type: 'string' },
+                { name: 'D_L', type: 'string' },
+                { name: 'ReceivedQTY', type: 'string' },
+                { name: 'UOM', type: 'string' },
+                { name: 'TotalCBM', type: 'string' },
+                { name: 'Remark', type: 'string' },   
               ],
-              id: 'OrderID',
-              localdata: ordersbyid
+              id: 'DocNo',
+              localdata: Detailsbyid
           }
-          let nestedGridAdapter = new jqx.dataAdapter(ordersSource);
-          if (nestedGridContainer != null) {
-  
+          let nestedGridAdapter = new jqx.dataAdapter(this.DetailSource1);
+          if (nestedGridContainer != null) {  
               let settings = {
                   width: 780,
                   height: 200,
-                  source: nestedGridAdapter, 
+                  HeaderSource: nestedGridAdapter, 
                   columns: [
-                      { text: 'Ship Name', datafield: 'ShipName', width: 200 },
-                      { text: 'Ship Address', datafield: 'ShipAddress', width: 200 },
-                      { text: 'Ship City', datafield: 'ShipCity', width: 150 },
-                      { text: 'Ship Country', datafield: 'ShipCountry', width: 150 },
-                      { text: 'Shipped Date', datafield: 'ShippedDate', width: 200 }
+                    { text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Doc No', datafield: 'DocNo', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Shipping Mark', datafield: 'ShippingMark', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'SKU Detail', datafield: 'SKUDetail', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Dimission_Width', datafield: 'D_W', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Dimission_Heigh', datafield: 'D_D', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Dimission_Length', datafield: 'D_L', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Received QTY', datafield: 'ReceivedQTY', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'UOM', datafield: 'UOM', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Total CBM', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell. 
+                    { text: 'Remark', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell.  
                   ]
-              };
-  
+              };  
               jqwidgets.createInstance(`#${nestedGridContainer.id}`, 'jqxGrid', settings);
           }
-      }
+      }      
+  };
+  ngOnInit() {    
+}
 
-  }
 
-  photoRenderer = (row: number, column: any, value: string): string => {
-    let name = this.myGrid.getrowdata(row).FirstName;
+
+
+
+
+
+
+photoRenderer = (row: number, column: any, value: string): string => {
+    let name = this.HeaderGrid.getrowdata(row).FirstName;
     //let imgurl = '../images/' + name.toLowerCase() + '.png';
     let imgurl = 'assets/img/supply.jpg';
     let img = '<div style="background: white;"><img style="margin: 2px; margin-left: 10px;" width="32" height="32" src="' + imgurl + '"></div>';
@@ -220,18 +202,18 @@ rowdetailstemplate: any = {
 };
 
 ready = (): void => {
-    this.myGrid.showrowdetails(1);
+    this.HeaderGrid.showrowdetails(1);
 };
 
 columns: any[] =
 [
-    { text: 'Photo', width: 50, cellsrenderer: this.photoRenderer },
-    { text: 'First Name', datafield: 'FirstName', width: 100, cellsrenderer: this.renderer },
-    { text: 'Last Name', datafield: 'LastName', width: 100, cellsrenderer: this.renderer },
-    { text: 'Title', datafield: 'Title', width: 180, cellsrenderer: this.renderer },
-    { text: 'Address', datafield: 'Address', width: 300, cellsrenderer: this.renderer },
-    { text: 'City', datafield: 'City', width: 170, cellsrenderer: this.renderer }
-];
+    { text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
+    { text: 'Booking No', datafield: 'BookingNo', width: 120 },
+    { text: 'Shipper Name', datafield: 'ShipperName', width: 120 },
+    { text: 'Agent Name', datafield: 'AgentName', width: 120 }  ,
+    { text: 'Status', datafield: 'Status', width: 120 }   ,
+    { text: 'Transaction Date', datafield: 'TransactionDate', width: 250 }         
+]; 
 
 btnNew()
 {  
