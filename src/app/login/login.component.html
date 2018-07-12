@@ -25,10 +25,10 @@
                   
                 <tr>
                   <td>
-                    <label for="username" style="height:10px">UserName:</label>
+                    <!-- <label for="username" style="height:10px">UserName:</label> -->
                   </td>
                   <td   >
-                    <input type="text"  id="username" name ="username" ngModel class = "form-control">
+                    <input type="text"  id="username" name ="username" placeholder="UserName" ngModel class = "form-control">
                   </td>
                   <td *ngIf="showinvalidusername" >
                     <label style="color: red">*</label>
@@ -36,10 +36,10 @@
                   </tr>
                   <tr>
                     <td  >
-                    <label for="password">Password:</label>
+                   <!--  <label for="password">Password:</label> -->
                   </td>
                   <td >
-                    <input type="password" id="password" name ="password" ngModel class = "form-control">
+                    <input type="password" id="password" name ="password" placeholder="Password" ngModel class = "form-control">
                   </td>
                   <td *ngIf="showinvalidpassword" >
                     <label style="color:red">*</label>
