@@ -66,6 +66,7 @@ import { LstallocationforexportWComponent } from './lstallocationforexport-w/lst
 import { LstallocationComponent } from './lstallocation/lstallocation.component';
 import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
 // import { SetcheckerforexportWComponent } from './c/setcheckerforexport-w.component';
+import { jqxWindowComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxwindow';
 
 
 // import { lstdeliverforexport } from './lstallocation/lstallocation.component';
@@ -330,6 +331,7 @@ const appRoutes: Routes=[
     SetdeliverforexportWComponent,
     SetpicklistforexportWComponent,
     SetallocationforexportWComponent,
+    jqxWindowComponent
     // LstallocationComponent,
     // LstallocationforexportWComponent
    
