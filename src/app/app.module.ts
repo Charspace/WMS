@@ -49,22 +49,26 @@ import { LstplanreceiveforimportComponent } from './lstplanreceiveforimport/lstp
 import { SetuserComponent } from './setuser/setuser.component';
 import { SetplanreceiveforexportComponent } from './setplanreceiveforexport/setplanreceiveforexport.component';
 import { SetplanreceiveforexportWComponent } from './setplanreceiveforexport-w/setplanreceiveforexport-w.component';
-import { LstallocationforexportWComponent } from './lstallocationforexport-w/lstallocationforexport-w.component';
-
+// import { LstallocationforexportWComponent } from './lstallocationforexport-w/lstallocationforexport-w.component';
 import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
 import { jqxTextAreaComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtextarea';
 import { SettallycheckforexportWComponent } from './settallycheckforexport-w/settallycheckforexport-w.component';
 import { getLocalization } from 'jqwidgets-scripts/localization';
-import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
+// import { LstdeliverforexportWComponent } from './lstdeliverforexport/lstdeliverforexport.component';
+import { LstmaterialusageforexportWComponent } from './lstmaterialusageforexport-w/lstmaterialusageforexport-w.component';
+import { SetallocationforexportWComponent } from './setallocationforexport-w/setallocationforexport-w.component';
 import { SetbarcodemappingforexportWComponent } from './setbarcodemappingforexport-w/setbarcodemappingforexport-w.component';
 import { SetdeliverforexportWComponent } from './setdeliverforexport-w/setdeliverforexport-w.component';
 import { SetpicklistforexportWComponent } from './setpicklistforexport-w/setpicklistforexport-w.component';
-import { SetallocationforexportWComponent } from './setallocationforexport-w/setallocationforexport-w.component';
-import { LstdeliverforexportWComponent } from './lstdeliverforexport-w/lstdeliverforexport-w.component';
-import { LstmaterialusageforexportWComponent } from './lstmaterialusageforexport-w/lstmaterialusageforexport-w.component';
 import { SetmaterialusageforexportWComponent } from './setmaterialusageforexport-w/setmaterialusageforexport-w.component';
- import { LstallocationComponent } from './lstallocation/lstallocation.component';
-import { jqxWindowComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxwindow';
+import { LstdeliverforexportWComponent } from './lstdeliverforexport-w/lstdeliverforexport-w.component';
+import { LstallocationforexportWComponent } from './lstallocationforexport-w/lstallocationforexport-w.component';
+import { LstallocationComponent } from './lstallocation/lstallocation.component';
+import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
+// import { SetcheckerforexportWComponent } from './c/setcheckerforexport-w.component';
+
+
+// import { lstdeliverforexport } from './lstallocation/lstallocation.component';
 
 
 
@@ -213,12 +217,58 @@ const appRoutes: Routes=[
     component:SetplanreceiveforexportWComponent    
     //outlet:'homepath'
     
+
   },
   {
     path : 'settallycheckforexport-w',
     component:SettallycheckforexportWComponent    
+    //outlet:'homepath'    
+  },
+  {
+    path : 'lstdeliverforexport-w',
+    component:LstdeliverforexportWComponent    
+    //outlet:'homepath'    
+  },
+  {
+    path : 'lstmaterialusageforexport-w',
+    component:LstmaterialusageforexportWComponent    
     //outlet:'homepath'
     
+  },
+  {
+    path : 'setallocationforexport-w',
+    component:SetallocationforexportWComponent    
+    //outlet:'homepath'    
+  },
+  {
+    path : 'setbarcodemappingforexport-w',
+    component:SetbarcodemappingforexportWComponent    
+    //outlet:'homepath'    
+  } ,
+  {
+    path : 'setdeliverforexport-w',
+    component:SetdeliverforexportWComponent   
+    //outlet:'homepath'    
+  },
+  {
+    path : 'setpicklistforexport-w',
+    component:SetpicklistforexportWComponent   
+    //outlet:'homepath'    
+  },
+  {
+    path : 'setmaterialusageforexport-w',
+    component:SetmaterialusageforexportWComponent   
+    //outlet:'homepath'    
+  },
+  {
+    path : 'lstallocationforexport-w',
+    component:LstallocationforexportWComponent   
+    //outlet:'homepath'    
+  },
+  {
+    path : 'Setcheckerforexport-w',
+    component:SetcheckerforexportWComponent   
+    //outlet:'homepath'    
   }
   
 ]
@@ -267,17 +317,21 @@ const appRoutes: Routes=[
     SetplanreceiveforexportComponent,
     SetplanreceiveforexportWComponent,
     SettallycheckforexportWComponent,
+    LstallocationforexportWComponent,
+    LstallocationComponent,
+    LstdeliverforexportWComponent,
+    LstmaterialusageforexportWComponent,
+    SetallocationforexportWComponent,
+    SetbarcodemappingforexportWComponent,
+    SetmaterialusageforexportWComponent,
+    SetpicklistforexportWComponent,
     SetcheckerforexportWComponent,
     SetbarcodemappingforexportWComponent,
     SetdeliverforexportWComponent,
     SetpicklistforexportWComponent,
     SetallocationforexportWComponent,
-    LstdeliverforexportWComponent,
-    LstmaterialusageforexportWComponent,
-    SetmaterialusageforexportWComponent,
-    jqxWindowComponent,
-     LstallocationComponent,
-     LstallocationforexportWComponent
+    // LstallocationComponent,
+    // LstallocationforexportWComponent
    
   ],
   imports: [
