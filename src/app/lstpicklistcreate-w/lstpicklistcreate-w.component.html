@@ -3,34 +3,34 @@
   <div style="width: 100%; height: 5%;"> 
     <table style="width: 100%;height: 10%"  border="0">
       <tr>
-          <td>
+          <td >
               <jqxInput  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
-          </td>
+        </td>
         <td >
-            <jqxInput  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="false">             </jqxInput>              
+            <jqxInput  [width]="200" [height]="25"  [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="false">             </jqxInput>              
         </td>
         <td >
             <jqxComboBox #countrycombo style=" float: left"
                
-              [valueMember]="'CountryName'"
-              [placeHolder]="agentplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"  >
+                [valueMember]="'CountryName'"
+              [placeHolder]="agentplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"   >
               </jqxComboBox> 
         </td>              
         <td >
             <jqxComboBox #countrycombo style=" float: left"
                
-               [valueMember]="'CountryName'"
+                [valueMember]="'CountryName'"
               [placeHolder]="statusplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"  >
               </jqxComboBox> 
-        </td>       
+        </td>     
+        <td >
+            <jqxInput  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="ReferenceNoplaceholder" [disabled]="false">             </jqxInput>              
+        </td>  
         <td >      
-            <jqxDateTimeInput #cargoreceiveddate class="label"    [disabled]="false" >
+            <jqxDateTimeInput #cargoreceiveddate class="label"   >
             </jqxDateTimeInput>
         </td> 
-        <td>
-          <jqxInput  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="picklistplaceholder" [disabled]="false">             </jqxInput>              
-        </td>
-		    <td >
+		<td >
             <jqxButton [width]='120' [height]='30' class="buttoncolor" #button  > Refresh  </jqxButton> 
           </td>
    
@@ -48,12 +48,12 @@
           </td> -->
         </tr>
         <tr>                 
-            <td style="width: 25%;height: 10%">            
-                <jqxBarGauge 
-                [width]="400" [height]="400" [max]="150" 
-                [colorScheme]="'scheme02'"  [values]="values">
-                </jqxBarGauge>
-            </td>      
+          <td style="width: 25%;height: 10%">            
+              <jqxBarGauge 
+              [width]="400" [height]="400" [max]="150" 
+              [colorScheme]="'scheme02'"  [values]="values">
+              </jqxBarGauge>
+          </td>     
           <td style="width: 30%">              
               <jqxGrid #HeaderGrid
               [width]="850" [height]="365" [source]="HeaderAdapter" [columns]="columns" 

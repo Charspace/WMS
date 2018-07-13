@@ -261,11 +261,11 @@ columns: any[] =
 ]; 
 btnNew()
 {  
-    //this.router.navigate(['settallycheckforexport-w']);
-}
-btnNewReceived()
-{   
     this.router.navigate(['setplanreceiveforexport-w']);
+}
+btnSubmit()
+{   
+    //this.router.navigate(['setplanreceiveforexport-w']);
 }
 
 

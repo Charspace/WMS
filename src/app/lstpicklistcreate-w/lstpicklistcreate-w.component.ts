@@ -28,7 +28,7 @@ export class LstpicklistcreateWComponent implements OnInit {
   trdateplaceholder: string;
   agentplaceholder : any;
   picklistplaceholder : any;
-
+  ReferenceNoplaceholder:any;
   //grid 
   HeaderSource: any;
   DetailSource: any;
@@ -58,6 +58,7 @@ export class LstpicklistcreateWComponent implements OnInit {
     this.agentplaceholder = "Agent Name"
     this.statusplaceholder = "Status";
     this.trdateplaceholder = "Transactoin Date";
+    this.ReferenceNoplaceholder="Reference No";
   }
   CreateGrid()
   {this.HeaderSource  =
@@ -263,7 +264,7 @@ columns: any[] =
 
 btnNew()
 {  
-    //this.router.navigate(['settallycheckforexport-w']);
+    this.router.navigate(['setpicklistforexport-w']);
 }
 
 }
