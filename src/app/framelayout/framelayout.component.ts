@@ -155,20 +155,33 @@ export class FramelayoutComponent implements OnInit {
             "text": "Barcode Mapping For Export (W)"
         },
         {
-            "SubMenuWidth": "",
-            "id": "22",
-            "parentid": "6",
-            "text": "Pick List Create(W)"
+          "SubMenuWidth": "",
+          "id": "22",
+          "parentid": "6",
+          "text": "Allocation"
         },
         {
             "SubMenuWidth": "",
             "id": "23",
-            "parentid": "4",
-            "text": "User"
+            "parentid": "6",
+            "text": "Pick List Create(W)"
         },
+                
+        {
+          "SubMenuWidth": "",
+          "id": "24",
+          "parentid": "6",
+          "text": "Delivery"
+        },   
+        {
+          "SubMenuWidth": "",
+          "id": "25",
+          "parentid": "4",
+          "text": "User"
+        },     
         {
             "SubMenuWidth": "",
-            "id": "24",
+            "id": "26",
             "parentid": "4",
             "text": "MenuGroup"
         }
@@ -331,16 +344,25 @@ export class FramelayoutComponent implements OnInit {
       }
       else if(event.args.id == 22)
       {
-        this.Routeform('lstpicklistcreate-w');
+        this.Routeform('lstallocationforexport-w');
       }
       else if(event.args.id == 23)
       {
-        this.Routeform('lstuser');
+        this.Routeform('lstpicklistcreate-w');
       }
       else if(event.args.id == 24)
       {
+        this.Routeform('lstdeliverforexport-w');
+      }
+      else if(event.args.id == 25)
+      {
+        this.Routeform('lstuser');
+      }
+      else if(event.args.id == 26)
+      {
         this.Routeform('lstmenugroup');
       }
+   
   };
 
 

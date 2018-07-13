@@ -38,16 +38,18 @@ export class SettallycheckforexportWComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
-    this.bookingnoplaceholder = "Booking No - B000001";
-    this.shipperlaceholder = 'Shipper Name - Thura'
-    this.agentplaceholder = "Agent Name - Rayroom"
-    this.statusplaceholder = "Status - Tally";
-    this.trdateplaceholder = "Transactoin Date - 10/01/2018";
-    this.CreateGrid();   
-    
+    this.bindHeader();
+    this.createGrid();       
   }
-
-  CreateGrid()
+  bindHeader()
+  {
+    this.bookingnoplaceholder = "Booking No "+"- B000001";
+    this.shipperlaceholder = "Shipper Name "+"- Thura";
+    this.agentplaceholder = "Agent Name "+"- Rayroom";
+    this.statusplaceholder = "Status "+"- Tally";
+    this.trdateplaceholder = "Transactoin Date "+"- 10/01/2018";
+  }
+  createGrid()
   {this.source  =
     {
         datafields: [
@@ -136,13 +138,11 @@ export class SettallycheckforexportWComponent implements OnInit {
   }
   btnSave()
   { 
-        // this.myGrid.width(screen.width);
-    // this.myGrid.height(screen.height);    
+    this.router.navigate(['lsttallycheckforexport-w']);   
     //alert("save")
   }
   btnDelete()
-  {  
-    
+  {      
     //alert("delete")
   }  
   btnSuveyReport()

@@ -260,8 +260,28 @@ columns: any[] =
     { text: 'Remark', datafield: 'Remark', width: 200 }         
 ]; 
   
-  btnNew()
-  {  
-      //this.router.navigate(['settallycheckforexport-w']);
-  }
+btnNew()
+{  
+    this.router.navigate(['setbarcodemappingforexport-w']);
+}
+btnSubmit()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnPreview()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnPrint()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnDelete()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnGenearateExcel()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
 }

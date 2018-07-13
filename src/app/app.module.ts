@@ -64,9 +64,10 @@ import { SetmaterialusageforexportWComponent } from './setmaterialusageforexport
 import { LstdeliverforexportWComponent } from './lstdeliverforexport-w/lstdeliverforexport-w.component';
 import { LstallocationforexportWComponent } from './lstallocationforexport-w/lstallocationforexport-w.component';
 import { LstallocationComponent } from './lstallocation/lstallocation.component';
-import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
+//import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
 // import { SetcheckerforexportWComponent } from './c/setcheckerforexport-w.component';
 import { jqxWindowComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxwindow';
+import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
 
 
 // import { lstdeliverforexport } from './lstallocation/lstallocation.component';
@@ -267,11 +268,22 @@ const appRoutes: Routes=[
     //outlet:'homepath'    
   },
   {
-    path : 'Setcheckerforexport-w',
+    path : 'setcheckerforexport-w',
     component:SetcheckerforexportWComponent   
     //outlet:'homepath'    
-  }
+  },
+  // {
+  //   path : 'Setcheckerforexport-w',
+  //   component:SetcheckerforexportWComponent   
+  //   //outlet:'homepath'    
+  // },
+  // {
+  //   path : '  setcheckerforexport-w',
+  //   component:SetcheckerforexportWComponent   
+  //   //outlet:'homepath'    
+  // }
   
+
 ]
 
 
@@ -326,12 +338,12 @@ const appRoutes: Routes=[
     SetbarcodemappingforexportWComponent,
     SetmaterialusageforexportWComponent,
     SetpicklistforexportWComponent,
-    SetcheckerforexportWComponent,
     SetbarcodemappingforexportWComponent,
     SetdeliverforexportWComponent,
     SetpicklistforexportWComponent,
     SetallocationforexportWComponent,
-    jqxWindowComponent
+    jqxWindowComponent,
+    SetcheckerforexportWComponent,
     // LstallocationComponent,
     // LstallocationforexportWComponent
    

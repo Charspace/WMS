@@ -55,11 +55,9 @@ export class LstexportcheckerComponent implements OnInit {
     this.trdateplaceholder = "Transactoin Date";
     this.CreateGrid();       
   }  
-
   CreateGrid()
   {this.HeaderSource  =
     {
-
         datafields: [
             { name: 'BookingAsk', type: 'string' },
             { name: 'BookingNo', type: 'string' },
@@ -234,19 +232,15 @@ photoRenderer = (row: number, column: any, value: string): string => {
     let img = '<div style="background: white;"><img style="margin: 2px; margin-left: 10px;" width="32" height="32" src="' + imgurl + '"></div>';
     return img;
 }
-
 renderer = (row: number, column: any, value: string): string => {
     return '<span style="margin-left: 4px; margin-top: 9px; float: left;">' + value + '</span>';
 }
-
 rowdetailstemplate: any = {
     rowdetails: '<div id="nestedGrid" style="margin: 10px;"></div>', rowdetailsheight: 220, rowdetailshidden: true
 };
-
 ready = (): void => {
     this.HeaderGrid.showrowdetails(1);
 };
-
 columns: any[] =
 [
     //{ text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
@@ -257,7 +251,27 @@ columns: any[] =
     { text: 'Transaction Date', datafield: 'TransactionDate', width: 150 } , 
     { text: 'Remark', datafield: 'Remark', width: 200 }         
 ]; 
-btnNew()
+btnCheck()
+{  
+    this.router.navigate(['setcheckerforexport-w']);
+}
+btnSubmit()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnPreview()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnPrint()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnDelete()
+{  
+    this.router.navigate(['setcheckerforexport']);
+}
+btnGenearateExcel()
 {  
     this.router.navigate(['setcheckerforexport']);
 }

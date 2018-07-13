@@ -65,12 +65,12 @@
     <table width="100%" border="0">
         <tr>       
             <td>   
-              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()" >       Checkt     </jqxButton>     
-              <jqxButton [width]='120' [height]='30' #button >       Submit       </jqxButton>   
-              <jqxButton [width]='120' [height]='30' #button >       Preview       </jqxButton>    
-              <jqxButton [width]='120' [height]='30' #button  >       Print       </jqxButton>   
-              <jqxButton [width]='120' [height]='30' #button  >       Delete       </jqxButton>        
-              <jqxButton [width]='120' [height]='30' #button >       Genearate Excel       </jqxButton>        
+              <jqxButton [width]='120' [height]='30' #button (onClick)=btnCheck() >       Check     </jqxButton>     
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnSubmit()" >        Submit       </jqxButton>   
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnPreview()" >        Preview       </jqxButton>    
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnPrint()" >       Print       </jqxButton>   
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnDelete()" >        Delete       </jqxButton>        
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnGenearateExcel()" >       Genearate Excel       </jqxButton>        
             </td>
         </tr>
     </table>
