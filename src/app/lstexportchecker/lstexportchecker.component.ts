@@ -48,13 +48,17 @@ export class LstexportcheckerComponent implements OnInit {
             
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
+    this.bindPlaceholder();
+    this.CreateGrid();       
+  }  
+  bindPlaceholder()
+  {
     this.bookingnoplaceholder = "Booking No";
     this.shipperlaceholder = 'Shipper Name'
     this.agentplaceholder = "Agent Name"
     this.statusplaceholder = "Status";
     this.trdateplaceholder = "Transactoin Date";
-    this.CreateGrid();       
-  }  
+  }
   CreateGrid()
   {this.HeaderSource  =
     {
