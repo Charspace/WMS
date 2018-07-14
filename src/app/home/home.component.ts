@@ -66,7 +66,10 @@ export class HomeComponent implements OnInit {
   ,{"BookingAsk":"014","BookingNo":"B00014","ShipperName":"Mr. Jagan","AgentName":"Miss. Aye Mar","Status":"Delivery","TransactionDate":"12/7/2018","Remark":"VIP"}
   ,{"BookingAsk":"015","BookingNo":"B00015","ShipperName":"Miss. Wong","AgentName":"Mr. Jagan","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
   ,{"BookingAsk":"016","BookingNo":"B00016","ShipperName":"Mr. Fort","AgentName":"Miss. Wong","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
-  ,{"BookingAsk":"017","BookingNo":"B00017","ShipperName":"Dr. Bele","AgentName":"Mr. Fort","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}]
+  ,{"BookingAsk":"017","BookingNo":"B00017","ShipperName":"Mr. Fort","AgentName":"Miss. Wong","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"018","BookingNo":"B00018","ShipperName":"Mr. Fort","AgentName":"Miss. Wong","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"019","BookingNo":"B00019","ShipperName":"Mr. Fort","AgentName":"Miss. Wong","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"020","BookingNo":"B00020","ShipperName":"Dr. Bele","AgentName":"Mr. Fort","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}]
   DetailJson = [{"BookingAsk":"001","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"}
   ,{"BookingAsk":"001","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
   ,{"BookingAsk":"002","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"}
@@ -101,6 +104,10 @@ export class HomeComponent implements OnInit {
   ,{"BookingAsk":"016","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
   ,{"BookingAsk":"016","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
   ,{"BookingAsk":"017","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"017","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"018","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"019","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"020","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
   ,{"BookingAsk":"017","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
   ,{"BookingAsk":"002","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}];
      
