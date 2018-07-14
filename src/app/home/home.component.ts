@@ -21,137 +21,223 @@ import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqx
 
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('DashboardGrid') myGrid: jqxGridComponent;
-  values: number[] = [102, 115, 130, 137];
-  source : any;
-  employeesAdapter : any;
-  ordersSource : any;
-  ordersDataAdapter : any;
-  ordersSource2 : any;
-  ordersDataAdapter2 : any;
+  @ViewChild('DashboardGrid') DashboardGrid: jqxGridComponent;
+//   @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
+  values: number[] = [5,2,8,7,9,6,10];
+  //Place holder
+  bookingnoplaceholder: string;
+  shipperlaceholder: string;
+  statusplaceholder: string;
+  trdateplaceholder: string;
+  agentplaceholder : any;
+  ReferenceNoplaceholder:any;
+  ReceivedPlaceholder:any;
+  TallyPlaceholder:any;
+  CheckPlaceholder:any;
+  BarcodePlaceholder:any;
+  AllocatePlaceholder:any;
+  PickPlaceholder:any;
+  DeliveryPlaceholder:any;
+
+  //grid 
+  HeaderSource: any;
+  DetailSource: any;
+  DetailSource1: any;
+  HeaderAdapter : any;
+  DetailAdapter: any;  
   headercolumns: any;
   detailcolumns: any;
-  detailcolumns2: any;
-  nestedcolumns: any;
   nestedGrids : any =[];
   initRowDetails : any;
-
-  header = '[{"FirstName":"Aung","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"001"},{"FirstName":"Hla","LastName":"Maung","Title":"Mrs","Address":"Bahan","City":"Yangon","EmployeeID":"002"}]'
-  detail = '[{"EmployeeID":"001","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"},{"EmployeeID":"002","ShipName":"Yangonship","ShipAddress":"Bahan","ShipCity":"Bahan","ShipCountry":"Myanmar"}]';
-
-
-  constructor() {
-    this.BindNestedGrid();
-   }
-
-  ngOnInit() {
-  }
-
-  BindNestedGrid()
+  HeaderJson = [
+    {"BookingAsk":"001","BookingNo":"B00001","ShipperName":"Mr. Raymoon","AgentName":"Miss. Vinny","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"002","BookingNo":"B00002","ShipperName":"Dr. Vinny","AgentName":"Mr. Raymoon","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"003","BookingNo":"B00003","ShipperName":"Mr. Joshia","AgentName":"Mr. Vinny","Status":"Tally","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"004","BookingNo":"B00004","ShipperName":"Mr. Edwen Poh","AgentName":"Mr. Joshia","Status":"Tally","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"005","BookingNo":"B00005","ShipperName":"Dr. Poh","AgentName":"Mr. Edwen Poh","Status":"Checked","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"006","BookingNo":"B00006","ShipperName":"Miss. Rebecca","AgentName":"Dr. Poh","Status":"Checked","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"007","BookingNo":"B00007","ShipperName":"Miss. Swiff ","AgentName":"Miss. Rebecca","Status":"Barcode","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"008","BookingNo":"B00008","ShipperName":"Dr. Paw","AgentName":"Miss. Swiff","Status":"Barcode","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"009","BookingNo":"B00009","ShipperName":"Mr. Hnery","AgentName":"Dr. Paw","Status":"Allocate","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"010","BookingNo":"B00010","ShipperName":"Dr. Kate","AgentName":"Mr. Hnery","Status":"Allocate","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"011","BookingNo":"B00011","ShipperName":"Dr. Keleton","AgentName":"Dr. Kate","Status":"Pick","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"012","BookingNo":"B00012","ShipperName":"Mr. John","AgentName":"Dr. Keleton","Status":"Pick","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"013","BookingNo":"B00013","ShipperName":"Miss. Aye Mar","AgentName":"Mr. John","Status":"Delivery","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"014","BookingNo":"B00014","ShipperName":"Mr. Jagan","AgentName":"Miss. Aye Mar","Status":"Delivery","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"015","BookingNo":"B00015","ShipperName":"Miss. Wong","AgentName":"Mr. Jagan","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"016","BookingNo":"B00016","ShipperName":"Mr. Fort","AgentName":"Miss. Wong","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}
+  ,{"BookingAsk":"017","BookingNo":"B00017","ShipperName":"Dr. Bele","AgentName":"Mr. Fort","Status":"Received","TransactionDate":"12/7/2018","Remark":"VIP"}]
+  DetailJson = [{"BookingAsk":"001","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"}
+  ,{"BookingAsk":"001","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"002","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"}
+  ,{"BookingAsk":"002","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"003","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"003","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"004","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"004","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"005","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"005","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"006","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"006","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"007","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"007","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"008","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"008","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"009","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"009","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"010","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"010","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"010","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"011","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"011","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"012","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"012","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"013","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"013","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"014","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"014","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"015","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"015","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"016","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"016","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"017","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"017","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}
+  ,{"BookingAsk":"002","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}];
+     
+  DetailSource2: any;
+  DetailAdapter2 : any;
+  detailcolumns2:any;
+            
+           
+  constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
+  {  
+    this.bindPlaceholder();
+    this.CreateGrid();       
+  }  
+  bindPlaceholder()
   {
-    
-    this.source =
-    {      
-      datatype: 'json',
+    this.bookingnoplaceholder = "Booking No";
+    this.shipperlaceholder = 'Shipper Name'
+    this.agentplaceholder = "Agent Name"
+    this.statusplaceholder = "Status";
+    this.trdateplaceholder = "Transactoin Date";
+    this.ReferenceNoplaceholder="Reference No";    
+    this.ReceivedPlaceholder="Received -"+" 5";
+    this.TallyPlaceholder="Tally -"+" 2";
+    this.CheckPlaceholder="Checked -"+" 8";
+    this.BarcodePlaceholder="Barcode -"+" 7";
+    this.AllocatePlaceholder="Allocate -"+" 9";
+    this.PickPlaceholder="Pick List -"+" 6";
+    this.DeliveryPlaceholder="Delivery -"+" 10";
+  }
+  CreateGrid()
+  {this.HeaderSource  =
+    {
+
         datafields: [
-            { name: 'FirstName' , type: 'string' },
-            { name: 'LastName',type: 'string' },
-            { name: 'Title',type: 'string' },
-            { name: 'Address',type: 'string' },
-            { name: 'City',type: 'string' },
-            { name: 'EmployeeID',type: 'string' }
+            { name: 'BookingAsk', type: 'string', resizable: false },
+            { name: 'BookingNo', type: 'string' , resizable: false},
+            { name: 'ShipperName' , type: 'string' , resizable: false},
+            { name: 'AgentName' , type: 'string' , resizable: true},
+            { name: 'Status' , type: 'string', resizable: true },
+            { name: 'TransactionDate'  , type: 'string', resizable: true } , 
+            { name: 'Remark'  , type: 'string' , resizable: true}     
         ],
-        localdata: this.header,         
-        root: 'Employees',
-        //record: 'Employee',
-        id: 'EmployeeID', 
-        
-         
+        localdata: this.HeaderJson, 
+        root: 'Header',
+        //record: 'Header',       
+        id: 'BookingAsk',  
+        datatype: 'json', 
     };
-
-    this.employeesAdapter = new jqx.dataAdapter(this.source);
-
-      
+    this.HeaderAdapter = new jqx.dataAdapter(this.HeaderSource);  
     this.headercolumns =
     [
-      { text: 'FirstName', datafield: 'FirstName', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'LastName', datafield: 'LastName', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'Title', datafield: 'Title', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'Address', datafield: 'Address', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'City', datafield: 'City', width: '10%',editable: false,hidden:false }, //readonly cell.                
-      { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.  
-  ]
-
-  
-  
-     this.ordersSource =
-    {
-      
-
+        
+        { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false },
+        { text: 'Shipper Name', datafield: 'ShipperName', width: 250 , resizable: false },
+        { text: 'Agent Name', datafield: 'AgentName', width: 250, resizable: false }  ,
+        { text: 'Status', datafield: 'Status', width: 120, resizable: true }   ,
+        { text: 'Transaction Date', datafield: 'TransactionDate', width: 250, resizable: true }  ,
+        { text: 'Remark', datafield: 'Remark', width: 200, resizable: true },
+        { text: 'BookingAsk', datafield: 'BookingAsk', width: 120, resizable: true  },         
+    ];    
+    this.DetailSource =
+    {     
         datafields: [
-            { name: 'EmployeeID', type: 'string' },
-            { name: 'ShipName', type: 'string' },
-            { name: 'ShipAddress', type: 'string' },
-            { name: 'ShipCity', type: 'string' },
-            { name: 'ShipCountry', type: 'string' }
-            
+            { name: 'BookingAsk', type: 'string'  },
+            { name: 'DocNo', type: 'string' },
+            { name: 'ShippingMark', type: 'string' },
+            { name: 'SKUDetail', type: 'string' },
+            { name: 'D_W', type: 'string' },
+            { name: 'D_D', type: 'string' },
+            { name: 'D_L', type: 'string' },
+            { name: 'ReceivedQTY', type: 'string' },
+            { name: 'UOM', type: 'string' },
+            { name: 'TotalCBM', type: 'string' },
+            { name: 'Remark', type: 'string' }             
         ],
-        localdata: this.detail,
-        root: 'Orders',
-       // record: 'Order', 
-        datatype: 'json',
-         
+        localdata: this.DetailJson,
+        root: 'Details',
+        //record: 'Detail',      
+        datatype: 'json',         
     };
-
-    this.ordersDataAdapter = new jqx.dataAdapter(this.ordersSource, { autoBind: true });
-
-
-
+    this.DetailAdapter = new jqx.dataAdapter(this.DetailSource, { autoBind: true });
     this.detailcolumns =
     [
-      { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipName', datafield: 'ShipName', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipAddress', datafield: 'ShipAddress', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipCity', datafield: 'ShipCity', width: '10%',editable: false,hidden:false }, //readonly cell.
-      { text: 'ShipCountry', datafield: 'ShipCountry', width: '10%',editable: false,hidden:false }, //readonly cell.                
-  ]
+      { text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Doc No', datafield: 'DocNo', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Shipping Mark', datafield: 'ShippingMark', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'SKU Detail', datafield: 'SKUDetail', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Width', datafield: 'D_W', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Heigh', datafield: 'D_D', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Length', datafield: 'D_L', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Received QTY', datafield: 'ReceivedQTY', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'UOM', datafield: 'UOM', width: '10%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Total CBM', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell. 
+      { text: 'Remark', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell.               
+    ]    
 
-  this.ordersSource2 =
-  {
-    
+    this.DetailSource2 =
+    {
 
-      datafields: [
-          { name: 'EmployeeID', type: 'string' },
-          { name: 'ShipName', type: 'string' },
-          { name: 'ShipAddress', type: 'string' },
-          { name: 'ShipCity', type: 'string' },
-          { name: 'ShipCountry', type: 'string' }
-          
-      ],
-      localdata: this.detail,
-      root: 'Orders',
-     // record: 'Order', 
-      datatype: 'json',
-       
-  };
+        datafields: [
+            { name: 'BookingAsk', type: 'string' },
+            { name: 'DocNo', type: 'string' },
+            { name: 'ShippingMark', type: 'string' },
+            { name: 'SKUDetail', type: 'string' },
+            { name: 'D_W', type: 'string' },
+            { name: 'D_D', type: 'string' },
+            { name: 'D_L', type: 'string' },
+            { name: 'ReceivedQTY', type: 'string' },
+            { name: 'UOM', type: 'string' },
+            { name: 'TotalCBM', type: 'string' },
+            { name: 'Remark', type: 'string' }             
+        ],
+        localdata: this.DetailJson,
+        root: 'Details',
+        //record: 'Detail',      
+        datatype: 'json', 
 
-  this.ordersDataAdapter2 = new jqx.dataAdapter(this.ordersSource2, { autoBind: true });
+    }
 
+    this.DetailAdapter2 = new jqx.dataAdapter(this.DetailSource2, { autoBind: true });
 
-
-  this.detailcolumns2 =
-  [
-    { text: 'EmployeeID', datafield: 'EmployeeID', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipName', datafield: 'ShipName', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipAddress', datafield: 'ShipAddress', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipCity', datafield: 'ShipCity', width: '10%',editable: false,hidden:false }, //readonly cell.
-    { text: 'ShipCountry', datafield: 'ShipCountry', width: '10%',editable: false,hidden:false }, //readonly cell.                
-]
+    this.detailcolumns2 =
+    [
+      { text: 'BookingAsk', datafield: 'BookingAsk', width: '50%',editable: false,hidden:false,  resizable: true }, //readonly cell.
+      { text: 'Doc No', datafield: 'DocNo', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Shipping Mark', datafield: 'ShippingMark', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'SKU Detail', datafield: 'SKUDetail', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Width', datafield: 'D_W', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Heigh', datafield: 'D_D', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Dimission_Length', datafield: 'D_L', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Received QTY', datafield: 'ReceivedQTY', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'UOM', datafield: 'UOM', width: '50%',editable: false,hidden:false }, //readonly cell.
+      { text: 'Total CBM', datafield: 'TotalCBM', width: '50%',editable: false,hidden:false }, //readonly cell. 
+      { text: 'Remark', datafield: 'TotalCBM', width: '50%',editable: false,hidden:false }, //readonly cell.               
+    ] 
   
-   
-
     this.nestedGrids = new Array();
-
         // create nested grid.
         this.initRowDetails = (index: number, parentElement: any, gridElement: any, record: any): void => {
           let id = record.uid.toString();
@@ -163,49 +249,60 @@ export class HomeComponent implements OnInit {
           let filtercondition = 'equal';
           let filter = filtergroup.createfilter('stringfilter', filtervalue, filtercondition);
           // fill the orders depending on the id.
-          let orders = this.ordersDataAdapter.records;
-          let ordersbyid = [];
-          for (let i = 0; i < orders.length; i++) {
-              let result = filter.evaluate(orders[i]['EmployeeID']);
+          let Details = this.DetailAdapter.records;
+          let Detailsbyid = [];
+          for (let i = 0; i < Details.length; i++) {
+              let result = filter.evaluate(Details[i]['BookingAsk']);
               if (result)
-                  ordersbyid.push(orders[i]);
+              Detailsbyid.push(Details[i]);
           }
-          let ordersSource = {
+          let detailSource = {
               datafields: [
-                  { name: 'EmployeeID', type: 'string' },
-                  { name: 'ShipName', type: 'string' },
-                  { name: 'ShipAddress', type: 'string' },
-                  { name: 'ShipCity', type: 'string' },
-                  { name: 'ShipCountry', type: 'string' },
-                  { name: 'ShippedDate', type: 'date' }
+                { name: 'BookingAsk', type: 'string' },
+                { name: 'DocNo', type: 'string' },
+                { name: 'ShippingMark', type: 'string' },
+                { name: 'SKUDetail', type: 'string' },
+                { name: 'D_W', type: 'string' },
+                { name: 'D_D', type: 'string' },
+                { name: 'D_L', type: 'string' },
+                { name: 'ReceivedQTY', type: 'string' },
+                { name: 'UOM', type: 'string' },
+                { name: 'TotalCBM', type: 'string' },
+                { name: 'Remark', type: 'string' },   
               ],
-              id: 'OrderID',
-              localdata: ordersbyid
+              id: 'DocNo',
+              localdata: Detailsbyid
           }
-          let nestedGridAdapter = new jqx.dataAdapter(ordersSource);
-          if (nestedGridContainer != null) {
-  
+          let nestedGridAdapter = new jqx.dataAdapter(detailSource);
+          if (nestedGridContainer != null) {  
               let settings = {
                   width: 780,
                   height: 200,
                   source: nestedGridAdapter, 
                   columns: [
-                      { text: 'Ship Name', datafield: 'ShipName', width: 200 },
-                      { text: 'Ship Address', datafield: 'ShipAddress', width: 200 },
-                      { text: 'Ship City', datafield: 'ShipCity', width: 150 },
-                      { text: 'Ship Country', datafield: 'ShipCountry', width: 150 },
-                      { text: 'Shipped Date', datafield: 'ShippedDate', width: 200 }
+                    //{ text: 'BookingAsk', datafield: 'BookingAsk', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Doc No', datafield: 'DocNo', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Shipping Mark', datafield: 'ShippingMark', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'SKU Detail', datafield: 'SKUDetail', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Dimission_Width', datafield: 'D_W', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Dimission_Heigh', datafield: 'D_D', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Dimission_Length', datafield: 'D_L', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Received QTY', datafield: 'ReceivedQTY', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'UOM', datafield: 'UOM', width: '10%',editable: false,hidden:false }, //readonly cell.
+                    { text: 'Total CBM', datafield: 'TotalCBM', width: '10%',editable: false,hidden:false }, //readonly cell. 
+                    { text: 'Remark', datafield: 'Remark', width: '10%',editable: false,hidden:false }, //readonly cell.  
                   ]
-              };
-  
+              };  
               jqwidgets.createInstance(`#${nestedGridContainer.id}`, 'jqxGrid', settings);
           }
-      }
+      }      
+  };
+  ngOnInit() {    
+}
 
-  }
 
-  photoRenderer = (row: number, column: any, value: string): string => {
-    let name = this.myGrid.getrowdata(row).FirstName;
+photoRenderer = (row: number, column: any, value: string): string => {
+    let name = this.DashboardGrid.getrowdata(row).FirstName;
     //let imgurl = '../images/' + name.toLowerCase() + '.png';
     let imgurl = 'assets/img/supply.jpg';
     let img = '<div style="background: white;"><img style="margin: 2px; margin-left: 10px;" width="32" height="32" src="' + imgurl + '"></div>';
@@ -221,18 +318,58 @@ rowdetailstemplate: any = {
 };
 
 ready = (): void => {
-    this.myGrid.showrowdetails(1);
+    this.DashboardGrid.showrowdetails(1);
 };
 
 columns: any[] =
 [
-    { text: 'Photo', width: 50, cellsrenderer: this.photoRenderer },
-    { text: 'First Name', datafield: 'FirstName', width: 100, cellsrenderer: this.renderer },
-    { text: 'Last Name', datafield: 'LastName', width: 100, cellsrenderer: this.renderer },
-    { text: 'Title', datafield: 'Title', width: 180, cellsrenderer: this.renderer },
-    { text: 'Address', datafield: 'Address', width: 300, cellsrenderer: this.renderer },
-    { text: 'City', datafield: 'City', width: 170, cellsrenderer: this.renderer }
-];
-
-
+    //{ text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
+    { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false },
+    { text: 'Shipper Name', datafield: 'ShipperName', width: 200, resizable: false },
+    { text: 'Agent Name', datafield: 'AgentName', width: 200, resizable: false }  ,
+    { text: 'Status', datafield: 'Status', width: 120 , resizable: true}   ,
+    { text: 'Transaction Date', datafield: 'TransactionDate', width: 150, resizable: true } , 
+    { text: 'Remark', datafield: 'Remark', width: 200 , resizable: true}         
+]; 
+btnNewReceive()
+{  
+    this.router.navigate(['setplanreceiveforexport-w']);
 }
+TallyCount()
+{  
+    this.router.navigate(['settallycheckforexport-w']);
+}
+Checker()
+{  
+    this.router.navigate(['setcheckerforexport-w']);
+}
+Barcode()
+{  
+    this.router.navigate(['setbarcodemappingforexport-w']);
+}
+Allocate()
+{  
+    this.router.navigate(['setallocationforexport-w']);
+}
+PickList()
+{  
+    this.router.navigate(['setpicklistforexport-w']);
+}
+Delivery()
+{  
+    this.router.navigate(['setdeliverforexport-w']);
+}
+Delete()
+{  
+    this.router.navigate(['']);
+}
+Preview()
+{  
+    this.router.navigate(['']);
+}
+GenearateExcel()
+{  
+    this.router.navigate(['']);
+}
+}
+

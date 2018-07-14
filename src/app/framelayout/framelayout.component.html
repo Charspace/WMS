@@ -105,14 +105,15 @@
 
    </ul>
 </jqxMenu> -->
-
-<jqxMenu #jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);color:white;" 
-(onItemclick)="itemclick($event)"
-[source]="records"
-[width]="405"
-[height]="30">
-</jqxMenu>
-
+<div style="width: 100%; height: 100%;">
+  <jqxMenu #jqxMenu class="jqx-menu-item-separator" [width]="'100%'"  [height]="35" style="background:rgb(5, 0, 73);color:white;" 
+  (onItemclick)="itemclick($event)"
+  [source]="records"
+  [width]="805"
+  [height]="30">
+  </jqxMenu>
+</div>
+<!-- 
 <table   style="width: 100%;border: 1px solid black;background-color:paleturquoise">
   <tr>
     <td>
@@ -138,7 +139,7 @@
     </td>
 
   </tr>
-</table>
+</table> -->
               
 <!-- <div style="border:1px solid black;" class="row">
     
