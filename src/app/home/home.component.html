@@ -159,9 +159,9 @@
             </td>     
             <td style="width: 100%; height: 100%"  >    
                     <jqxGrid #DashboardGrid  
-                    [width]="960" [height]="500" [source]="HeaderAdapter" [columns]="columns" 
+                    [width]="960" [height]="500" [showstatusbar]="true" [source]="HeaderAdapter" [columns]="columns" 
                     [rowdetails]="true" [rowsheight]="25" [initrowdetails]="initRowDetails"
-                    [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">                
+                    [ready]="ready" [rowdetailstemplate]="rowdetailstemplate" [showaggregates]="true">                
                 </jqxGrid>
             </td>
             </tr>        

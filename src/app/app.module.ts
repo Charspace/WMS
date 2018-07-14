@@ -68,6 +68,7 @@ import { LstallocationComponent } from './lstallocation/lstallocation.component'
 // import { SetcheckerforexportWComponent } from './c/setcheckerforexport-w.component';
 import { jqxWindowComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxwindow';
 import { SetcheckerforexportWComponent } from './setcheckerforexport-w/setcheckerforexport-w.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 // import { lstdeliverforexport } from './lstallocation/lstallocation.component';
@@ -223,7 +224,8 @@ const appRoutes: Routes=[
   },
   {
     path : 'settallycheckforexport-w',
-    component:SettallycheckforexportWComponent    
+    component:SettallycheckforexportWComponent,
+    outlet: 'modal'    
     //outlet:'homepath'    
   },
   {
@@ -344,6 +346,7 @@ const appRoutes: Routes=[
     SetallocationforexportWComponent,
     jqxWindowComponent,
     SetcheckerforexportWComponent,
+    ModalComponent,
     // LstallocationComponent,
     // LstallocationforexportWComponent
    

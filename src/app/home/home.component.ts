@@ -160,7 +160,9 @@ export class HomeComponent implements OnInit {
     this.headercolumns =
     [
         
-        { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false },
+        { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false,  
+   
+    },
         { text: 'Shipper Name', datafield: 'ShipperName', width: 250 , resizable: false },
         { text: 'Agent Name', datafield: 'AgentName', width: 250, resizable: false }  ,
         { text: 'Status', datafield: 'Status', width: 120, resizable: true }   ,
@@ -331,7 +333,20 @@ ready = (): void => {
 columns: any[] =
 [
     //{ text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
-    { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false },
+    { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false,
+    aggregates: [
+    {
+        '<b>Total</b>':
+        (aggregatedValue: number, currentValue: string): number => {
+            if (currentValue) {
+                return aggregatedValue + 1;
+            }
+            return aggregatedValue;
+        }
+    }
+]
+
+},
     { text: 'Shipper Name', datafield: 'ShipperName', width: 200, resizable: false },
     { text: 'Agent Name', datafield: 'AgentName', width: 200, resizable: false }  ,
     { text: 'Status', datafield: 'Status', width: 120 , resizable: true}   ,
@@ -340,7 +355,10 @@ columns: any[] =
 ]; 
 btnNewReceive()
 {  
-    this.router.navigate(['setplanreceiveforexport-w']);
+    //this.router.navigate(['setplanreceiveforexport-w']);
+    this.router.navigate([{ outlets: { modal: ['settallycheckforexport-w'] } }])
+    //this.router.navigateByUrl(`/settallycheckforexport-w`);
+  
 }
 TallyCount()
 {  
