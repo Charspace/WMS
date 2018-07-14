@@ -48,8 +48,68 @@ export class LstplanreceiveforexportWComponent implements OnInit {
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
     this.bindPlaceholder();
-    this.CreateGrid();       
-  }  
+    this.getPRFEWarehouseList();     
+    this.CreateGrid();  
+   
+  }
+
+  getPRFEWarehouseList()
+  {
+    var body = {
+        "UserID" : "admin",
+        "Password" : "123",
+        "ProductAsk":"11",
+        "Ask":"0",
+        "BookingID":"",
+        "AgentAsk":"",
+        "Shipper":"",
+        "CountryAsk":"",
+        "CargoReceivedDate":"",
+        "CustomIssuedDate":"",
+        "TransactionDate":"",
+        "Signature":"",
+        "SignatureDate":"",
+        "BookingStatusAsk":"",
+        "NoOfTruck":"",
+        "NoOfContainer":"",
+        "TruckAsk":"",
+        "TruckID":"",
+        "TruckTypeAsk":"",
+        "PONo":"",
+        "ShippingMark":"",
+        "ReferenceNo":"",
+        "SKUAsk":"",
+        "SKUName":"",
+        "SKUDetails":"",
+        "DimensionWidth":"",
+        "DimensionHeight":"",
+        "DimensionBase":"",
+        "SKUWeight":"",
+        "PlanQty":"",
+        "UOMAsk":"",
+        "ReceivedQty":"",
+        "Reference":"",
+        "TruckType":"",
+        "GoodQty":"",
+        "DamageQty":"",
+        "ShortLandQty":"",
+        "OverlandQty":""
+       }
+
+       this.backendservice.getReceivedlist(body).then(data =>
+        {
+            alert(JSON.stringify(data));
+
+            var json = data;
+            console.log('ws json is'+JSON.stringify(json));
+
+            this.HeaderJson = '[{"BookingAsk":"001","BookingNo":"B00001","ShipperName":"Mr. Raymoon","AgentName":"Miss. Vinny","Status":"Plan Received","TransactionDate":"12/7/2018","Remark":"VIP"},{"BookingAsk":"002","BookingNo":"B00002","ShipperName":"Dr. Boon","AgentName":"Mr. Thura","Status":"Plan Received","TransactionDate":"12/7/2018","Remark":"VIP"}]'
+            this.DetailJson = '[{"BookingAsk":"001","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"},{"BookingAsk":"002","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}]';
+            
+        }) 
+
+    }
+
   bindPlaceholder()
   {
     this.bookingnoplaceholder = "Booking No";
@@ -59,7 +119,9 @@ export class LstplanreceiveforexportWComponent implements OnInit {
     this.trdateplaceholder = "Transactoin Date";
   }
   CreateGrid()
-  {this.HeaderSource  =
+  {
+  
+    this.HeaderSource  =
     {
 
         datafields: [

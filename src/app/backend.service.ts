@@ -137,5 +137,31 @@ export class BackendService {
 
   } 
 
+  public getReceivedlist(body)
+  {
+    return new Promise((resolve,reject) => {
+
+   
+    var  headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Accept', 'application/json')
+    let url = 'http://'+this.serverip+'/getPRFEWarehouseList'
+
+    this.http
+    .post(url,
+      body, {
+        headers: headers
+      })
+      .subscribe(data => {
+        console.log(data);
+             resolve(data.json());
+      }, error => {
+        reject("error");
+          console.log(JSON.stringify(error.json()));
+      });
+
+    })
+  }
+
 
 }
