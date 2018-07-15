@@ -142,8 +142,8 @@ export class HomeComponent implements OnInit {
     {
 
         datafields: [
-            { name: 'BookingAsk', type: 'string', resizable: false },
-            { name: 'BookingNo', type: 'string' , resizable: false},
+            { name: 'BookingAsk', type: 'string', resizable: false, filter:true },
+            { name: 'BookingNo', type: 'string' , resizable: false,filter:true},
             { name: 'ShipperName' , type: 'string' , resizable: false},
             { name: 'AgentName' , type: 'string' , resizable: true},
             { name: 'Status' , type: 'string', resizable: true },
@@ -332,7 +332,7 @@ columns: any[] =
 [
     //{ text: 'BookingAsk', datafield: 'BookingAsk', width: 120 },
     { text: 'Booking No', datafield: 'BookingNo', width: 120, resizable: false },
-    { text: 'Shipper Name', datafield: 'ShipperName', width: 200, resizable: false },
+    { text: 'Shipper Name', datafield: 'ShipperName', width: 200, resizable: false ,filter:true },
     { text: 'Agent Name', datafield: 'AgentName', width: 200, resizable: false }  ,
     { text: 'Status', datafield: 'Status', width: 120 , resizable: true}   ,
     { text: 'Transaction Date', datafield: 'TransactionDate', width: 150, resizable: true } , 

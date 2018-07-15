@@ -159,10 +159,32 @@
             </td>     
             <td style="width: 100%; height: 100%"  >    
                     <jqxGrid #DashboardGrid  
-                    [width]="960" [height]="500" [source]="HeaderAdapter" [columns]="columns" 
-                    [rowdetails]="true" [rowsheight]="25" [initrowdetails]="initRowDetails"
-                    [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">                
-                </jqxGrid>
+                    [width]="960" [height]="450" [source]="HeaderAdapter" [columns]="columns"                    
+                    [initrowdetails]="initRowDetails"
+                    [editable]="false"                    
+                    [ready]="ready" 
+                    [rowdetailstemplate]="rowdetailstemplate" 
+                    [selectionmode]="'singlecell'" 
+
+                    [altrows]="true" 
+                    [rowsheight]="25" 
+                    [showstatusbar]="false" 
+                    [showaggregates]="true"                    
+                    [rowdetails]="true" 
+                    [autoheight]="true"
+                    [statusbarheight]="15"
+                    [keyboardnavigation]="false"                                       
+                   
+
+                   
+                  
+                    >                
+                </jqxGrid>  
+               
+
+
+
+
             </td>
             </tr>        
         </table>    
