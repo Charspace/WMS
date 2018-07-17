@@ -96,6 +96,10 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   countryplaceholder : any;
 
   localization: any = getLocalization('en'); 
+
+  TrackList : any = [];
+  Tracksource : any = [];
+  TypeAdapter : any;
   
 
   
@@ -109,6 +113,8 @@ export class SetplanreceiveforexportWComponent implements OnInit {
     this.nooftrackplaceholder = "NoOfTruck";
     this.noofcontainerplaceholder = "NoOfContainer";
     this.remarkplaceholder = "Remark";
+
+    this.BindTrackType();
 
     this.CreateGrid();    
   }
@@ -184,26 +190,45 @@ CreateGrid()
       { name: 'TruckRemark' },
       { name: 'TruckStatus' },
       { name: 'TruckTypeAsk' },
-      { name: 'Tracktype' },
+      { name: 'Tracktype',type:'string'},
       { name: 'weight' },
       { name: 'cm' }
   ];
 
   this.source2 =
   {
+      datatype: 'json',
       datafields: this.dataFields2,
-      localdata:
-      [
-          
-      ]
+      localdata:null
   }
 
-  this.dataAdapter2 = new jqx.dataAdapter(this.source2, { autoBind: true } );
+  this.dataAdapter2 = new jqx.dataAdapter(this.source2,{ autoBind: true } );
 
   this.columns2 = 
   [
       { text: 'Track ID', datafield: 'TruckID', width: 100 },
-      { text: 'Track Type', datafield: 'TrackType', width: 100 },
+     // { text: 'Track Type', datafield: 'TrackType', width: 100 },
+     { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'TrackType', columntype: 'combobox',
+
+     cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => {
+        if (newvalue != oldvalue) {
+          //////////////////;                                  
+            //let array = [];
+
+            for(let k=0; k< this.TrackList.length; k++)
+            {
+                if(this.TrackList[k].Code == newvalue)
+                {
+                    this.truckGrid.setcellvalue(row,'weight',this.TrackList[k].StockWeight);                        
+                }
+            }                                    
+        };
+    },
+       createeditor: (row: number, value: any, editor: any): void => {       
+           
+       editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.TypeAdapter, displayMember: 'Description', valueMember: 'Code' })     
+     }          
+     },
       { text: 'weight', datafield: 'weight', width: 100 },
       { text: 'cm', datafield: 'cm', width: 100 },
       { text: 'Remark', datafield: 'TruckRemark', width: 150 }
@@ -454,6 +479,10 @@ CreateGrid()
         { text: 'Ship Name', datafield: 'ShipName' }
     ];
 
+  }
+  btnPrint()
+  {
+      this.BindTrackType();
   }
 
   btnSave()
@@ -749,12 +778,7 @@ CellvaluechangedTruck(event:any)
 CellendeditTruck()
 {
 
-var index = this.shipperGrid.getselectedrowindex();
-var rowdata = this.shipperGrid.getrowdata(index);   
-if(rowdata.ShipperName)
-{
-//this.addnewrowwhencellleaveShipper()
-}
+ 
 
 }
 
@@ -925,6 +949,29 @@ this.AgentList =
 
 this.agentcombo_Adapter = new jqx.dataAdapter(this.agentsource);
 }
+
+
+BindTrackType()
+{   
+   var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+
+    this.backendservice.BindTrackType(jsonbody).then(data =>
+        {
+            this.TrackList = data;
+            this.Tracksource =
+            {
+                dataType: 'json',
+                dataFields:[{name: 'Description'},
+                {name:'Code'},
+                {name:'Ask'}
+            ],
+                localdata: this.TrackList,
+            }
+            this.TypeAdapter = new jqx.dataAdapter(this.Tracksource);   
+        })  
+}
+
+
 
 CellvaluechangedSKU(event:any)
 {
