@@ -101,13 +101,20 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   Tracksource : any = [];
   TypeAdapter : any;
   
+setupbookask = "";
+setupagentask = "";
 
-  
+HeaderJson :any;
+  DetailJson :any;
 
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
 
-    var bookid = this.route.snapshot.paramMap.get('BookingID');
+    var bookask = this.route.snapshot.paramMap.get('BookingAsk');
+    var agentask = this.route.snapshot.paramMap.get('AgentAsk');
+
+    this.setupbookask = bookask;
+    this.setupagentask = agentask;
 
     this.bookidplaceholder = "BookID";
     this.agentplaceholder = 'Agent'
@@ -116,10 +123,121 @@ export class SetplanreceiveforexportWComponent implements OnInit {
     this.noofcontainerplaceholder = "NoOfContainer";
     this.remarkplaceholder = "Remark";
 
+    
+
     this.BindTrackType();
+    this.BindCountry();
+    this.BindAgent();
 
     this.CreateGrid();    
+
+    this.getPRFEWarehouseList();
   }
+
+  getPRFEWarehouseList()
+  {
+    var body = {
+        "UserID" : "admin",
+        "Password" : "123",
+        "ProductAsk":"11",
+        "Ask":"" +this.setupbookask +"",
+        "BookingID":"0",
+        "AgentAsk": ""+this.setupagentask +"",
+        "Shipper":"",
+        "CountryAsk":"",
+        "CargoReceivedDate":"",
+        "CustomIssuedDate":"",
+        "TransactionDate":"",
+        "Signature":"",
+        "SignatureDate":"",
+        "BookingStatusAsk":"",
+        "NoOfTruck":"",
+        "NoOfContainer":"",
+        "TruckAsk":"",
+        "TruckID":"",
+        "TruckTypeAsk":"",
+        "PONo":"",
+        "ShippingMark":"",
+        "ReferenceNo":"",
+        "SKUAsk":"",
+        "SKUName":"",
+        "SKUDetails":"",
+        "DimensionWidth":"",
+        "DimensionHeight":"",
+        "DimensionBase":"",
+        "SKUWeight":"",
+        "PlanQty":"",
+        "UOMAsk":"",
+        "ReceivedQty":"",
+        "Reference":"",
+        "TruckType":"",
+        "GoodQty":"",
+        "DamageQty":"",
+        "ShortLandQty":"",
+        "OverlandQty":""
+       }
+
+       this.backendservice.getReceivedlist(body).then(data =>
+        {
+            debugger
+            //alert(JSON.stringify(data));
+            var json = data;
+            console.log('ws json is'+JSON.stringify(json));
+
+            this.HeaderJson = data[0].BookingList;
+            this.DetailJson = data[0].DetailList;     
+
+            if(this.HeaderJson.length)
+            {            
+
+            this.HeaderJson = data[0].BookingList;
+            this.DetailJson = data[0].DetailList;       
+            this.CreateGrid();                
+            this.BindingcompleteAgent(Event);
+            this.BindingcompletCoutry(Event);
+
+             
+            this.bookingid = this.HeaderJson[0].BookingID;
+            this.nooftrack = this.HeaderJson[0].NoOfTruck;
+            this.noofcontainer =  this.HeaderJson[0].NoOfContainer;
+            this.remark = this.HeaderJson[0].Remark;
+            this.cargoreceiveddate.setDate(this.HeaderJson[0].CargoReceivedDate)        
+            this.customerissueddate.setDate(this.HeaderJson[0].CustomIssuedDate)
+            this.transactiondate.setDate(this.HeaderJson[0].TransactionDate)
+
+            }
+          
+
+                     
+
+
+        }) 
+
+    }
+
+    BindingcompleteAgent(event:any)
+    {
+        
+        //this.agentcombo.selectItem('20180716061704857');
+        
+         if(this.HeaderJson)
+        {
+            this.agentcombo.selectItem(this.HeaderJson[0].AgentAsk);          
+        }
+        
+    }
+
+    BindingcompletCoutry(event:any)
+    {
+        
+        //this.agentcombo.selectItem('20180716061704857');
+        
+         if(this.HeaderJson)
+        {
+            this.countrycombo.selectItem(this.HeaderJson[0].CountryAsk);          
+        }
+        
+    }
 
   ngOnInit() {
   }
@@ -155,6 +273,181 @@ onremarkchange(event)
 }
 
 CreateGrid()
+{
+  this.source  =
+  {
+      datafields: [
+          { name: 'BookingAsk' },
+          { name: 'ShipperAsk' },
+          { name: 'ShipperDetails' },
+          { name: 'ShipperDisplaySequence' },
+          { name: 'ShipperName' },
+          { name: 'ShipperRemark' },
+          { name: 'ShipperStatus' }
+      ],
+      localdata:
+      [
+
+      ]
+  }
+
+  this.dataAdapter = new jqx.dataAdapter(this.source);
+
+  this.columns =
+  [
+      { text: 'Shipper Name', datafield: 'ShipperName', width: 250 },
+      { text: 'Shipper Details', datafield: 'ShipperDetails', width: 150 },
+      { text: 'Remark', datafield: 'ShipperRemark', width: 180 }    
+  ];
+
+  this.dataFields2 =
+  [
+      { name: 'BookingAsk' },
+      { name: 'ShipperAsk' },
+      { name: 'TruckAsk' },
+      { name: 'TruckDisplaySequence' },
+      { name: 'TruckID' },
+      { name: 'TruckRemark' },
+      { name: 'TruckStatus' },
+      { name: 'TruckTypeAsk' },
+      { name: 'Tracktype',type:'string'},
+      { name: 'weight' },
+      { name: 'cm' }
+  ];
+
+  this.source2 =
+  {
+      datatype: 'json',
+      datafields: this.dataFields2,
+      localdata:null
+  }
+
+  this.dataAdapter2 = new jqx.dataAdapter(this.source2,{ autoBind: true } );
+
+  this.columns2 = 
+  [
+      { text: 'Track ID', datafield: 'TruckID', width: 100 },
+     // { text: 'Track Type', datafield: 'TrackType', width: 100 },
+     { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'TrackType', columntype: 'combobox',
+
+     cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => {
+        if (newvalue != oldvalue) {
+          //////////////////;                                  
+            //let array = [];
+
+            for(let k=0; k< this.TrackList.length; k++)
+            {
+                if(this.TrackList[k].Code == newvalue)
+                {
+                    this.truckGrid.setcellvalue(row,'weight',this.TrackList[k].StockWeight);                        
+                }
+            }                                    
+        };
+    },
+       createeditor: (row: number, value: any, editor: any): void => {       
+           
+       editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.TypeAdapter, displayMember: 'Description', valueMember: 'Code' })     
+     }          
+     },
+      { text: 'weight', datafield: 'weight', width: 100 },
+      { text: 'cm', datafield: 'cm', width: 100 },
+      { text: 'Remark', datafield: 'TruckRemark', width: 150 }
+ 
+  ];
+
+  this.dataFields3 =
+  [
+      { name: 'BookingAsk' },
+      { name: 'POAsk' },
+      { name: 'PODisplaySequence' },
+      { name: 'PONo', },
+      { name: 'POReferenceNo', },
+      { name: 'PORemark' },
+      { name: 'POShippingMark' },
+      { name: 'POStatus' },
+      { name: 'ShipperAsk' },
+      { name: 'TruckAsk' }
+  ];
+
+  this.source3 =
+  {
+      datafields: this.dataFields3,
+      localdata:
+      [
+         
+      ]
+  }
+
+  this.dataAdapter3 = new jqx.dataAdapter(this.source3, { autoBind: true } );
+
+  this.columns3 = 
+  [
+      { text: 'PO No', datafield: 'PONo', width: 100 },
+      { text: 'Shiping Mark ', datafield: 'POShippingMark', width: 100 },
+      { text: 'Reference No', datafield: 'POReferenceNo',  width: 150 },
+      { text: 'Remark', datafield: 'PORemark', width: 150 }      
+  ];
+
+  this.dataFields4 =
+  [
+      { name: 'BookingAsk'  },
+      { name: 'POAsk',type: 'string' },
+      { name: 'SKUAsk',type: 'string' },
+      { name: 'SKUDamageQty',type: 'number' },
+      { name: 'SKUDamagephoto',type: 'string' },
+      { name: 'SKUDetails',type: 'string'},
+      { name: 'SKUDimensionBase',type: 'number' },
+      { name: 'SKUDimensionHeight',type: 'number' },
+      { name: 'SKUDimensionWidth',type: 'number' },
+      { name: 'SKUDisplaySequence',type: 'string' },
+      { name: 'SKUGoodQty',type: 'number' },
+      { name: 'SKUGoodphoto',type: 'string' },
+      { name: 'SKUName',type: 'string' },
+      { name: 'SKUOverlandQty',type: 'number' },
+      { name: 'SKUOverlandphoto',type: 'string' },
+      { name: 'SKUPlanQty',type: 'number' },
+      { name: 'SKUReceivedQty',type: 'number' },
+      { name: 'SKUReference',type: 'string' },
+      { name: 'SKURemark',type: 'string' },
+      { name: 'SKUShortLandQty',type: 'number' },
+      { name: 'SKUShortLandphoto',type: 'string' },
+      { name: 'SKUStatus',type: 'string' },
+      { name: 'SKUTruckID',type: 'string' },
+      { name: 'SKUTruckType',type: 'string' },
+      { name: 'SKUUOMAsk',type: 'string' },
+      { name: 'SKUTruckType',type: 'string' },
+      { name: 'SKUWeight',type: 'number' },
+      { name: 'ShipperAsk',type: 'string' },
+      { name: 'TruckAsk',type: 'string' },
+      {name:'UOM',type: 'string'}
+  ];
+
+  this.source4 =
+  {
+      datafields: this.dataFields4,
+      localdata:
+      [
+          
+      ]
+  }
+
+  this.dataAdapter4 = new jqx.dataAdapter(this.source4, { autoBind: true } );
+
+  this.columns4 = 
+  [
+      { text: 'SKU Name', datafield: 'SKUName'},      
+      { text: 'Dimension Width', datafield: 'SKUDimensionWidth', cellsformat: 'd2' },
+
+      { text: 'Dimension Height', datafield: 'SKUDimensionHeight', cellsformat: 'd2' },
+      { text: 'Dimension Base', datafield: 'SKUDimensionBase', cellsformat: 'd2' },
+      { text: 'Plan Qty', datafield: 'SKUPlanQty', cellsformat: 'd2' },
+      { text: 'UOM', datafield: 'UOM' },
+      { text: 'Remark', datafield: 'SKURemark' }    
+  ];
+
+}
+
+BindingGrid()
 {
   this.source  =
   {
@@ -851,7 +1144,7 @@ BindCountry()
 this.CountryList =
 [
     {
-        "Ask": "1",
+        "Ask": "0",
         "CountryDetails": " ",
         "CountryName": "Myanmar",
         "DisplaySequence": "0",
@@ -887,7 +1180,9 @@ this.CountryList =
 {
  dataType: 'json',
  dataFields: [
-   { name: 'CountryName' }],
+   { name: 'CountryName' },
+   { name: 'Ask' }
+],
 
  localdata: this.CountryList
 };
@@ -903,7 +1198,7 @@ this.AgentList =
         "Address": " ",
         "AgentDetails": " ",
         "AgentName": "Agent1",
-        "Ask": "1",
+        "Ask": "20180716061704857",
         "BillingAddress": " ",
         "CompanyName": " ",
         "ContactPersonMobile": " ",
@@ -944,7 +1239,10 @@ this.AgentList =
 {
  dataType: 'json',
  dataFields: [
-   { name: 'AgentName' }],
+   { name: 'AgentName'},
+   { name: 'Ask'}
+
+],
 
  localdata: this.AgentList
 };

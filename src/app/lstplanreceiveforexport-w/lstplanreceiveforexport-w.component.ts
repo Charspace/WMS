@@ -596,7 +596,7 @@ CellDoubleclick(event:any)
     var rowid = this.HeaderGrid.getrowid(rowindex);  
     var rowdata = this.HeaderGrid.getrowdata(rowindex); 
 
-    this.router.navigate(['setplanreceiveforexport-w',{BookingID: rowdata.BookingID}]);   
+    this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
 
 }
 

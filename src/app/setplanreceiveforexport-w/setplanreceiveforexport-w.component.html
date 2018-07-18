@@ -44,8 +44,8 @@
        
             <td colspan="1" >
                     <jqxComboBox #agentcombo style=" float: left"
-                     (onSelect)="onAgentComboChange($event) "
-                      [source]="agentcombo_Adapter" [valueMember]="'AgentName'"
+                     (onSelect)="onAgentComboChange($event) " (onBindingComplete)="BindingcompleteAgent($event)"
+                      [source]="agentcombo_Adapter" [valueMember]="'Ask'"
                     [placeHolder]="agentplaceholder" [displayMember]="'AgentName'" [searchMode]="'containsignorecase'" [autoComplete]="true"  >
                     </jqxComboBox> 
             </td>
@@ -53,7 +53,7 @@
                 <td colspan="1" >
                     <jqxComboBox #countrycombo style=" float: left"
                     (onSelect)="onCountryComboChange($event) "
-                     [source]="countrycombo_Adapter" [valueMember]="'CountryName'"
+                     [source]="countrycombo_Adapter" [valueMember]="'Ask'" (onBindingComplete)="BindingcompletCoutry($event)"
                    [placeHolder]="countryplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="countrycombodisable" >
                    </jqxComboBox> 
                 </td>
