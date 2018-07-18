@@ -372,7 +372,10 @@ Delete()
 }
 Preview()
 {  
+    this.DashboardGrid.disabled(true);
+ 
     this.router.navigate([ {outlets: { modal: 'settallycheckforexport-w' } } ]);
+    this.DashboardGrid.disabled(false)
 }
 GenearateExcel()
 {  
