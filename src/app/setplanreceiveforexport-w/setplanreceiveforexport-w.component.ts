@@ -215,6 +215,7 @@ HeaderJson :any;
 
     }
 
+ 
     BindingcompleteAgent(event:any)
     {
         
@@ -1141,41 +1142,12 @@ if(rowlength == index)
 
 BindCountry()
 {    
-this.CountryList =
-[
-    {
-        "Ask": "0",
-        "CountryDetails": " ",
-        "CountryName": "Myanmar",
-        "DisplaySequence": "0",
-        "Remark": " ",
-        "Status": "0",
-        "TS": "1",
-        "UD": "1"
-    },
-    {
-        "Ask": "2",
-        "CountryDetails": " ",
-        "CountryName": "ThaiLand",
-        "DisplaySequence": "0",
-        "Remark": " ",
-        "Status": "0",
-        "TS": "1",
-        "UD": "1"
-    },
-    {
-        "Ask": "3",
-        "CountryDetails": "",
-        "CountryName": "Singapore",
-        "DisplaySequence": "0",
-        "Remark": "",
-        "Status": "0",
-        "TS": "1",
-        "UD": "1"
-    }
-]
 
-       
+var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+this.backendservice.BindCountry(jsonbody).then(data =>
+    {  
+        
+ this.CountryList = data
   this.countrysource =
 {
  dataType: 'json',
@@ -1188,53 +1160,15 @@ this.CountryList =
 };
 
 this.countrycombo_Adapter = new jqx.dataAdapter(this.countrysource);
+    })
 }
 
 BindAgent()
 {    
-this.AgentList = 
-[
-    {
-        "Address": " ",
-        "AgentDetails": " ",
-        "AgentName": "Agent1",
-        "Ask": "20180716061704857",
-        "BillingAddress": " ",
-        "CompanyName": " ",
-        "ContactPersonMobile": " ",
-        "ContactPersonName": " ",
-        "DisplaySequence": "0",
-        "Email": " ",
-        "Mobile": " ",
-        "NationalID": " ",
-        "Remark": " ",
-        "ShippinggAddress": " ",
-        "TS": "1",
-        "UD": "1",
-        "Website": " "
-    },
-    {
-        "Address": " ",
-        "AgentDetails": " ",
-        "AgentName": "Agent2",
-        "Ask": "2",
-        "BillingAddress": " ",
-        "CompanyName": " ",
-        "ContactPersonMobile": " ",
-        "ContactPersonName": " ",
-        "DisplaySequence": "0",
-        "Email": " ",
-        "Mobile": " ",
-        "NationalID": " ",
-        "Remark": " ",
-        "ShippinggAddress": " ",
-        "TS": "1",
-        "UD": "1",
-        "Website": " "
-    }
-]
-
-       
+    var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+    this.backendservice.BindAgent(jsonbody).then(data =>
+        {
+   this.AgentList = data;
   this.agentsource =
 {
  dataType: 'json',
@@ -1245,9 +1179,10 @@ this.AgentList =
 ],
 
  localdata: this.AgentList
-};
+}
 
-this.agentcombo_Adapter = new jqx.dataAdapter(this.agentsource);
+this.agentcombo_Adapter = new jqx.dataAdapter(this.agentsource)
+})
 }
 
 
