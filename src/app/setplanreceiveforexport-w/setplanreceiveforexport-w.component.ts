@@ -107,6 +107,8 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
 
+    var bookid = this.route.snapshot.paramMap.get('BookingID');
+
     this.bookidplaceholder = "BookID";
     this.agentplaceholder = 'Agent'
     this.countryplaceholder = "Country"

@@ -52,7 +52,7 @@
                 </jqxBarGauge>
             </td>     
           <td style="width: 30%">              
-              <jqxGrid #HeaderGrid
+              <jqxGrid #HeaderGrid (onCelldoubleclick)="CellDoubleclick($event)"
               [width]="850" [height]="365" [source]="HeaderAdapter" [columns]="columns" 
               [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
               [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">

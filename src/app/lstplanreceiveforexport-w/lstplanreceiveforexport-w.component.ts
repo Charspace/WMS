@@ -589,5 +589,15 @@ btnSubmit()
     //this.router.navigate(['setplanreceiveforexport-w']);
 }
 
+CellDoubleclick(event:any)
+{
+    var columnindex = event.args.columnindex;
+    var rowindex = this.HeaderGrid.getselectedrowindex();
+    var rowid = this.HeaderGrid.getrowid(rowindex);  
+    var rowdata = this.HeaderGrid.getrowdata(rowindex); 
+
+    this.router.navigate(['setplanreceiveforexport-w',{BookingID: rowdata.BookingID}]);   
+
+}
 
 }
