@@ -335,10 +335,10 @@ CreateGrid()
         if (newvalue != oldvalue) {
           //////////////////;                                  
             //let array = [];
-
+                debugger
             for(let k=0; k< this.TrackList.length; k++)
             {
-                if(this.TrackList[k].Code == newvalue)
+                if(this.TrackList[k].Ask == newvalue.value)
                 {
                     this.truckGrid.setcellvalue(row,'weight',this.TrackList[k].StockWeight);                        
                 }
@@ -513,7 +513,7 @@ BindingGrid()
 
             for(let k=0; k< this.TrackList.length; k++)
             {
-                if(this.TrackList[k].Code == newvalue)
+                if(this.TrackList[k].Ask == newvalue)
                 {
                     this.truckGrid.setcellvalue(row,'weight',this.TrackList[k].StockWeight);                        
                 }
