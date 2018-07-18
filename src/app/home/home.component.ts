@@ -372,7 +372,7 @@ Delete()
 }
 Preview()
 {  
-    this.router.navigate(['']);
+    this.router.navigate([ {outlets: { modal: 'settallycheckforexport-w' } } ]);
 }
 GenearateExcel()
 {  

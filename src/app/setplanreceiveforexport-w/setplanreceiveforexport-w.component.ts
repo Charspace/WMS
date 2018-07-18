@@ -329,7 +329,7 @@ CreateGrid()
   [
       { text: 'Track ID', datafield: 'TruckID', width: 100 },
      // { text: 'Track Type', datafield: 'TrackType', width: 100 },
-     { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'TrackType', columntype: 'combobox',
+     { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'Description', columntype: 'combobox',
 
      cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => {
         if (newvalue != oldvalue) {
@@ -347,7 +347,7 @@ CreateGrid()
     },
        createeditor: (row: number, value: any, editor: any): void => {       
            
-       editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.TypeAdapter, displayMember: 'Description', valueMember: 'Code' })     
+       editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.TypeAdapter, displayMember: 'Description', valueMember: 'Ask' })     
      }          
      },
       { text: 'weight', datafield: 'weight', width: 100 },
@@ -1196,7 +1196,8 @@ BindTrackType()
             this.Tracksource =
             {
                 dataType: 'json',
-                dataFields:[{name: 'Description'},
+                dataFields:[
+                {name: 'Description'},
                 {name:'Code'},
                 {name:'Ask'}
             ],

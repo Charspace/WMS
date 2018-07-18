@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent  {
 
   @Output() modalClose : EventEmitter<any> = new EventEmitter<any>();
   
@@ -19,7 +19,6 @@ export class ModalComponent implements OnInit {
     this.modalClose.next($event);
   }
 
-  ngOnInit() {
-  }
+ 
 
 }
