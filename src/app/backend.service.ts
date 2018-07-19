@@ -8,9 +8,62 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class BackendService {
 
+  LoginUser = "admin";
+  LoginPwd = "123";
+  ProductName="11";
+  CurrentMenu="";
+  CurrentEvent="";
+  CurrentDevice="";
+  CurrentBroswer="";
+  CurrentIP="";
+
   //serverip : any = "aepmyanmar-001-site1.ctempurl.com/book.svc";
   serverip : any = "zawpyaethan-001-site1.btempurl.com/WMS.svc";
-  serverport : any = "";
+  serverport : any = "";//":4200";
+
+
+  wsProtocol="http://"; // "http://" or "https://"
+  wsServere : any = "zawpyaethan-001-site1.btempurl.com";
+  wsPort : any = "";//":4200";
+  wsName:any = "/WMS.svc";  
+
+  //web service get method
+  wsgetAgentList = "/getAgentList";
+  wsgetTransactionStatus = "/getTransactionStatusList";
+  wsgetSysMenuGroup = "/getSysMenuGroup";
+  wsgetSysMenuGroupList = "/getSysMenuGroupList";
+  wsgetAccessMenuList = "/getAccessMenu";
+  wsgetAccessControlList = "/getAccessControl";  
+  wsgetSysControlGroupList = "/getSysControlGroupList";
+  wsgetSysControlGroup = "/getSysControlGroup";
+  wsgetSysProduct = "/getSysProduct";
+  wsgetSysUserList = "/getSysUserList";
+  wsgetPRFEWarehouseList = "/getPRFEWarehouseList";
+  wsgetSKUBarcodeList = "/getPRFEWarehouseList";
+  wsgetCheckerWarehouseList = "/getPRFEWarehouseList";
+  wsgetCountryList = "/getCountryList";
+  wsgetUOMList = "/getUOMList";
+  wsgetTruckTypeList = "/getTruckTypeList";
+  wsgetTallyWarehouseList = "/getTallyWarehouseList";
+  wsgetAllocation = "/getAllocation";
+  wsgetSelectCreatePickList = "/getSelectCreatePickList";
+  wsgetDeliverlist = "/getDeliverlist";
+  wsgetPRFEDirectList = "/getPRFEDirectList";
+  wsgetCheckerDirect = "/getCheckerDirect";
+
+  //Save web service method
+  wssaveCheckerDirect = "/saveCheckerDirect";
+  wssavePRFEDirect = "/savePRFEDirect";
+  wssaveDeliverlist = "/saveDeliverlist";
+  wssaveCreatePicklist = "/saveCreatePicklist";
+  wssaveAllocation = "/saveAllocation";
+  wssaveCheckerWarehouse = "/saveCheckerWarehouse";
+  wssaveSKUBarcode = "/saveSKUBarcode";
+  wssaveTallyWarehouse = "/saveTallyWarehouse";
+  wssavePRFEWarehouse = "/savePRFEWarehouse";
+  wssaveSysUser = "/saveSysUser";
+  wssaveSysMenuGroup = "/saveSysMenuGroup";
+
 
   constructor(public http: Http ) 
   { 
@@ -114,6 +167,10 @@ export class BackendService {
      ]
      
      } */ 
+
+
+     
+
     var  headers = new Headers();
     headers.append('Content-Type', 'application/json')
     headers.append('Accept', 'application/json')
@@ -137,11 +194,85 @@ export class BackendService {
 
   } 
 
-  public getReceivedlist(body)
+  //tts
+  public wsCall(body,wsMethod)
   {
     return new Promise((resolve,reject) => {
 
-   
+      var  headers = new Headers();
+      headers.append('Content-Type', 'application/json')
+      headers.append('Accept', 'application/json')
+      let url = this.wsProtocol+this.wsServere+this.wsPort+this.wsName+ wsMethod;
+      //let url = 'http://'+this.serverip+ this.wsName+this.wsMethodAgent;  
+      this.http
+      .post(url,
+        body, {
+          headers: headers
+        })
+        .subscribe(data => {
+          console.log(data);
+               resolve(data.json());
+        }, error => {
+          reject("error");
+            console.log(JSON.stringify(error.json()));
+        });
+
+    })
+  }
+
+  public getReceivedlist(body)
+  {
+    return new Promise((resolve,reject) => {   
+    var  headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Accept', 'application/json')
+    let url = 'http://'+this.serverip+this.wsgetPRFEWarehouseList
+
+    this.http
+    .post(url,
+      body, {
+        headers: headers
+      })
+      .subscribe(data => {
+        console.log(data);
+             resolve(data.json());
+      }, error => {
+        reject("error");
+          console.log(JSON.stringify(error.json()));
+      });
+
+    })
+  }
+
+  
+  public getTallyWarehouseList(body)
+  {
+    return new Promise((resolve,reject) => {   
+    var  headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    headers.append('Accept', 'application/json')
+    let url = 'http://'+this.serverip+'/getTallyWarehouseList'
+
+    this.http
+    .post(url,
+      body, {
+        headers: headers
+      })
+      .subscribe(data => {
+        console.log(data);
+             resolve(data.json());
+      }, error => {
+        reject("error");
+          console.log(JSON.stringify(error.json()));
+      });
+
+    })
+  }
+
+  
+  public getPRFEWarehouseList(body)
+  {
+    return new Promise((resolve,reject) => {   
     var  headers = new Headers();
     headers.append('Content-Type', 'application/json')
     headers.append('Accept', 'application/json')
@@ -162,6 +293,8 @@ export class BackendService {
 
     })
   }
+
+
 
   public BindTrackType(body)
   {
@@ -197,6 +330,30 @@ export class BackendService {
       headers.append('Accept', 'application/json')
       let url = 'http://'+this.serverip+'/getAgentList'
   
+      this.http
+      .post(url,
+        body, {
+          headers: headers
+        })
+        .subscribe(data => {
+          console.log(data);
+               resolve(data.json());
+        }, error => {
+          reject("error");
+            console.log(JSON.stringify(error.json()));
+        });
+
+    })
+  }
+
+  public bindTrStatusList(body)
+  {
+    return new Promise((resolve,reject) => {
+
+      var  headers = new Headers();
+      headers.append('Content-Type', 'application/json')
+      headers.append('Accept', 'application/json')
+      let url = 'http://'+this.serverip+'/getTransactionStatusList'  
       this.http
       .post(url,
         body, {

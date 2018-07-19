@@ -12,6 +12,8 @@ import { jqxButtonComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbu
 import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
 import { jqxComboBoxComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxcombobox';
 import { HomeComponent } from '../home/home.component';
+import { jqxInputComponent } from '../../../node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxinput';
+import { jqxDateTimeInputComponent } from '../../../node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
 
 @Component({
   selector: 'app-lstplanreceiveforexport-w',
@@ -20,6 +22,14 @@ import { HomeComponent } from '../home/home.component';
 })
 export class LstplanreceiveforexportWComponent implements OnInit {
   @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
+
+  @ViewChild('cboagentcombo') cboagentcombo: jqxComboBoxComponent;
+  @ViewChild('cboTrstatustcombo') cboTrstatustcombo: jqxComboBoxComponent;
+  @ViewChild('txtReferenceNo') txtReferenceNo: jqxInputComponent;
+  @ViewChild('txtShipper') txtShipper: jqxInputComponent;
+  @ViewChild('txtBookingID') txtBookingID: jqxInputComponent;
+  @ViewChild('dtTransactionDate')dtTransactionDate : jqxDateTimeInputComponent
+
   values: number[] = [102, 115, 130, 137];
   //Place holder
   bookingnoplaceholder: string;
@@ -41,73 +51,118 @@ export class LstplanreceiveforexportWComponent implements OnInit {
   //HeaderJson = '[{"BookingAsk":"001","BookingNo":"B00001","ShipperName":"Mr. Raymoon","AgentName":"Miss. Vinny","Status":"Plan Received","TransactionDate":"12/7/2018","Remark":"VIP"},{"BookingAsk":"002","BookingNo":"B00002","ShipperName":"Dr. Boon","AgentName":"Mr. Thura","Status":"Plan Received","TransactionDate":"12/7/2018","Remark":"VIP"}]'
   //DetailJson = '[{"BookingAsk":"001","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"},{"BookingAsk":"002","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}]';
   
-  ParameterJson:any;  
+  //ParameterJson:any;
+ParameterJson={"UserID" : "admin","Password" : "123","ProductAsk":"11", "Ask":"0","BookingID":"","AgentAsk":"",
+    "Shipper":"",
+    "CountryAsk":"","CargoReceivedDate":"", "CustomIssuedDate":"", "TransactionDate":"","Signature":"",
+    "SignatureDate":"", "BookingStatusAsk":"","NoOfTruck":"", "NoOfContainer":"", "TruckAsk":"",
+    "TruckID":"", "TruckTypeAsk":"", "PONo":"","ShippingMark":"","ReferenceNo":"",
+    "SKUAsk":"","SKUName":"", "SKUDetails":"","DimensionWidth":"", "DimensionHeight":"",
+    "DimensionBase":"","SKUWeight":"", "PlanQty":"", "UOMAsk":"",
+    "ReceivedQty":"", "Reference":"","TruckType":"","GoodQty":"",
+    "DamageQty":"", "ShortLandQty":"","OverlandQty":""
+   }; 
   HeaderJson :any;
   DetailJson :any;
    
   DetailSource2: any;
   DetailAdapter2 : any;
   detailcolumns2:any;
-            
+         
+  agentcombo_Adapter : any;  
+  AgentList : any = [];
+  agentsource : any = [];
+
+  TrStatusCombo_Adapter : any;  
+  TrStatustList : any = [];
+  TrStatussource : any = [];
+
+ l_bookingID="";
+ l_shipper="";
+ l_refno="";
+ l_agent="0";
+ l_trdate="";
+ l_status="0";
+
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
     this.bindPlaceholder();
+    this.bindTransactionStatus();
+    this.bindAgent();
     this.getPRFEWarehouseList();  
   }
 
+  
+bindAgent()
+{    
+    var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+   // this.backendservice.BindAgent(jsonbody).then(data =>
+   this.backendservice.wsCall(jsonbody,this.backendservice.wsgetAgentList).then(data =>      
+    {
+        this.AgentList = data;
+        this.agentsource ={
+            dataType: 'json',
+            dataFields: [ { name: 'AgentName'}, { name: 'Ask'}  ],
+            localdata: this.AgentList
+        }
+        this.agentcombo_Adapter = new jqx.dataAdapter(this.agentsource)
+    })
+}
+bindTransactionStatus()
+{    
+    var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+    this.backendservice.wsCall(jsonbody,this.backendservice.wsgetTransactionStatus).then(data =>
+    {
+        this.TrStatustList = data;
+        this.TrStatussource ={
+            dataType: 'json',
+            dataFields: [ { name: 'StatusName'}, { name: 'Ask'}  ],
+            localdata: this.TrStatustList
+        }
+        this.TrStatusCombo_Adapter = new jqx.dataAdapter(this.TrStatussource)
+    })
+}
+
+BindingcompleteAgent(event:any)
+{
+    // if(this.HeaderJson)
+    // {
+    //     this.agentcombo.selectItem(this.HeaderJson[0].AgentAsk);          
+    // }    
+}
+
+onAgentComboChange(event)
+{
+
+}
+BindingcompleteTrStataus(event:any)
+{
+    // if(this.HeaderJson)
+    // {
+    //     this.agentcombo.selectItem(this.HeaderJson[0].AgentAsk);          
+    // }    
+}
+
+onTrStatusComboChange(event)
+{
+
+}
+
+
   getPRFEWarehouseList()
   {
-    var body = {
-        "UserID" : "admin",
-        "Password" : "123",
-        "ProductAsk":"11",
-        "Ask":"0",
-        "BookingID":"",
-        "AgentAsk":"",
-        "Shipper":"",
-        "CountryAsk":"",
-        "CargoReceivedDate":"",
-        "CustomIssuedDate":"",
-        "TransactionDate":"",
-        "Signature":"",
-        "SignatureDate":"",
-        "BookingStatusAsk":"",
-        "NoOfTruck":"",
-        "NoOfContainer":"",
-        "TruckAsk":"",
-        "TruckID":"",
-        "TruckTypeAsk":"",
-        "PONo":"",
-        "ShippingMark":"",
-        "ReferenceNo":"",
-        "SKUAsk":"",
-        "SKUName":"",
-        "SKUDetails":"",
-        "DimensionWidth":"",
-        "DimensionHeight":"",
-        "DimensionBase":"",
-        "SKUWeight":"",
-        "PlanQty":"",
-        "UOMAsk":"",
-        "ReceivedQty":"",
-        "Reference":"",
-        "TruckType":"",
-        "GoodQty":"",
-        "DamageQty":"",
-        "ShortLandQty":"",
-        "OverlandQty":""
-       }
-
-       this.backendservice.getReceivedlist(body).then(data =>
+       var body = this.ParameterJson;
+       console.log('ws json is'+JSON.stringify(body));
+       this.backendservice.wsCall(body,this.backendservice.wsgetPRFEWarehouseList).then(data =>
+       //this.backendservice.getReceivedlist(body).then(data =>
         {
-            alert(JSON.stringify(data));
-            var json = data;
+            //alert(JSON.stringify(data));
+            var json = data;             
             console.log('ws json is'+JSON.stringify(json));
             this.HeaderJson = data[0].BookingList;
             this.DetailJson = data[0].DetailList;       
             this.CreateGrid();              
         }) 
-
     }
 
   bindPlaceholder()
@@ -119,11 +174,9 @@ export class LstplanreceiveforexportWComponent implements OnInit {
     this.trdateplaceholder = "Transactoin Date";
   }
   CreateGrid()
-  {
-  
+  {  
     this.HeaderSource  =
     {
-
         datafields: [
             { name: 'AgentAsk', type: 'string' },
             { name: 'Ask', type: 'string' },
@@ -140,7 +193,13 @@ export class LstplanreceiveforexportWComponent implements OnInit {
             { name: 'SignatureDate'  , type: 'string' } , 
             { name: 'TS'  , type: 'string' } , 
             { name: 'TransactionDate'  , type: 'string' } , 
-            { name: 'UD'  , type: 'string' }    
+            { name: 'UD'  , type: 'string' } 
+            // ,   
+            // { name: 'AgentName'  , type: 'string' },
+            // { name: 'BookingStatusName'  , type: 'string' },
+            // { name: 'CountryName'  , type: 'string' },
+            // { name: 'ShipperName'  , type: 'string' },
+            // { name: 'CountryName'  , type: 'string' } 
 
         ],
         localdata: this.HeaderJson, 
@@ -169,6 +228,11 @@ export class LstplanreceiveforexportWComponent implements OnInit {
         { text: 'TS', datafield: 'TS', width: 300,  }, 
         { text: 'TransactionDate', datafield: 'TransactionDate', width: 300,  }, 
         { text: 'UD', datafield: 'UD', width: 300,  }
+        // ,
+        // { text: 'AgentName', datafield: 'UD', width: 300,  },
+        // { text: 'BookingStatusName', datafield: 'UD', width: 300,  },
+        // { text: 'CountryName', datafield: 'UD', width: 300,  },
+        // { text: 'ShipperName', datafield: 'UD', width: 300,  }
     ];    
     this.DetailSource =
     {     
@@ -470,7 +534,7 @@ export class LstplanreceiveforexportWComponent implements OnInit {
                 { name: 'TruckStatus', type: 'string' },
                 { name: 'TruckTypeAsk', type: 'string' }   
               ],
-              id: 'BookingID',
+              id: 'Ask',
               localdata: Detailsbyid
           }
           let nestedGridAdapter = new jqx.dataAdapter(detailSource);
@@ -562,27 +626,95 @@ ready = (): void => {
 
 columns: any[] =
 [
-    { text: 'AgentAsk', datafield: 'AgentAsk', width: 120 },
-    { text: 'Ask', datafield: 'Ask', width: 120 },
-    { text: 'Booking ID', datafield: 'BookingID', width: 120 }  ,
-    { text: 'BookingStatusAsk', datafield: 'BookingStatusAsk', width: 120 }   ,
-    { text: 'CargoReceivedDate', datafield: 'CargoReceivedDate', width: 250 }  ,
-    { text: 'CountryAsk', datafield: 'CountryAsk', width: 150 },
-    { text: 'CustomIssuedDate', datafield: 'CustomIssuedDate', width: 120,  }, 
-    { text: 'DisplaySequence', datafield: 'DisplaySequence', width: 120,  }, 
-    { text: 'NoOfContainer', datafield: 'NoOfContainer', width: 120,  }, 
-    { text: 'NoOfTruck', datafield: 'NoOfTruck', width: 120,  }, 
-    { text: 'Remark', datafield: 'Remark', width: 120,  }, 
-    { text: 'Shipper', datafield: 'Shipper', width: 120,  }, 
-    { text: 'Signature', datafield: 'Signature', width: 120,  },         
-    { text: 'SignatureDate', datafield: 'SignatureDate', width: 120,  }, 
-    { text: 'TS', datafield: 'TS', width: 120,  }, 
-    { text: 'TransactionDate', datafield: 'TransactionDate', width: 120,  }, 
-    { text: 'UD', datafield: 'UD', width: 120,  }     
+   
+    { text: 'Ask', datafield: 'Ask', width: 120, hidden:true },
+    { text: 'Booking ID', datafield: 'BookingID', width: 120 , hidden:false }  ,
+    { text: 'Agent Ask', datafield: 'AgentAsk', width: 200 , hidden:false },
+    { text: 'Shipper', datafield: 'Shipper', width: 150, hidden:false  },
+    { text: 'No Of Container', datafield: 'NoOfContainer', width: 120, hidden:false  }, 
+    { text: 'No Of Truck', datafield: 'NoOfTruck', width: 120, hidden:false  },  
+    // { text: 'Total Gross Weight', datafield: 'Remark', width: 150, hidden:false  }, 
+    // { text: 'Total Vol:', datafield: 'Remark', width: 150, hidden:false  }, 
+    { text: 'Country Ask', datafield: 'CountryAsk', width: 150, hidden:false },
+    { text: 'Transaction Date', datafield: 'TransactionDate', width: 120, hidden:false  }, 
+    { text: 'Remark', datafield: 'Remark', width: 200, hidden:false  }, 
+    { text: 'Booking Status Ask', datafield: 'BookingStatusAsk', width: 150 , hidden:false} ,
+
+    { text: 'Cargo Received Date', datafield: 'CargoReceivedDate', width: 250, hidden:true }  ,    
+    { text: 'CustomIssued Date', datafield: 'CustomIssuedDate', width: 120, hidden:true  }, 
+    { text: 'Display Sequence', datafield: 'DisplaySequence', width: 120, hidden:true }, 
+    { text: 'Signature', datafield: 'Signature', width: 120, hidden:true },         
+    { text: 'Signature Date', datafield: 'SignatureDate', width: 120, hidden:true}, 
+    { text: 'TS', datafield: 'TS', width: 120, hidden:true },   
+    { text: 'UD', datafield: 'UD', width: 120, hidden:true  } 
+    // ,
+    // { name: 'AgentName'  , type: 'string' },
+    // { name: 'BookingStatusName'  , type: 'string' },
+    // { name: 'CountryName'  , type: 'string' },
+    // { name: 'ShipperName'  , type: 'string' },
+    // { name: 'CountryName'  , type: 'string' } 
+
 ]; 
 btnNew()
-{  
-    this.router.navigate(['setplanreceiveforexport-w']);
+{ 
+    this.HeaderGrid.disabled(true); 
+    this.router.navigate([ {outlets: { modal: 'settallycheckforexport-w' } } ]);
+    this.HeaderGrid.disabled(false)    
+}
+btnRefresh()
+{ 
+   // this.HeaderGrid.clear();
+    this.validParameter();    
+    //alert(JSON.stringify(this.ParameterJson) );    
+    this.getPRFEWarehouseList();
+    //this.bindParameterJson();   
+}
+public validParameter()
+{
+    //alert( this.ParameterJson.AgentAsk= this.cboagentcombo.val());
+    this.ParameterJson.UserID= this.backendservice.LoginUser;
+    this.ParameterJson.Password= this.backendservice.LoginPwd;
+    this.ParameterJson.ProductAsk=this.backendservice.ProductName;
+    if (JSON.stringify( this.txtBookingID.ngValue)!="")
+    {
+        this.ParameterJson.BookingID= this.txtBookingID.ngValue;
+    }else{
+        this.ParameterJson.BookingID= "";
+    }
+    if (JSON.stringify( this.txtShipper)!="")
+    {
+        this.ParameterJson.Shipper= this.txtShipper.ngValue;
+    }else{
+        this.ParameterJson.Shipper= "";
+    }
+    if (JSON.stringify( this.txtReferenceNo.ngValue)!="")
+    {
+        this.ParameterJson.ReferenceNo=  this.txtReferenceNo.ngValue;
+    }else{
+        this.ParameterJson.ReferenceNo= "";
+    }
+    if (this.dtTransactionDate.getText()!="")
+    {
+        //this.ParameterJson.TransactionDate= this.dtTransactionDate.getText();
+    }else{
+        this.ParameterJson.TransactionDate= "";
+    }
+    if (this.cboagentcombo.valueMember.toString()!="")
+    {
+        this.ParameterJson.AgentAsk= this.cboagentcombo.val() ;
+    }else{
+        this.ParameterJson.AgentAsk= "0";
+    }
+    if (this.cboTrstatustcombo.valueMember.toString()!="")
+    {
+        this.ParameterJson.BookingStatusAsk= this.cboTrstatustcombo.val();
+    }else{
+        this.ParameterJson.BookingStatusAsk= "0";
+    }
+}
+bindParameterJson()
+{
+    
 }
 btnSubmit()
 {   
@@ -596,8 +728,13 @@ CellDoubleclick(event:any)
     var rowid = this.HeaderGrid.getrowid(rowindex);  
     var rowdata = this.HeaderGrid.getrowdata(rowindex); 
 
-    this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
+    // this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
+    // this.HeaderGrid.disabled(true); 
 
+    this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' }},
+    {BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk} ]);
+    this.HeaderGrid.disabled(false) 
+    
 }
 
 }
