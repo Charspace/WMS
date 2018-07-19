@@ -663,7 +663,7 @@ btnNew()
 }
 btnRefresh()
 { 
-   // this.HeaderGrid.clear();
+   this.HeaderGrid.clear();
     this.validParameter();    
     //alert(JSON.stringify(this.ParameterJson) );    
     this.getPRFEWarehouseList();
