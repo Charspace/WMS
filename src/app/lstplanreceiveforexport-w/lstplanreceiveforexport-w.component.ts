@@ -668,6 +668,7 @@ btnRefresh()
     //alert(JSON.stringify(this.ParameterJson) );    
     this.getPRFEWarehouseList();
     //this.bindParameterJson();   
+    //bba
 }
 public validParameter()
 {
