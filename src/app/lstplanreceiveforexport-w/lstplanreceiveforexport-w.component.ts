@@ -734,11 +734,12 @@ CellDoubleclick(event:any)
     var rowid = this.HeaderGrid.getrowid(rowindex);  
     var rowdata = this.HeaderGrid.getrowdata(rowindex); 
 
-    // this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
+     //this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
     // this.HeaderGrid.disabled(true); 
 
-    this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' }},
-    {BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk} ]);
+    //this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' }},
+    this.router.navigate([ {outlets: { modal: ['setplanreceiveforexport-w',rowdata.Ask,rowdata.AgentAsk] } } ]);
+    //{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk} ]);
     this.HeaderGrid.disabled(false) 
     
 }

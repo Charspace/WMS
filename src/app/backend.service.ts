@@ -229,6 +229,8 @@ export class BackendService {
     headers.append('Accept', 'application/json')
     let url = 'http://'+this.serverip+this.wsgetPRFEWarehouseList
 
+    debugger
+
     this.http
     .post(url,
       body, {

@@ -110,11 +110,6 @@ HeaderJson :any;
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
 
-    var bookask = this.route.snapshot.paramMap.get('BookingAsk');
-    var agentask = this.route.snapshot.paramMap.get('AgentAsk');
-
-    this.setupbookask = bookask;
-    this.setupagentask = agentask;
 
     this.bookidplaceholder = "BookID";
     this.agentplaceholder = 'Agent'
@@ -123,26 +118,53 @@ HeaderJson :any;
     this.noofcontainerplaceholder = "NoOfContainer";
     this.remarkplaceholder = "Remark";
 
+     
+
+         
+
     
 
-    this.BindTrackType();
-    this.BindCountry();
-    this.BindAgent();
-
-    this.CreateGrid();    
-
-    this.getPRFEWarehouseList();
   }
 
-  getPRFEWarehouseList()
+  ngAfterViewInit() {
+
+    var bookask;
+    var agentask;
+
+    this.route.params.subscribe(params => {
+        bookask = +params['param1']; 
+        agentask = +params['param2']; 
+
+    })
+      
+
+      this.getPRFEWarehouseList(bookask,agentask).then(data =>
+        {
+            debugger
+            this.BindTrackType();
+            this.BindCountry();
+            this.BindAgent();
+        
+            this.CreateGrid(); 
+
+        }
+
+      )
+
+  }
+
+
+  getPRFEWarehouseList(setupbookask,setupagentask)
   {
+    return new Promise((resolve,reject) => { 
+      debugger
     var body = {
         "UserID" : "admin",
         "Password" : "123",
         "ProductAsk":"11",
-        "Ask":"" +this.setupbookask +"",
+        "Ask":"" +setupbookask+"",
         "BookingID":"0",
-        "AgentAsk": ""+this.setupagentask +"",
+        "AgentAsk": "",
         "Shipper":"",
         "CountryAsk":"",
         "CargoReceivedDate":"",
@@ -204,14 +226,16 @@ HeaderJson :any;
             this.cargoreceiveddate.setDate(this.HeaderJson[0].CargoReceivedDate)        
             this.customerissueddate.setDate(this.HeaderJson[0].CustomIssuedDate)
             this.transactiondate.setDate(this.HeaderJson[0].TransactionDate)
+            resolve('success');
 
             }
           
-
+            
                      
 
 
         }) 
+    })
 
     }
 
@@ -231,17 +255,24 @@ HeaderJson :any;
     BindingcompletCoutry(event:any)
     {
         
-        //this.agentcombo.selectItem('20180716061704857');
+        this.agentcombo.selectItem('20180716061704857');
         
          if(this.HeaderJson)
         {
-            this.countrycombo.selectItem(this.HeaderJson[0].CountryAsk);          
+           // this.countrycombo.selectItem(this.HeaderJson[0].CountryAsk);          
         }
         
     }
 
   ngOnInit() {
+
+    
+ 
+   
+
   }
+
+  
 
   onAgentComboChange(event)
   {
@@ -335,7 +366,7 @@ CreateGrid()
         if (newvalue != oldvalue) {
           //////////////////;                                  
             //let array = [];
-                debugger
+                
             for(let k=0; k< this.TrackList.length; k++)
             {
                 if(this.TrackList[k].Ask == newvalue.value)

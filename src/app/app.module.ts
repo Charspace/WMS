@@ -216,8 +216,9 @@ const appRoutes: Routes=[
     
   },
   {
-    path : 'setplanreceiveforexport-w',
-    component:SetplanreceiveforexportWComponent    
+    path : 'setplanreceiveforexport-w/:param1/:param2',
+    component:SetplanreceiveforexportWComponent,
+    outlet: 'modal'    
     //outlet:'homepath'
     
 
