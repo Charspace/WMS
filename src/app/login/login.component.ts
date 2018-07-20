@@ -20,49 +20,59 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   url : any;
   showinvalidusername : any = false;
   showinvalidpassword : any = false;
   isloginfail : any = false;
+  jsonLoginParamter = {"UserID":"Admin","Password":"123","ProductAsk":"11", "DeviceName":"","LoginDateTime":"","LoginBrowserType":"", "IPAdress":"" };
+  message:any;// ={"Code": "0","Detail": ""};
+
 
   constructor(private backendservice :BackendService, private router: Router,private route:ActivatedRoute) { 
 
-    //testing tts
   }
 
   ngOnInit() {
   }
 
+  bindParameterJson(userid, password)
+  {
+    this.jsonLoginParamter.UserID=userid;
+    this.jsonLoginParamter.Password=password;
+    this.jsonLoginParamter.ProductAsk="0";
+    this.jsonLoginParamter.DeviceName="";
+    this.jsonLoginParamter.LoginDateTime="";
+    this.jsonLoginParamter.LoginBrowserType="";
+    this.jsonLoginParamter.IPAdress="";
+  }
   loginUser(form: NgForm)
   {
+  
      this.showinvalidusername = false;
      this.showinvalidpassword = false;
      this.isloginfail = false;
-    const userid = form.value.username;
-    const password = form.value.password;
-    console.log("userid: " + userid);
-    console.log("password: " + password);
-    if(!userid)
-    {
-      this.showinvalidusername = true;
-      this.isloginfail = true;
-    }
-    if(!password)
-    {
-      this.showinvalidpassword = true;
-      this.isloginfail = true;
-    }
-    if(this.isloginfail)
-    {
-      return;
-    }
+      const userid = form.value.username;
+      const password = form.value.password;
+      this.bindParameterJson(userid,password);    
+    this.backendservice.wsCall(this.jsonLoginParamter,this.backendservice.wsgettestLogIn).then(data =>      
+     {
+        this.message=data;      
+        //alert("status: " +  this.message["Code"]);//  JSON.stringify (messagea));
+         if(this.message.Code=="1") 
+         {      
+           this.backendservice.LoginUser=userid;
+           this.backendservice.LoginPwd=password;     
+            window.sessionStorage.setItem("userid",userid);
+            window.sessionStorage.setItem("password",password);
+            this.router.navigate(['home']);
+         }else{
+            //alert("Invalid user name or password");
+            this.router.navigate(['home']);
+         }  
+     })
 
-    window.sessionStorage.setItem("userid",userid);
-    window.sessionStorage.setItem("password",password);
-    this.router.navigate(['home']);
+/* 
 
-    /*
     this.backendservice.Checklogin(userid,password).subscribe(data => {
     console.log("status: " + data.Result);
     let userdata = data.Result;
@@ -87,10 +97,10 @@ export class LoginComponent implements OnInit {
         //this.router.navigate(['menupage', {userid: userid, queryParams: {some_data : 'test'}}]);
         this.router.navigate(['framelayout']);
       }
-    }
+    } */
 
-    })
-    */
+
+  
   }
 
 }

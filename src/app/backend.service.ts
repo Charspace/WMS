@@ -28,6 +28,7 @@ export class BackendService {
   wsName:any = "/WMS.svc";  
 
   //web service get method
+  wsgettestLogIn = "/testLogIn";
   wsgetAgentList = "/getAgentList";
   wsgetTransactionStatus = "/getTransactionStatusList";
   wsgetSysMenuGroup = "/getSysMenuGroup";
@@ -194,7 +195,7 @@ export class BackendService {
 
   } 
 
-  //tts
+  //Thura
   public wsCall(body,wsMethod)
   {
     return new Promise((resolve,reject) => {
