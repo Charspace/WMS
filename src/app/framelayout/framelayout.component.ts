@@ -33,219 +33,152 @@ export class FramelayoutComponent implements OnInit {
   username : any = window.sessionStorage.getItem("userid")
   
 
-    menudata = [
-    {
-        "SubMenuWidth": "250px",
-        "id": "1",
-        "parentid": "-1",
-        "text": "Dashboard"
-    },
-    {
-        "SubMenuWidth": "250px",
-        "id": "2",
-        "parentid": "-1",
-        "text": "Import"
-    },
-    {
-        "SubMenuWidth": "250px",
-        "id": "3",
-        "parentid": "-1",
-        "text": "Export"
-    },
-    {
-        "SubMenuWidth": "250px",
-        "id": "4",
-        "parentid": "-1",
-        "text": "Setting "
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "5",
-        "parentid": "3",
-        "text": "Direct Export"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "6",
-        "parentid": "3",
-        "text": "Warehouse"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "7",
-        "parentid": "2",
-        "text": "Upload Excel Plan Receive"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "8",
-        "parentid": "2",
-        "text": "Plan Receive For Import"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "9",
-        "parentid": "2",
-        "text": "Tally Check"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "10",
-        "parentid": "2",
-        "text": "Import Checker"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "11",
-        "parentid": "2",
-        "text": "Barcode Mapping"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "12",
-        "parentid": "2",
-        "text": "Pick List Create"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "13",
-        "parentid": "5",
-        "text": "Plan Receive For Export"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "14",
-        "parentid": "5",
-        "text": "Tally Check For Export"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "15",
-        "parentid": "5",
-        "text": "Export Checker"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "16",
-        "parentid": "5",
-        "text": "Barcode Mapping For Export"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "17",
-        "parentid": "5",
-        "text": "Pick List Create For Export"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "18",
-        "parentid": "6",
-        "text": "Plan Receive For Export (W)"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "19",
-        "parentid": "6",
-        "text": "Tally Check For Export (W)"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "20",
-        "parentid": "6",
-        "text": "Export Checker (W)"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "21",
-        "parentid": "6",
-        "text": "Barcode Mapping For Export (W)"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "22",
-        "parentid": "6",
-        "text": "Pick List Create(W)"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "23",
-        "parentid": "4",
-        "text": "User"
-    },
-    {
-        "SubMenuWidth": "",
-        "id": "24",
-        "parentid": "4",
-        "text": "MenuGroup"
-    }
-]
-  /*
-    data = [
-      {
-          'id': '1',
-          'text': 'Home',
-          'parentid': '-1',
-          'subMenuWidth': '250px'
-      },
-      {
-        'id': '5',
-        'text': 'Warehouse',
-        'parentid': '-1',
-        'subMenuWidth': '250px'
-    },
-    {
-      'id': '6',
-      'text': 'Transfer',
-      'parentid': '-1',
-      'subMenuWidth': '250px'
-  },
-  {
-    'id': '7',
-    'text': 'Receive',
-    'parentid': '-1',
-    'subMenuWidth': '250px'
-},
-{
-  'id': '8',
-  'text': 'Product',
-  'parentid': '-1',
-  'subMenuWidth': '250px'
-},
-{
-  'id': '1',
-  'text': 'UserProfile',
-  'parentid': '-1',
-  'subMenuWidth': '250px'
-},
-{
-  'id': '1',
-  'text': 'Setting',
-  'parentid': '-1',
-  'subMenuWidth': '250px'
-},
-
-      {
-        'id': '2',
-        'text': this.username,
-        'parentid': '-1',
-        'subMenuWidth': '250px'
-    },
-      {
-        'id': '3',
-        'text': 'Logout',
-        'parentid': '-1',
-        'subMenuWidth': '250px'
-      },
-      {
-        'id': '4',
-        'text': 'Change Password',
-        'parentid': '2',
-        'subMenuWidth': '250px'
-    },
-
-    
-    ];
-    */
+//     menudata = [
+//     {
+//         "SubMenuWidth": "250px",
+//         "id": "1",
+//         "parentid": "-1",
+//         "text": "Dashboard"
+//     },
+//     {
+//         "SubMenuWidth": "250px",
+//         "id": "2",
+//         "parentid": "-1",
+//         "text": "Import"
+//     },
+//     {
+//         "SubMenuWidth": "250px",
+//         "id": "3",
+//         "parentid": "-1",
+//         "text": "Export"
+//     },
+//     {
+//         "SubMenuWidth": "250px",
+//         "id": "4",
+//         "parentid": "-1",
+//         "text": "Setting "
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "5",
+//         "parentid": "3",
+//         "text": "Direct Export"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "6",
+//         "parentid": "3",
+//         "text": "Warehouse"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "7",
+//         "parentid": "2",
+//         "text": "Upload Excel Plan Receive"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "8",
+//         "parentid": "2",
+//         "text": "Plan Receive For Import"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "9",
+//         "parentid": "2",
+//         "text": "Tally Check"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "10",
+//         "parentid": "2",
+//         "text": "Import Checker"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "11",
+//         "parentid": "2",
+//         "text": "Barcode Mapping"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "12",
+//         "parentid": "2",
+//         "text": "Pick List Create"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "13",
+//         "parentid": "5",
+//         "text": "Plan Receive For Export"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "14",
+//         "parentid": "5",
+//         "text": "Tally Check For Export"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "15",
+//         "parentid": "5",
+//         "text": "Export Checker"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "16",
+//         "parentid": "5",
+//         "text": "Barcode Mapping For Export"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "17",
+//         "parentid": "5",
+//         "text": "Pick List Create For Export"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "18",
+//         "parentid": "6",
+//         "text": "Plan Receive For Export (W)"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "19",
+//         "parentid": "6",
+//         "text": "Tally Check For Export (W)"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "20",
+//         "parentid": "6",
+//         "text": "Export Checker (W)"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "21",
+//         "parentid": "6",
+//         "text": "Barcode Mapping For Export (W)"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "22",
+//         "parentid": "6",
+//         "text": "Pick List Create(W)"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "23",
+//         "parentid": "4",
+//         "text": "User"
+//     },
+//     {
+//         "SubMenuWidth": "",
+//         "id": "24",
+//         "parentid": "4",
+//         "text": "MenuGroup"
+//     }
+// ]
 
   // prepare the data
   // source =
@@ -281,11 +214,13 @@ export class FramelayoutComponent implements OnInit {
   
   bindAccessMenuList()
   {    
-      var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+      //var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+
       this.backendservice.wsCall(this.ParameterJson,this.backendservice.wsgetAccessMenuList).then(data =>
       {       
           this.MenuList = data;
-          alert(JSON.stringify( this.MenuList));
+          // alert(JSON.stringify( this.ParameterJson));
+          //alert(JSON.stringify( this.MenuList));
           this.MenuSource ={
               dataType: 'json',
               dataFields: [ { name: 'StatusName'}, { name: 'Ask'}  ],
@@ -299,9 +234,9 @@ export class FramelayoutComponent implements OnInit {
   public bindParameterJson()
   {
       //alert( this.ParameterJson.AgentAsk= this.cboagentcombo.val());
-      this.ParameterJson.UserID= this.backendservice.LoginUser;
-      this.ParameterJson.Password= this.backendservice.LoginPwd;
-      this.ParameterJson.ProductAsk=this.backendservice.ProductName;   
+      this.ParameterJson.UserID= window.sessionStorage.getItem("userid");// this.backendservice.LoginUser;
+      this.ParameterJson.Password=window.sessionStorage.getItem("password");// this.backendservice.LoginPwd;
+      this.ParameterJson.ProductAsk="11";//window.sessionStorage.getItem("productask");//this.backendservice.ProductName;   
   }
   createAccessMenu()
   {
@@ -316,15 +251,15 @@ export class FramelayoutComponent implements OnInit {
           ],
           id: 'id',
           localdata: this.MenuList
-      };
-    this.MenuAdapter(this.MenuSource: any): any {
-        // create data adapter and perform data
-        return new jqx.dataAdapter(this.MenuSource, { autoBind: true });
-    };
-    this.MenuRecord = this.MenuAdapter(this.MenuSource).getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label' }]);
-
-
+      };     
+    this.MenuRecord = this.getAdapter(this.MenuSource).getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label' }]);
   }
+
+  getAdapter(source: any): any {
+    // create data adapter and perform data
+    return new jqx.dataAdapter(this.MenuSource, { autoBind: true });
+  };
+
   itemclick(event: any): void {
     //this.eventLog.nativeElement.innerHTML = 'Id: ' + event.args.id + ', Text: ' + event.args.innerText;   
     if(event.args.id == 1)

@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
      this.isloginfail = false;
       const userid = form.value.username;
       const password = form.value.password;
+      //const product = form.value.ProductAsk;
       this.bindParameterJson(userid,password);    
     this.backendservice.wsCall(this.jsonLoginParamter,this.backendservice.wsgettestLogIn).then(data =>      
      {
@@ -64,9 +65,13 @@ export class LoginComponent implements OnInit {
            this.backendservice.LoginPwd=password;     
             window.sessionStorage.setItem("userid",userid);
             window.sessionStorage.setItem("password",password);
+            //window.sessionStorage.setItem("productask", product);
             this.router.navigate(['home']);
          }else{
             //alert("Invalid user name or password");
+            window.sessionStorage.setItem("userid",userid);
+            window.sessionStorage.setItem("password",password);
+            //window.sessionStorage.setItem("productask", product);
             this.router.navigate(['home']);
          }  
      })
