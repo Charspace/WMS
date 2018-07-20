@@ -89,7 +89,8 @@ ParameterJson={"UserID" : "admin","Password" : "123","ProductAsk":"11", "Ask":"0
     this.bindPlaceholder();
     this.bindTransactionStatus();
     this.bindAgent();
-    this.getPRFEWarehouseList();  
+    this.getPRFEWarehouseList();
+     
   }
 
   
@@ -160,8 +161,9 @@ onTrStatusComboChange(event)
             var json = data;             
             console.log('ws json is'+JSON.stringify(json));
             this.HeaderJson = data[0].BookingList;
-            this.DetailJson = data[0].DetailList;       
-            this.CreateGrid();              
+            this.DetailJson = data[0].DetailList;    
+            this.CreateGrid();        
+                      
         }) 
     }
 
@@ -466,6 +468,8 @@ onTrStatusComboChange(event)
     this.nestedGrids = new Array();
         // create nested grid.
         this.initRowDetails = (index: number, parentElement: any, gridElement: any, record: any): void => {
+        if(record)
+        {
           let id = record.uid.toString();
           let nestedGridContainer = parentElement.children[0];          
           this.nestedGrids[index] = nestedGridContainer;
@@ -599,6 +603,7 @@ onTrStatusComboChange(event)
               jqwidgets.createInstance(`#${nestedGridContainer.id}`, 'jqxGrid', settings);
           }
       }      
+    }
   };
   ngOnInit() {    
 }
