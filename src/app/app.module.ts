@@ -271,10 +271,18 @@ const appRoutes: Routes=[
     //outlet:'homepath'    
   },
   {
-    path : 'setcheckerforexport-w',
-    component:SetcheckerforexportWComponent   
-    //outlet:'homepath'    
+    path : 'setcheckerforexport-w/:param1/:param2',
+    component:SetcheckerforexportWComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'
+    
+
   },
+  // {
+  //   path : 'setcheckerforexport-w',
+  //   component:SetcheckerforexportWComponent   
+  //   //outlet:'homepath'    
+  // },
   // {
   //   path : 'Setcheckerforexport-w',
   //   component:SetcheckerforexportWComponent   

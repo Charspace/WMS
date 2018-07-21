@@ -22,7 +22,6 @@ import { jqxDateTimeInputComponent } from '../../../node_modules/jqwidgets-scrip
 })
 export class LstplanreceiveforexportWComponent implements OnInit {
   @ViewChild('HeaderGrid') HeaderGrid: jqxGridComponent;
-
   @ViewChild('cboagentcombo') cboagentcombo: jqxComboBoxComponent;
   @ViewChild('cboTrstatustcombo') cboTrstatustcombo: jqxComboBoxComponent;
   @ViewChild('txtReferenceNo') txtReferenceNo: jqxInputComponent;
@@ -297,7 +296,7 @@ onTrStatusComboChange(event)
     this.DetailAdapter = new jqx.dataAdapter(this.DetailSource, { autoBind: true });
     this.detailcolumns =
     [
-        { text: 'AgentAsk', datafield: 'AgentAsk', width: 300,editable: false,hidden:false },
+        { text: 'AgentAsk', datafield: 'AgentAsk', width: 150,editable: false,hidden:true },
         { text: 'Ask', datafield: 'Ask', width: 300,editable: false,hidden:false },
         { text: 'BookingID', datafield: 'BookingID', width: 300,editable: false,hidden:false },
         { text: 'BookingStatusAsk', datafield: 'BookingStatusAsk', width: 300,editable: false,hidden:false },
@@ -509,6 +508,7 @@ onTrStatusComboChange(event)
                 { name: 'SKUDimensionBase', type: 'string' },
                 { name: 'SKUDimensionHeight', type: 'string' },
                 { name: 'SKUDimensionWidth', type: 'string' },
+                //{ name: 'SKUDimension', type: 'string' },                
                 { name: 'SKUGoodQty', type: 'string' },
                 { name: 'SKUGoodphoto', type: 'string' },
                 { name: 'SKUName', type: 'string' },
@@ -544,60 +544,73 @@ onTrStatusComboChange(event)
           let nestedGridAdapter = new jqx.dataAdapter(detailSource);
           if (nestedGridContainer != null) {  
               let settings = {
-                  width: 780,
-                  height: 200,
+                  width: '"100%"',
+                  //height: 200,
+                  rowsheight:25,
+                  rowdetails:true,
+                  filterable:true,
+                  editable:false,
+                  altrows:true,
+                  autoheight:true, 
+                  //onCelldoubleclick:'CellDoubleclick($event)',        
+                  //showstatusbar:true,
+                  //showaggregates:true, 
                   source: nestedGridAdapter, 
                   columns: [
-                    { text: 'AgentAsk', datafield: 'AgentAsk', width: 300,editable: false,hidden:false },
-                    { text: 'Ask', datafield: 'Ask', width: 300,editable: false,hidden:false },
-                    { text: 'BookingID', datafield: 'BookingID', width: 300,editable: false,hidden:false },
-                    { text: 'BookingStatusAsk', datafield: 'BookingStatusAsk', width: 300,editable: false,hidden:false },
-                    { text: 'CargoReceivedDate', datafield: 'CargoReceivedDate', width: 300,editable: false,hidden:false },
-                    { text: 'CountryAsk', datafield: 'CountryAsk', width: 300,editable: false,hidden:false },
-                    { text: 'CustomIssuedDate', datafield: 'CustomIssuedDate', width: 300,editable: false,hidden:false },
-                    { text: 'NoOfContainer', datafield: 'NoOfContainer', width: 300,editable: false,hidden:false },
-                    { text: 'NoOfTruck', datafield: 'NoOfTruck', width: 300,editable: false,hidden:false },
-                    { text: 'POAsk', datafield: 'POAsk', width: 300,editable: false,hidden:false },
-                    { text: 'PONo', datafield: 'PONo', width: 300,editable: false,hidden:false },
-                    { text: 'POReferenceNo', datafield: 'POReferenceNo', width: 300,editable: false,hidden:false },
-                    { text: 'PORemark', datafield: 'PORemark', width: 300,editable: false,hidden:false },
-                    { text: 'POShippingMark', datafield: 'POShippingMark', width: 300,editable: false,hidden:false },
-                    { text: 'POStatus', datafield: 'POStatus', width: 300,editable: false,hidden:false },
-                    { text: 'SKUAsk', datafield: 'SKUAsk', width: 300,editable: false,hidden:false },
-                    { text: 'SKUDamageQty', datafield: 'SKUDamageQty', width: 300,editable: false,hidden:false },
-                    { text: 'SKUDamagephoto', datafield: 'SKUDamagephoto', width: 300,editable: false,hidden:false },
-                    { text: 'SKUDetails', datafield: 'SKUDetails', width: 300,editable: false,hidden:false },
-                    { text: 'SKUDimensionBase', datafield: 'SKUDimensionBase', width: 300,editable: false,hidden:false },
-                    { text: 'SKUDimensionHeight', datafield: 'SKUDimensionHeight', width: 300,editable: false,hidden:false },
-                    { text: 'SKUDimensionWidth', datafield: 'SKUDimensionWidth', width: 300,editable: false,hidden:false },
-                    { text: 'SKUGoodQty', datafield: 'SKUGoodQty', width: 300,editable: false,hidden:false },
-                    { text: 'SKUGoodphoto', datafield: 'SKUGoodphoto', width: 300,editable: false,hidden:false },
-                    { text: 'SKUName', datafield: 'SKUName', width: 300,editable: false,hidden:false },
-                    { text: 'SKUOverlandQty', datafield: 'SKUOverlandQty', width: 300,editable: false,hidden:false },
-                    { text: 'SKUOverlandphoto', datafield: 'SKUOverlandphoto', width: 300,editable: false,hidden:false },
-                    { text: 'SKUPlanQty', datafield: 'SKUPlanQty', width: 300,editable: false,hidden:false },
-                    { text: 'SKUReceivedQty', datafield: 'SKUReceivedQty', width: 300,editable: false,hidden:false },
-                    { text: 'SKUReference', datafield: 'SKUReference', width: 300,editable: false,hidden:false },
-                    { text: 'SKURemark', datafield: 'SKURemark', width: 300,editable: false,hidden:false },
-                    { text: 'SKUShortLandQty', datafield: 'SKUShortLandQty', width: 300,editable: false,hidden:false },
-                    { text: 'SKUShortLandphoto', datafield: 'SKUShortLandphoto', width: 300,editable: false,hidden:false },
-                    { text: 'SKUStatus', datafield: 'SKUStatus', width: 300,editable: false,hidden:false },
-                    { text: 'SKUTruckID":"",', datafield: 'SKUTruckID', width: 300,editable: false,hidden:false },
-                    { text: 'SKUTruckType', datafield: 'SKUTruckType', width: 300,editable: false,hidden:false },
-                    { text: 'SKUUOMAsk', datafield: 'SKUUOMAsk', width: 300,editable: false,hidden:false },
-                    { text: 'SKUWeight', datafield: 'SKUWeight', width: 300,editable: false,hidden:false },
-                    { text: 'Shipper', datafield: 'Shipper', width: 300,editable: false,hidden:false },
-                    { text: 'ShipperAsk', datafield: 'ShipperAsk', width: 300,editable: false,hidden:false },
-                    { text: 'ShipperDetails', datafield: 'ShipperDetails', width: 300,editable: false,hidden:false },
-                    { text: 'ShipperName', datafield: 'ShipperName', width: 300,editable: false,hidden:false },
-                    { text: 'Signature', datafield: 'Signature', width: 300,editable: false,hidden:false },
-                    { text: 'SignatureDate', datafield: 'SignatureDate', width: 300,editable: false,hidden:false },
-                    { text: 'TransactionDate', TransactionDate: 'TransactionDate', width: 300,editable: false,hidden:false },
-                    { text: 'TruckAsk', datafield: 'TruckAsk', width: 300,editable: false,hidden:false },
-                    { text: 'TruckID', datafield: 'TruckID', width: 300,editable: false,hidden:false },
-                    { text: 'TruckRemark', datafield: 'TruckRemark', width: 300,editable: false,hidden:false },
-                    { text: 'TruckStatus', datafield: 'TruckStatus', width: 300,editable: false,hidden:false },
-                    { text: 'TruckTypeAsk', datafield: 'TruckTypeAsk', width: 300,editable: false,hidden:false }
+                    //display column
+                    { text: 'Booking', datafield: 'BookingID', width: 150,editable: false,hidden:false },
+                    { text: 'Reference', datafield: 'POReferenceNo', width: 150,editable: false,hidden:false },
+                    { text: 'PO No', datafield: 'PONo', width: 150,editable: false,hidden:false },
+                    { text: 'SKU', datafield: 'SKUName', width: 200,editable: false,hidden:false },
+                    { text: 'D_L', datafield: 'SKUDimensionBase', width: 50,editable: false,hidden:false },
+                    { text: 'D_H', datafield: 'SKUDimensionHeight',width: 50,editable: false,hidden:false },
+                    { text: 'D_W', datafield: 'SKUDimensionWidth',width: 50,editable: false,hidden:false},                           
+                    { text: 'Dimission',width: 150,editable: false,hidden:false},                 
+                    { text: 'Quality', datafield: 'SKUPlanQty', width: 150,editable: false,hidden:false },
+                    { text: 'UOM', datafield: 'SKUUOMAsk',width: 100,editable: false,hidden:false },
+                    
+                    //hide column
+                    { text: 'AgentAsk', datafield: 'AgentAsk', width: 150,editable: false,hidden:true},
+                    { text: 'Ask', datafield: 'Ask', width: 150,editable: false,hidden:true },                   
+                    { text: 'BookingStatusAsk', datafield: 'BookingStatusAsk', width: 150,editable: false,hidden:true },
+                    { text: 'CargoReceivedDate', datafield: 'CargoReceivedDate', width: 150,editable: false,hidden:true },
+                    { text: 'CountryAsk', datafield: 'CountryAsk', width: 150,editable: false,hidden:true },
+                    { text: 'CustomIssuedDate', datafield: 'CustomIssuedDate', width: 150,editable: false,hidden:true },
+                    { text: 'NoOfContainer', datafield: 'NoOfContainer',width: 150,editable: false,hidden:true },
+                    { text: 'NoOfTruck', datafield: 'NoOfTruck', width: 150,editable: false,hidden:true },
+                    { text: 'POAsk', datafield: 'POAsk', width: 150,editable: false,hidden:true },               
+                    { text: 'PORemark', datafield: 'PORemark',width: 150,editable: false,hidden:true },
+                    { text: 'POShippingMark', datafield: 'POShippingMark', width: 150,editable: false,hidden:true },
+                    { text: 'POStatus', datafield: 'POStatus', width: 150,editable: false,hidden:true},
+                    { text: 'SKUAsk', datafield: 'SKUAsk',width: 150,editable: false,hidden:true },
+                    { text: 'SKUDamageQty', datafield: 'SKUDamageQty', width: 150,editable: false,hidden:true },
+                    { text: 'SKUDamagephoto', datafield: 'SKUDamagephoto', width: 150,editable: false,hidden:true },
+                    { text: 'SKUDetails', datafield: 'SKUDetails', width: 150,editable: false,hidden:true },
+                    { text: 'SKUGoodQty', datafield: 'SKUGoodQty', width: 150,editable: false,hidden:true},
+                    { text: 'SKUGoodphoto', datafield: 'SKUGoodphoto', width: 150,editable: false,hidden:true },                    
+                    { text: 'SKUOverlandQty', datafield: 'SKUOverlandQty',width: 150,editable: false,hidden:true },
+                    { text: 'SKUOverlandphoto', datafield: 'SKUOverlandphoto', width: 150,editable: false,hidden:true },                   
+                    { text: 'SKUReceivedQty', datafield: 'SKUReceivedQty',width: 150,editable: false,hidden:true },
+                    { text: 'SKUReference', datafield: 'SKUReference', width: 150,editable: false,hidden:true },
+                    { text: 'SKURemark', datafield: 'SKURemark', width: 150,editable: false,hidden:true },
+                    { text: 'SKUShortLandQty', datafield: 'SKUShortLandQty', width: 150,editable: false,hidden:true},
+                    { text: 'SKUShortLandphoto', datafield: 'SKUShortLandphoto',width: 150,editable: false,hidden:true },
+                    { text: 'SKUStatus', datafield: 'SKUStatus',width: 150,editable: false,hidden:true },
+                    { text: 'SKUTruckID":"",', datafield: 'SKUTruckID', width: 150,editable: false,hidden:true },
+                    { text: 'SKUTruckType', datafield: 'SKUTruckType',width: 150,editable: false,hidden:true },                    
+                    { text: 'SKUWeight', datafield: 'SKUWeight', width: 150,editable: false,hidden:true},
+                    { text: 'Shipper', datafield: 'Shipper',width: 150,editable: false,hidden:true },
+                    { text: 'ShipperAsk', datafield: 'ShipperAsk', width: 150,editable: false,hidden:true },
+                    { text: 'ShipperDetails', datafield: 'ShipperDetails', width: 150,editable: false,hidden:true },
+                    { text: 'ShipperName', datafield: 'ShipperName',width: 150,editable: false,hidden:true},
+                    { text: 'Signature', datafield: 'Signature', width: 150,editable: false,hidden:true },
+                    { text: 'SignatureDate', datafield: 'SignatureDate',width: 150,editable: false,hidden:true},
+                    { text: 'TransactionDate', TransactionDate: 'TransactionDate', width: 150,editable: false,hidden:true },
+                    { text: 'TruckAsk', datafield: 'TruckAsk', width: 150,editable: false,hidden:true },
+                    { text: 'TruckID', datafield: 'TruckID',width: 150,editable: false,hidden:true },
+                    { text: 'TruckRemark', datafield: 'TruckRemark',width: 150,editable: false,hidden:true },
+                    { text: 'TruckStatus', datafield: 'TruckStatus', width: 150,editable: false,hidden:true },
+                    { text: 'TruckTypeAsk', datafield: 'TruckTypeAsk', width: 150,editable: false,hidden:true }
                   ]
               };  
               jqwidgets.createInstance(`#${nestedGridContainer.id}`, 'jqxGrid', settings);
@@ -634,6 +647,8 @@ columns: any[] =
    
     { text: 'Ask', datafield: 'Ask', width: 120, hidden:true },
     { text: 'Booking ID', datafield: 'BookingID', width: 120 , hidden:false }  ,
+
+
     { text: 'Agent Ask', datafield: 'AgentAsk', width: 200 , hidden:false },
     { text: 'Shipper', datafield: 'Shipper', width: 150, hidden:false  },
     { text: 'No Of Container', datafield: 'NoOfContainer', width: 120, hidden:false  }, 
@@ -644,7 +659,6 @@ columns: any[] =
     { text: 'Transaction Date', datafield: 'TransactionDate', width: 120, hidden:false  }, 
     { text: 'Remark', datafield: 'Remark', width: 200, hidden:false  }, 
     { text: 'Booking Status Ask', datafield: 'BookingStatusAsk', width: 150 , hidden:false} ,
-
     { text: 'Cargo Received Date', datafield: 'CargoReceivedDate', width: 250, hidden:true }  ,    
     { text: 'CustomIssued Date', datafield: 'CustomIssuedDate', width: 120, hidden:true  }, 
     { text: 'Display Sequence', datafield: 'DisplaySequence', width: 120, hidden:true }, 
@@ -669,13 +683,13 @@ btnNew()
 btnRefresh()
 { 
    this.HeaderGrid.clear();
-    this.validParameter();    
+    this.bindParameterJson();    
     //alert(JSON.stringify(this.ParameterJson) );    
     this.getPRFEWarehouseList();
     //this.bindParameterJson();   
     //bba
 }
-public validParameter()
+public bindParameterJson()
 {
     //alert( this.ParameterJson.AgentAsk= this.cboagentcombo.val());
     this.ParameterJson.UserID= this.backendservice.LoginUser;
@@ -718,14 +732,6 @@ public validParameter()
         this.ParameterJson.BookingStatusAsk= "0";
     }
 }
-bindParameterJson()
-{
-    
-}
-btnSubmit()
-{   
-    //this.router.navigate(['setplanreceiveforexport-w']);
-}
 
 CellDoubleclick(event:any)
 {
@@ -742,6 +748,31 @@ CellDoubleclick(event:any)
     //{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk} ]);
     this.HeaderGrid.disabled(false) 
     
+}
+
+btnSubmit()
+{  
+    alert("Soon, can submit after sign pwd");
+}
+btnPreview()
+{  
+    alert("Soon, can Preview the data in pdf");
+    //this.router.navigate(['setcheckerforexport']);
+}
+btnPrint()
+{  
+    alert("Soon can print easy");
+    //this.router.navigate(['setcheckerforexport']);
+}
+btnDelete()
+{  
+    alert("Soon, can delete selected row");
+    //this.router.navigate(['setcheckerforexport']);
+}
+btnGenearateExcel()
+{  
+    alert("Soon to export data to excel");
+   //this.router.navigate(['setcheckerforexport']);
 }
 
 }
