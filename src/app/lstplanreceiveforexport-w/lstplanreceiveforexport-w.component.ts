@@ -51,7 +51,7 @@ export class LstplanreceiveforexportWComponent implements OnInit {
   //DetailJson = '[{"BookingAsk":"001","DocNo":"DOC-20180712001","ShippingMark":"A123/5","SKUDetail":"Refined Salt","D_W":"20","D_W":"20","D_D":"20","D_L":"20","ReceivedQTY":"250","UOM":"Bag","TotalCBM":"8","Remark":"with low qty"},{"BookingAsk":"002","DocNo":"DOC-20180712002","ShippingMark":"AA/254","SKUDetail":"Chlorinator","D_W":"34","D_D":"44","D_L":"34","ReceivedQTY":"50","UOM":"PCs","TotalCBM":"434","Remark":"remark"}]';
   
   //ParameterJson:any;
-ParameterJson={"UserID" : "admin","Password" : "123","ProductAsk":"11", "Ask":"0","BookingID":"","AgentAsk":"",
+ParameterJson={"UserID" : "","Password" : "","ProductAsk":"", "Ask":"0","BookingID":"","AgentAsk":"",
     "Shipper":"",
     "CountryAsk":"","CargoReceivedDate":"", "CustomIssuedDate":"", "TransactionDate":"","Signature":"",
     "SignatureDate":"", "BookingStatusAsk":"","NoOfTruck":"", "NoOfContainer":"", "TruckAsk":"",
@@ -61,6 +61,7 @@ ParameterJson={"UserID" : "admin","Password" : "123","ProductAsk":"11", "Ask":"0
     "ReceivedQty":"", "Reference":"","TruckType":"","GoodQty":"",
     "DamageQty":"", "ShortLandQty":"","OverlandQty":""
    }; 
+   UserJson={"UserID":"","Password":"","ProductAsk":""}
   HeaderJson :any;
   DetailJson :any;
    
@@ -88,16 +89,22 @@ ParameterJson={"UserID" : "admin","Password" : "123","ProductAsk":"11", "Ask":"0
     this.bindPlaceholder();
     this.bindTransactionStatus();
     this.bindAgent();
-    this.getPRFEWarehouseList();
-     
+    this.getPRFEWarehouseList();   
+    this.bindUserJson();
   }
-
+bindUserJson()
   
+  {
+      this.UserJson.UserID= this.backendservice.LoginUser;
+      this.UserJson.Password= this.backendservice.LoginPwd;
+      this.UserJson.ProductAsk=this.backendservice.ProductName;
+  }
 bindAgent()
 {    
-    var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
+    this.bindUserJson();
+    //var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
    // this.backendservice.BindAgent(jsonbody).then(data =>
-   this.backendservice.wsCall(jsonbody,this.backendservice.wsgetAgentList).then(data =>      
+   this.backendservice.wsCall(this.UserJson,this.backendservice.wsgetAgentList).then(data =>      
     {
         this.AgentList = data;
         this.agentsource ={
@@ -108,10 +115,12 @@ bindAgent()
         this.agentcombo_Adapter = new jqx.dataAdapter(this.agentsource)
     })
 }
+
 bindTransactionStatus()
-{    
-    var jsonbody = {"UserID":"Admin","Password":"123","ProductAsk":"11"}
-    this.backendservice.wsCall(jsonbody,this.backendservice.wsgetTransactionStatus).then(data =>
+{   
+     this.bindUserJson();    
+    // console.log('ws json is'+JSON.stringify(this.UserJson));
+    this.backendservice.wsCall(this.UserJson,this.backendservice.wsgetTransactionStatus).then(data =>
     {
         this.TrStatustList = data;
         this.TrStatussource ={
@@ -152,16 +161,20 @@ onTrStatusComboChange(event)
   getPRFEWarehouseList()
   {
        var body = this.ParameterJson;
-       console.log('ws json is'+JSON.stringify(body));
+       //alert('ws json is'+JSON.stringify(body));
        this.backendservice.wsCall(body,this.backendservice.wsgetPRFEWarehouseList).then(data =>
-       //this.backendservice.getReceivedlist(body).then(data =>
+       //this.backendservice.getPRFEWarehouseListceivedlist(body).then(data =>
         {
             //alert(JSON.stringify(data));
-            var json = data;             
+            debugger
+            var json = data;      
+            if (data)
+            {   
             console.log('ws json is'+JSON.stringify(json));
             this.HeaderJson = data[0].BookingList;
             this.DetailJson = data[0].DetailList;    
-            this.CreateGrid();        
+            this.CreateGrid();   
+            }     
                       
         }) 
     }
@@ -180,6 +193,12 @@ onTrStatusComboChange(event)
     {
         datafields: [
             { name: 'AgentAsk', type: 'string' },
+            { name: 'AgentName', type: 'string' },
+            { name: 'BookingStatus', type: 'string' },
+            { name: 'CountryName', type: 'string' },
+            { name: 'ShipperName', type: 'string' },
+            { name: 'TotalGrossW', type: 'string' },
+            { name: 'TotalVol', type: 'string' },
             { name: 'Ask', type: 'string' },
             { name: 'BookingID' , type: 'string' },
             { name: 'BookingStatusAsk' , type: 'string' },
@@ -213,6 +232,13 @@ onTrStatusComboChange(event)
     this.headercolumns =
     [        
         { text: 'AgentAsk', datafield: 'AgentAsk', width: 300 },
+        { text: 'Agent Name', datafield: 'AgentName', width: 300 },
+        { text: 'Status', datafield: 'BookingStatus', width: 300 },
+        { text: 'Country Name', datafield: 'CountryName', width: 300 },
+        { text: 'Shipper Name', datafield: 'ShipperName', width: 300 },
+        { text: 'Total Gross Weight', datafield: 'TotalGrossW', width: 300 },
+        { text: 'Total Vol', datafield: 'TotalVol', width: 300 },       
+
         { text: 'Ask', datafield: 'Ask', width: 300 },
         { text: 'Booking ID', datafield: 'BookingID', width: 300 }  ,
         { text: 'BookingStatusAsk', datafield: 'BookingStatusAsk', width: 300 }   ,
@@ -649,16 +675,16 @@ columns: any[] =
     { text: 'Booking ID', datafield: 'BookingID', width: 120 , hidden:false }  ,
 
 
-    { text: 'Agent Ask', datafield: 'AgentAsk', width: 200 , hidden:false },
-    { text: 'Shipper', datafield: 'Shipper', width: 150, hidden:false  },
+    { text: 'Agent Name', datafield: 'AgentName', width: 200 , hidden:false },
+    { text: 'Shipper Name', datafield: 'ShipperName', width: 150, hidden:false  },
     { text: 'No Of Container', datafield: 'NoOfContainer', width: 120, hidden:false  }, 
     { text: 'No Of Truck', datafield: 'NoOfTruck', width: 120, hidden:false  },  
     // { text: 'Total Gross Weight', datafield: 'Remark', width: 150, hidden:false  }, 
     // { text: 'Total Vol:', datafield: 'Remark', width: 150, hidden:false  }, 
-    { text: 'Country Ask', datafield: 'CountryAsk', width: 150, hidden:false },
+    { text: 'Country Name', datafield: 'CountryName', width: 150, hidden:false },
     { text: 'Transaction Date', datafield: 'TransactionDate', width: 120, hidden:false  }, 
     { text: 'Remark', datafield: 'Remark', width: 200, hidden:false  }, 
-    { text: 'Booking Status Ask', datafield: 'BookingStatusAsk', width: 150 , hidden:false} ,
+    { text: 'Status', datafield: 'BookingStatus', width: 150 , hidden:false} ,
     { text: 'Cargo Received Date', datafield: 'CargoReceivedDate', width: 250, hidden:true }  ,    
     { text: 'CustomIssued Date', datafield: 'CustomIssuedDate', width: 120, hidden:true  }, 
     { text: 'Display Sequence', datafield: 'DisplaySequence', width: 120, hidden:true }, 
@@ -677,7 +703,7 @@ columns: any[] =
 btnNew()
 { 
     this.HeaderGrid.disabled(true); 
-    this.router.navigate([ {outlets: { modal: 'settallycheckforexport-w' } } ]);
+    this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' } } ]);
     this.HeaderGrid.disabled(false)    
 }
 btnRefresh()

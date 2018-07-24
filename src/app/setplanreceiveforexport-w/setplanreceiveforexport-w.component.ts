@@ -32,9 +32,6 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   @ViewChild('transactiondate') transactiondate: jqxDateTimeInputComponent;
   @ViewChild('customerissueddate') customerissueddate: jqxDateTimeInputComponent;
   
-  
-
-
   source: any;
   dataAdapter: any;
   columns : any=[];
@@ -53,7 +50,6 @@ export class SetplanreceiveforexportWComponent implements OnInit {
   source4 : any = [];
   dataAdapter4 : any;
   columns4 : any = [];
-
 
   // book textbox
   bookingid : any;
@@ -105,25 +101,109 @@ setupbookask = "";
 setupagentask = "";
 
 HeaderJson :any;
-  DetailJson :any;
+DetailJson :any;
+BookingJson={
+    "AgentAsk": "",
+    "Ask": "",
+    "BookingID": "",
+    "BookingStatusAsk": "",
+    "CargoReceivedDate": "",
+    "CountryAsk": "",
+    "CustomIssuedDate": "",
+    "DisplaySequence": "",
+    "LogisticTypeAsk": "",
+    "NoOfContainer": "",
+    "NoOfTruck": "",
+    "Remark": "",
+    "Shipper": "",
+    "Signature": "",
+    "SignatureDate": "",
+    "TS": "1",
+    "TransactionDate": "",
+    "UD": "1"
+}
+POJson={
+    "BookingAsk": "",
+    "POAsk": "",
+    "PODisplaySequence": "0",
+    "PONo": "",
+    "POReferenceNo": "",
+    "PORemark": " ",
+    "POShippingMark": "",
+    "POStatus": "0",
+    "POTS": "0",
+    "POUD": "0",
+    "ShipperAsk": "",
+    "TruckAsk": ""
+};
+SKUJson={
+    "BookingAsk": "",
+    "POAsk": "",
+    "SKUAsk": "",
+    "SKUDamageQty": "",
+    "SKUDamagephoto": "",
+    "SKUDetails": "",
+    "SKUDimensionBase": "0",
+    "SKUDimensionHeight": "0",
+    "SKUDimensionWidth": "0",
+    "SKUDisplaySequence": "0",
+    "SKUGoodQty": "",
+    "SKUGoodphoto": "",
+    "SKUName": "",
+    "SKUOverlandQty": "",
+    "SKUOverlandphoto": "",
+    "SKUPlanQty": "",
+    "SKUReceivedQty": "",
+    "SKUReference": "",
+    "SKURemark": " ",
+    "SKUShortLandQty": "",
+    "SKUShortLandphoto": "",
+    "SKUStatus": "0",
+    "SKUTS": "0",
+    "SKUTruckID": "",
+    "SKUTruckType": "",
+    "SKUUD": "0",
+    "SKUUOMAsk": "0",
+    "SKUWeight": "0",
+    "ShipperAsk": "",
+    "TruckAsk": ""
+}
+ShipperJson={
+    "BookingAsk": "",
+    "ShipperAsk": "",
+    "ShipperDetails": "0",
+    "ShipperDisplaySequence": "0",
+    "ShipperName": "",
+    "ShipperRemark": "",
+    "ShipperStatus": "0",
+    "ShipperTS": "0",
+    "ShipperUD": "0"
+};
+TruckJson= {
+    "BookingAsk": "",
+    "ShipperAsk": "",
+    "TruckAsk": "",
+    "TruckDisplaySequence": "0",
+    "TruckID": "",
+    "TruckRemark": "",
+    "TruckStatus": "0",
+    "TruckTS": "0",
+    "TruckTypeAsk": "0",
+    "TruckUD": "0"
+};
 
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
-
-
     this.bookidplaceholder = "BookID";
     this.agentplaceholder = 'Agent'
     this.countryplaceholder = "Country"
     this.nooftrackplaceholder = "NoOfTruck";
     this.noofcontainerplaceholder = "NoOfContainer";
     this.remarkplaceholder = "Remark";
-
-     
-
-         
-
-    
-
+    this.createGrid();
+   
+   //this.CreateGrid();
+   // this.btnNew();
   }
 
   ngAfterViewInit() {
@@ -134,19 +214,15 @@ HeaderJson :any;
     this.route.params.subscribe(params => {
         bookask = +params['param1']; 
         agentask = +params['param2']; 
-
-    })
-      
+        })   
 
       this.getPRFEWarehouseList(bookask,agentask).then(data =>
         {
             debugger
             this.BindTrackType();
             this.BindCountry();
-            this.BindAgent();
-        
-            this.CreateGrid(); 
-
+            this.BindAgent();        
+            this.bindGrid(); 
         }
 
       )
@@ -199,33 +275,40 @@ HeaderJson :any;
         "OverlandQty":""
        }
 
-       this.backendservice.getReceivedlist(body).then(data =>
+       this.backendservice.wsCall(body,this.backendservice.wsgetPRFEWarehouse).then(data =>
         {
             debugger
             //alert(JSON.stringify(data));
             var json = data;
             console.log('ws json is'+JSON.stringify(json));
+        
 
-            this.HeaderJson = data[0].BookingList;
-            this.DetailJson = data[0].DetailList;     
+            this.BookingJson = data[0].BookingList;
+            this.POJson = data[0].POList;     
+            this.SKUJson = data[0].SKUList;
+            this.ShipperJson = data[0].ShipperList;  
+            this.TruckJson = data[0].TruckList;   
 
-            if(this.HeaderJson.length)
+            if(this.BookingJson.Ask!="0")
             {            
 
-            this.HeaderJson = data[0].BookingList;
-            this.DetailJson = data[0].DetailList;       
-            this.CreateGrid();                
+            // this.HeaderJson = data[0].BookingList;
+            // this.DetailJson = data[0].DetailList;    
+            // this.HeaderJson = data[0].BookingList;
+            // this.DetailJson = data[0].DetailList;  
+
+            this.bindGrid();                
             this.BindingcompleteAgent(Event);
             this.BindingcompletCoutry(Event);
 
              
-            this.bookingid = this.HeaderJson[0].BookingID;
-            this.nooftrack = this.HeaderJson[0].NoOfTruck;
-            this.noofcontainer =  this.HeaderJson[0].NoOfContainer;
-            this.remark = this.HeaderJson[0].Remark;
-            this.cargoreceiveddate.setDate(this.HeaderJson[0].CargoReceivedDate)        
-            this.customerissueddate.setDate(this.HeaderJson[0].CustomIssuedDate)
-            this.transactiondate.setDate(this.HeaderJson[0].TransactionDate)
+            this.bookingid = this.BookingJson[0].BookingID;
+            this.nooftrack = this.BookingJson[0].NoOfTruck;
+            this.noofcontainer =  this.BookingJson[0].NoOfContainer;
+            this.remark = this.BookingJson[0].Remark;
+            this.cargoreceiveddate.setDate(this.BookingJson[0].CargoReceivedDate)        
+            this.customerissueddate.setDate(this.BookingJson[0].CustomIssuedDate)
+            this.transactiondate.setDate(this.BookingJson[0].TransactionDate)
             resolve('success');
 
             }
@@ -304,27 +387,24 @@ onremarkchange(event)
 
 }
 
-CreateGrid()
+bindGrid()
 {
   this.source  =
   {
-      datafields: [
+      datafields: [ 
           { name: 'BookingAsk' },
           { name: 'ShipperAsk' },
           { name: 'ShipperDetails' },
           { name: 'ShipperDisplaySequence' },
           { name: 'ShipperName' },
           { name: 'ShipperRemark' },
-          { name: 'ShipperStatus' }
+          { name: 'ShipperStatus' },
+          { name: 'ShipperTS' },    
+          { name: 'ShipperUD' },
       ],
-      localdata:
-      [
-
-      ]
+      localdata:this.ShipperJson      
   }
-
   this.dataAdapter = new jqx.dataAdapter(this.source);
-
   this.columns =
   [
       { text: 'Shipper Name', datafield: 'ShipperName', width: 250 },
@@ -341,27 +421,25 @@ CreateGrid()
       { name: 'TruckID' },
       { name: 'TruckRemark' },
       { name: 'TruckStatus' },
+      { name: 'TruckTS' },
       { name: 'TruckTypeAsk' },
       { name: 'Tracktype',type:'string'},
+      { name: 'TruckUD',type:'string'},      
       { name: 'weight' },
       { name: 'cm' }
   ];
-
   this.source2 =
   {
       datatype: 'json',
       datafields: this.dataFields2,
-      localdata:null
+      localdata:this.TruckJson
   }
-
   this.dataAdapter2 = new jqx.dataAdapter(this.source2,{ autoBind: true } );
-
-  this.columns2 = 
+ this.columns2 = 
   [
       { text: 'Track ID', datafield: 'TruckID', width: 100 },
      // { text: 'Track Type', datafield: 'TrackType', width: 100 },
      { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'Description', columntype: 'combobox',
-
      cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => {
         if (newvalue != oldvalue) {
           //////////////////;                                  
@@ -397,6 +475,8 @@ CreateGrid()
       { name: 'PORemark' },
       { name: 'POShippingMark' },
       { name: 'POStatus' },
+      { name: 'POTS' },
+      { name: 'POUD' },
       { name: 'ShipperAsk' },
       { name: 'TruckAsk' }
   ];
@@ -404,12 +484,8 @@ CreateGrid()
   this.source3 =
   {
       datafields: this.dataFields3,
-      localdata:
-      [
-         
-      ]
+      localdata:this.POJson      
   }
-
   this.dataAdapter3 = new jqx.dataAdapter(this.source3, { autoBind: true } );
 
   this.columns3 = 
@@ -457,10 +533,7 @@ CreateGrid()
   this.source4 =
   {
       datafields: this.dataFields4,
-      localdata:
-      [
-          
-      ]
+      localdata:this.SKUJson     
   }
 
   this.dataAdapter4 = new jqx.dataAdapter(this.source4, { autoBind: true } );
@@ -479,27 +552,25 @@ CreateGrid()
 
 }
 
-BindingGrid()
+createGrid()
 {
+    
   this.source  =
   {
-      datafields: [
+      datafields: [ 
           { name: 'BookingAsk' },
           { name: 'ShipperAsk' },
           { name: 'ShipperDetails' },
           { name: 'ShipperDisplaySequence' },
           { name: 'ShipperName' },
           { name: 'ShipperRemark' },
-          { name: 'ShipperStatus' }
+          { name: 'ShipperStatus' },
+          { name: 'ShipperTS' },    
+          { name: 'ShipperUD' },
       ],
-      localdata:
-      [
-
-      ]
+      localdata:[]    
   }
-
   this.dataAdapter = new jqx.dataAdapter(this.source);
-
   this.columns =
   [
       { text: 'Shipper Name', datafield: 'ShipperName', width: 250 },
@@ -516,35 +587,33 @@ BindingGrid()
       { name: 'TruckID' },
       { name: 'TruckRemark' },
       { name: 'TruckStatus' },
+      { name: 'TruckTS' },
       { name: 'TruckTypeAsk' },
       { name: 'Tracktype',type:'string'},
+      { name: 'TruckUD',type:'string'},      
       { name: 'weight' },
       { name: 'cm' }
   ];
-
   this.source2 =
   {
       datatype: 'json',
       datafields: this.dataFields2,
-      localdata:null
+      localdata:[]
   }
-
   this.dataAdapter2 = new jqx.dataAdapter(this.source2,{ autoBind: true } );
-
-  this.columns2 = 
+ this.columns2 = 
   [
       { text: 'Track ID', datafield: 'TruckID', width: 100 },
      // { text: 'Track Type', datafield: 'TrackType', width: 100 },
-     { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'TrackType', columntype: 'combobox',
-
+     { text: 'Track Type', datafield: 'TrackType', width: '10%',displayfield: 'Description', columntype: 'combobox',
      cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => {
         if (newvalue != oldvalue) {
           //////////////////;                                  
             //let array = [];
-
+                
             for(let k=0; k< this.TrackList.length; k++)
             {
-                if(this.TrackList[k].Ask == newvalue)
+                if(this.TrackList[k].Ask == newvalue.value)
                 {
                     this.truckGrid.setcellvalue(row,'weight',this.TrackList[k].StockWeight);                        
                 }
@@ -553,7 +622,7 @@ BindingGrid()
     },
        createeditor: (row: number, value: any, editor: any): void => {       
            
-       editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.TypeAdapter, displayMember: 'Description', valueMember: 'Code' })     
+       editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.TypeAdapter, displayMember: 'Description', valueMember: 'Ask' })     
      }          
      },
       { text: 'weight', datafield: 'weight', width: 100 },
@@ -572,6 +641,8 @@ BindingGrid()
       { name: 'PORemark' },
       { name: 'POShippingMark' },
       { name: 'POStatus' },
+      { name: 'POTS' },
+      { name: 'POUD' },
       { name: 'ShipperAsk' },
       { name: 'TruckAsk' }
   ];
@@ -579,12 +650,8 @@ BindingGrid()
   this.source3 =
   {
       datafields: this.dataFields3,
-      localdata:
-      [
-         
-      ]
+      localdata:[]  
   }
-
   this.dataAdapter3 = new jqx.dataAdapter(this.source3, { autoBind: true } );
 
   this.columns3 = 
@@ -632,10 +699,7 @@ BindingGrid()
   this.source4 =
   {
       datafields: this.dataFields4,
-      localdata:
-      [
-          
-      ]
+      localdata:[]  
   }
 
   this.dataAdapter4 = new jqx.dataAdapter(this.source4, { autoBind: true } );
@@ -807,6 +871,7 @@ BindingGrid()
     ];
 
   }
+
   btnPrint()
   {
       this.BindTrackType();
@@ -818,12 +883,12 @@ BindingGrid()
       var Shipperlist = [];
       var Trucklist = [];
       var SKUlist = [];
-
+    debugger
       var shipperselectedrowindex  = this.shipperGrid.getselectedrowindex();     
       var shipperrowdata = this.shipperGrid.getrowdata(shipperselectedrowindex);      
       var selectedshippergridarray  = [];
      
-        selectedshippergridarray.push({'Ask':'0'});
+        selectedshippergridarray.push({'Ask':'0'}); 
         selectedshippergridarray.push({'ShipperName':shipperrowdata.ShipperName});
         selectedshippergridarray.push({'ShipperDetails':shipperrowdata.ShipperDetails});
             
@@ -1001,9 +1066,11 @@ BindingGrid()
       
     
 
-            
+      alert(JSON.stringify(JSON.stringify( jsonbodystring))); 
+      console.log("para is "+JSON.stringify(JSON.stringify( jsonbodystring)));
       this.backendservice.SaveReceived(jsonbodystring).then(data =>
         {
+            console.log("return is "+JSON.stringify(JSON.stringify( data)));
             alert(JSON.stringify(data)); 
         }) 
         console.log("body is "+JSON.stringify(body));
@@ -1012,7 +1079,10 @@ BindingGrid()
   btnNew()
   {
                 
-
+    this.shipperGrid.clear();
+    this.truckGrid.clear();
+    this.poGrid.clear();
+    this.skuGrid.clear();
     this.BindCountry();
     this.BindAgent();
 

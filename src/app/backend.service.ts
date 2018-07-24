@@ -23,7 +23,8 @@ export class BackendService {
 
 
   wsProtocol="http://"; // "http://" or "https://"
-  wsServere : any = "zawpyaethan-001-site1.btempurl.com";
+  wsServere : any ="localhost:8588" ;
+  //wsServere : any ="zawpyaethan-001-site1.btempurl.com";
   wsPort : any = "";//":4200";
   wsName:any = "/WMS.svc";  
 
@@ -40,12 +41,14 @@ export class BackendService {
   wsgetSysProduct = "/getSysProduct";
   wsgetSysUserList = "/getSysUserList";
   wsgetPRFEWarehouseList = "/getPRFEWarehouseList";
+  wsgetPRFEWarehouse = "/getPRFEWarehouse";
   wsgetSKUBarcodeList = "/getPRFEWarehouseList";
   wsgetCheckerWarehouseList = "/getPRFEWarehouseList";
   wsgetCountryList = "/getCountryList";
   wsgetUOMList = "/getUOMList";
   wsgetTruckTypeList = "/getTruckTypeList";
   wsgetTallyWarehouseList = "/getTallyWarehouseList";
+  wsgetTallyWarehouse = "/getTallyWarehouse";
   wsgetAllocation = "/getAllocation";
   wsgetSelectCreatePickList = "/getSelectCreatePickList";
   wsgetDeliverlist = "/getDeliverlist";
@@ -199,7 +202,7 @@ export class BackendService {
   public wsCall(body,wsMethod)
   {
     return new Promise((resolve,reject) => {
-
+//debugger
       var  headers = new Headers();
       headers.append('Content-Type', 'application/json')
       headers.append('Accept', 'application/json')

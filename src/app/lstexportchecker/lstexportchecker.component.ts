@@ -680,10 +680,25 @@ export class LstexportcheckerComponent implements OnInit {
   
   ]; 
   btnNew()
-  { 
-      this.HeaderGrid.disabled(true); 
-      this.router.navigate([ {outlets: { modal: 'settallycheckforexport-w' } } ]);
-      this.HeaderGrid.disabled(false)    
+  {    
+    //alert("btn new");
+    // //   this.HeaderGrid.disabled(true); 
+    // //   this.router.navigate([ {outlets: { modal: 'setcheckerforexport-w' } } ]);
+    // //   this.HeaderGrid.disabled(false)  
+    // var columnindex = event.args.columnindex;
+    // var rowindex = this.HeaderGrid.getselectedrowindex();
+    // var rowid = this.HeaderGrid.getrowid(rowindex);  
+    // var rowdata = this.HeaderGrid.getrowdata(rowindex); 
+
+    // alert("ask - "+rowdata.Ask +", agent -"+ rowdata.AgentAsk);
+    //  //this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
+    // // this.HeaderGrid.disabled(true); 
+    // this.HeaderGrid.disabled(true)       
+    // //this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' }},
+    // //alert(rowdata.Ask+","+rowdata.AgentAsk);
+    // this.router.navigate([ {outlets: { modal: ['setcheckerforexport-w',rowdata.Ask,rowdata.AgentAsk] } } ]);
+    // this.btnRefresh();  
+      
   }
   btnRefresh()
   { 
@@ -745,7 +760,7 @@ export class LstexportcheckerComponent implements OnInit {
       var rowindex = this.HeaderGrid.getselectedrowindex();
       var rowid = this.HeaderGrid.getrowid(rowindex);  
       var rowdata = this.HeaderGrid.getrowdata(rowindex); 
-  
+    //alert(columnindex.toString());
        //this.router.navigate(['setplanreceiveforexport-w',{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk}]);   
       // this.HeaderGrid.disabled(true); 
       this.HeaderGrid.disabled(true)       

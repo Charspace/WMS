@@ -216,6 +216,14 @@ const appRoutes: Routes=[
     
   },
   {
+    path : 'setplanreceiveforexport-w',
+    component:SetplanreceiveforexportWComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'
+    
+
+  },
+  {
     path : 'setplanreceiveforexport-w/:param1/:param2',
     component:SetplanreceiveforexportWComponent,
     outlet: 'modal'    
@@ -225,6 +233,12 @@ const appRoutes: Routes=[
   },
   {
     path : 'settallycheckforexport-w',
+    component:SettallycheckforexportWComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'    
+  },
+  {
+    path : 'settallycheckforexport-w/:param1/:param2',
     component:SettallycheckforexportWComponent,
     outlet: 'modal'    
     //outlet:'homepath'    
@@ -247,8 +261,14 @@ const appRoutes: Routes=[
   },
   {
     path : 'setbarcodemappingforexport-w',
-    component:SetbarcodemappingforexportWComponent    
+    component:SetbarcodemappingforexportWComponent ,
+    outlet: 'modal'   
     //outlet:'homepath'    
+  } ,
+  {
+    path : 'setbarcodemappingforexport-w/:param1/:param2',
+    component:SetbarcodemappingforexportWComponent,  
+    outlet: 'modal'      
   } ,
   {
     path : 'setdeliverforexport-w',
@@ -275,8 +295,12 @@ const appRoutes: Routes=[
     component:SetcheckerforexportWComponent,
     outlet: 'modal'    
     //outlet:'homepath'
-    
-
+  },
+  {
+    path : 'setcheckerforexport-w',
+    component:SetcheckerforexportWComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'
   },
   // {
   //   path : 'setcheckerforexport-w',

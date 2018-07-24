@@ -1,6 +1,6 @@
 <app-modal>
     <div modal-body>
-<app-framelayout> </app-framelayout>
+<!-- <app-framelayout> </app-framelayout> -->
 <div class="framebutton"  >
                                 
     <table width="100%" border="0">
@@ -75,19 +75,7 @@
     <tr>
              
 
-     <td colspan="1">
-            <label >Cargo Received Date</label>
-        <jqxDateTimeInput #cargoreceiveddate class="label" 
-        (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
-       </jqxDateTimeInput>
-   </td>
    
-   <td colspan="1">
-        <label >Customer Issued Date</label>
-       <jqxDateTimeInput #customerissueddate class="label" 
-       (onValueChanged)="onCustomerIssueddate($event)" [disabled]="false">
-      </jqxDateTimeInput>
-  </td>
   
   <td colspan="1">
         <label >Transaction Date</label>
@@ -102,53 +90,72 @@
         [placeHolder]="remarkplaceholder">
       </jqxTextArea >
     </td>  
+      <td colspan="1" hidden="true" >
+            <label >Cargo Received Date</label>
+        <jqxDateTimeInput #cargoreceiveddate class="label" 
+        (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+       </jqxDateTimeInput>
+   </td>
+   
+   <td colspan="1"  hidden="true">
+        <label >Customer Issued Date</label>
+       <jqxDateTimeInput #customerissueddate class="label" 
+       (onValueChanged)="onCustomerIssueddate($event)" [disabled]="false">
+      </jqxDateTimeInput>
+  </td>
+  </tr>
     </table>
 
 <div style='margin-left:5px; margin-right:5px'>
   <h3>Shipper</h3>
-
   <jqxGrid #shipperGrid (onRowselect)="shipperGridOnRowSelect($event)"
        [source]="dataAdapter" (onCellvaluechanged)="CellvaluechangedShipper($event)"  (onCellendedit)="CellendeditShipper()"
       [keyboardnavigation]="false" [columns]="columns"
       [width]="'100%'" [source]="dataAdapter" [filterable]="true"  
     [editable]="true" [altrows]="true"  
-    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
-      >
+    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"  [autoheight]="true"
+    [rowdetails]="true" [rowsheight]="20" [initrowdetails]="initRowDetails"
+              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate"
+        >
   </jqxGrid>
 </div>
 
 
-<div style='margin-left:5px; margin-right:5px'>
+<div style='margin-left:5px; margin-right:5px;'>
   <h3>Truck</h3>
-
   <jqxGrid #truckGrid  (onRowselect)="truckGridOnRowSelect($event)"  (onCellvaluechanged)="CellvaluechangedTruck($event)"  (onCellendedit)="CellendeditTruck()"    
       [keyboardnavigation]="false" [columns]="columns2"
       [width]="'100%'" [source]="dataAdapter2" [filterable]="true" 
     [editable]="true" [altrows]="true"  
-    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
-      >
+    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"   [autoheight]="true"
+    [rowdetails]="true" [rowsheight]="20" [initrowdetails]="initRowDetails"
+              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate"   >
   </jqxGrid>
   </div>
 
   <div style='margin-left:5px; margin-right:5px'>
-  <h3>PO</h3>
+    <h3>PO</h3>
   <jqxGrid #poGrid      (onRowselect)="poGridOnRowSelect($event)"  (onCellvaluechanged)="CellvaluechangedPO($event)"  (onCellendedit)="CellendeditPO()"
   [keyboardnavigation]="false" [columns]="columns3"
   [width]="'100%'" [source]="dataAdapter3" [filterable]="true"  
 [editable]="true"  [altrows]="true"  
-[showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
-  >
+[showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"  [autoheight]="true"
+[rowdetails]="true" [rowsheight]="20" [initrowdetails]="initRowDetails"
+[ready]="ready" [rowdetailstemplate]="rowdetailstemplate"
+   
+>
 </jqxGrid>
 </div>
 
 <div style='margin-left:5px; margin-right:5px'>
-        <h3>SKU</h3>
-        <jqxGrid #skuGrid      
+  <h3>SKU</h3>
+        <jqxGrid #skuGrid  
         [keyboardnavigation]="false" [columns]="columns4"  (onCellvaluechanged)="CellvaluechangedSKU($event)"  (onCellendedit)="CellendeditSKU()"
         [width]="'100%'" [source]="dataAdapter4" [filterable]="true"  
       [editable]="true"  [altrows]="true"  
-      [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  [altrows]="true" [autoheight]="true"
-        >
+      [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"  [autoheight]="true"
+      [rowdetails]="true" [rowsheight]="20" [initrowdetails]="initRowDetails"
+      [ready]="ready" [rowdetailstemplate]="rowdetailstemplate"   >
       </jqxGrid>
       </div>
     </div>

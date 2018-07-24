@@ -4,58 +4,76 @@
     <table style="width: 100%;height: 10%"  border="0">
       <tr>
           <td >
-              <jqxInput  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
+              <jqxInput  #txtBookingID  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
         </td>
         <td >
-            <jqxInput  [width]="200" [height]="25"  [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="false">             </jqxInput>              
+            <jqxInput #txtShipper [width]="200" [height]="25"    [minLength]="1" [placeHolder]="shipperlaceholder" [disabled]="false">             </jqxInput>              
         </td>
         <td >
-            <jqxComboBox #countrycombo style=" float: left"
-               
+            <!-- <jqxComboBox #countrycombo style=" float: left"               
                 [valueMember]="'CountryName'"
-              [placeHolder]="agentplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"   >
-              </jqxComboBox> 
+              [placeHolder]="agentplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false" >
+              </jqxComboBox>  -->
+
+              <jqxComboBox #cboagentcombo style=" float: left"
+              (onSelect)="onAgentComboChange($event) " (onBindingComplete)="BindingcompleteAgent($event)"
+               [source]="agentcombo_Adapter" [valueMember]="'Ask'"
+                [placeHolder]="agentplaceholder" [displayMember]="'AgentName'" [searchMode]="'containsignorecase'" [autoComplete]="true"  >
+             </jqxComboBox>
+
         </td>              
         <td >
-            <jqxComboBox #countrycombo style=" float: left"
+            <!-- <jqxComboBox #countrycombo style=" float: left"
                
                 [valueMember]="'CountryName'"
-              [placeHolder]="statusplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"  >
-              </jqxComboBox> 
+              [placeHolder]="statusplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="false"   >
+              </jqxComboBox>  -->
+
+              <jqxComboBox #cboTrstatustcombo style=" float: left"
+              (onSelect)="onTrStatusComboChange($event) " (onBindingComplete)="BindingcompleteTrStataus($event)"
+               [source]="TrStatusCombo_Adapter" [valueMember]="'Ask'"
+                [placeHolder]="statusplaceholder" [displayMember]="'StatusName'" [searchMode]="'containsignorecase'" [autoComplete]="true"  >
+             </jqxComboBox>
+
+
         </td>       
         <td >      
-            <jqxDateTimeInput #cargoreceiveddate class="label"   >
+            <jqxDateTimeInput  #dtTransactionDate class="label"   [disabled]="false" >
             </jqxDateTimeInput>
         </td> 
 		<td >
-            <jqxButton [width]='120' [height]='30' class="buttoncolor" #button  > Refresh  </jqxButton> 
+            <jqxButton #txtReferenceNo [width]='120' [height]='30' class="buttoncolor"  #button (onClick)="btnRefresh()" >    Refresh  </jqxButton> 
           </td>
    
       </tr>
     </table> 
   </div>    
-  <div style="width: 100%; height: 70%;">
-    <table style="width: 100%;height: 10%"  border="1" > 
-        <tr>
-          <!-- <td>
+  <div style="width: 100%; height: 100%;">
+    <table style="width: 100%;height: 100%"  border="1" > 
+        <!-- <tr>
+          <td>
               <label style="font-size: 15px" ><b>Status</b></label>
           </td>
           <td>
               <label style="font-size: 15px" ><b>List</b></label>
-          </td> -->
-        </tr>
-        <tr>                 
-          <td style="width: 25%;height: 10%">            
-              <jqxBarGauge 
-              [width]="400" [height]="400" [max]="150" 
-              [colorScheme]="'scheme02'"  [values]="values">
-              </jqxBarGauge>
-          </td>     
-          <td style="width: 30%">              
-              <jqxGrid #HeaderGrid
-              [width]="850" [height]="365" [source]="HeaderAdapter" [columns]="columns" 
-              [rowdetails]="true" [rowsheight]="35" [initrowdetails]="initRowDetails"
-              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate">
+          </td>
+        </tr> -->
+        <tr style="width: 100%" >               
+            <!-- <td style="width: 25%;height: 10%">            
+                <jqxBarGauge 
+                [width]="400" [height]="400" [max]="150" 
+                [colorScheme]="'scheme02'"  [values]="values">
+                </jqxBarGauge>
+            </td>      -->
+          <td style="width: 100%">              
+              <jqxGrid #HeaderGrid (onCelldoubleclick)="CellDoubleclick($event)"
+              [height]="365" [source]="HeaderAdapter" [columns]="columns" 
+              [rowdetails]="true" [rowsheight]="25" [initrowdetails]="initRowDetails"
+              [ready]="ready" [rowdetailstemplate]="rowdetailstemplate"
+              [width]="'100%'" [filterable]="true"  [editable]="false"  [altrows]="true"  
+                [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  
+                [altrows]="true" [autoheight]="true">
+
           </jqxGrid>
           </td>
         </tr>
@@ -65,12 +83,12 @@
     <table width="100%" border="0">
         <tr>       
             <td>   
-              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()" >       Tally Count     </jqxButton>     
-              <jqxButton [width]='120' [height]='30' #button >       Submit       </jqxButton>  
-              <jqxButton [width]='120' [height]='30' #button >       Preview       </jqxButton>    
-              <jqxButton [width]='120' [height]='30' #button  >       Print       </jqxButton>   
-              <jqxButton [width]='120' [height]='30' #button  >       Delete       </jqxButton>        
-              <jqxButton [width]='120' [height]='30' #button >       Genearate Excel       </jqxButton>        
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()" >       New Recive     </jqxButton>     
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnSubmit()" >       Submit       </jqxButton>  
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnPreview()" >       Preview       </jqxButton>    
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnPrint()" >       Print       </jqxButton>   
+              <jqxButton [width]='120' [height]='30' #button  (onClick)="btnDelete()">       Delete       </jqxButton>        
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnGenearateExcel()">       Genearate Excel       </jqxButton>        
             </td>
         </tr>
     </table>

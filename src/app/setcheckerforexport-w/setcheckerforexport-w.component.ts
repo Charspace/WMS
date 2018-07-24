@@ -50,63 +50,55 @@ export class SetcheckerforexportWComponent implements OnInit {
  cboUOMList : any = [];
  cboUOMSource : any = [];
 
-
   HeaderJson:any;
   DetailJson : any;
-
+  saveJsonParaSKU:any;
   getJsonParaUser= {"UserID":"","Password":"","ProductAsk":""};
   saveJsonParamenter={
-    "UserID" : "admin",
-    "Password" : "123",
+    "UserID" : "",
+    "Password" : "",
     "ProductAsk":"11",
-    "Ask":"0",
-    "BookingID":"0",
-    "AgentAsk": "",
-    "Shipper":"",
-    "CountryAsk":"",
-    "CargoReceivedDate":"",
-    "CustomIssuedDate":"",
-    "TransactionDate":"",
-    "Signature":"",
-    "SignatureDate":"",
-    "BookingStatusAsk":"",
-    "NoOfTruck":"",
-    "NoOfContainer":"",
-    "TruckAsk":"",
-    "TruckID":"",
-    "TruckTypeAsk":"",
-    "PONo":"",
-    "ShippingMark":"",
-    "ReferenceNo":"",
-    "SKUAsk":"",
-    "SKUName":"",
-    "SKUDetails":"",
-    "DimensionWidth":"",
-    "DimensionHeight":"",
-    "DimensionBase":"",
-    "SKUWeight":"",
-    "PlanQty":"",
-    "UOMAsk":"",
-    "ReceivedQty":"",
-    "Reference":"",
-    "TruckType":"",
-    "GoodQty":"",
-    "DamageQty":"",
-    "ShortLandQty":"",
-    "OverlandQty":""
+    "BookingAsk":"",
+    "AgentAsk":"",
+    "ShipperAsk":"0",
+    "ContainerAsk":"0",
+   "Ask":"0",
+   "SKUName":"",
+   "SKUDetails":"",
+   "DimensionWidth":"0",
+   "DimensionHeight":"0",
+   "DimensionBase":"0",
+   "SKUWeight":"0",
+   "PlanQty":"0",
+   "UOMAsk":"0",
+   "ReceivedQty":"0",
+   "Reference":"",
+   "TruckID":"",
+   "TruckType":"",
+   "GoodQty":"",
+   "DamageQty":"",
+   "ShortLandQty":"",
+   "OverlandQty":"",
+   "Goodphoto":"",
+   "Damagephoto":"",
+   "ShortLandphoto":"",
+   "Overlandphoto":""
    }
   //DetailJson = '[{"PONo": "001","ShippingMark": "SM-20180712001",	"ReferenceNo": "REF-A123/5","SKUName": "Salt",	"Dimission_W": "20","Dimission_H": "20",	"Dimission_L": "20","CBM": "250","PlanedQTY": "45","ReceivedQTY": "45",	"DiffQTY": "0","UOM": "BAG","Weight": "8","TruckID": "T-4568","TruckType": "4-Wheel","GoodCondition": "45","DamageCondition": "0","ShortLand": "0","OverLand": "0","TransactionDate": "20180712001","Remark": "Remark","Picture": ""},{"PONo": "002","ShippingMark": "SM-20180712002","ReferenceNo":"REF-A123/2","SKUName": "Chlorinator","Dimission_W": "25","Dimission_H": "25","Dimission_L": "25",	"CBM": "250","PlanedQTY": "45","ReceivedQTY": "50","DiffQTY": "5","UOM": "BAG","Weight": "8",	"TruckID": "T-4568","TruckType": "4-Wheel","GoodCondition": "0","DamageCondition": "0",	"ShortLand":"0","OverLand": "5","TransactionDate": "20180712002",	"Remark": "Remark","Picture": ""},{"PONo": "003","ShippingMark": "SM-20180712003","ReferenceNo": "REF-A123/3","SKUName": "Fruid","Dimission_W": "20","Dimission_H": "20","Dimission_L": "20","CBM": "250","PlanedQTY": "45","ReceivedQTY": "40","DiffQTY": "0","UOM": "BAG","Weight": "8","TruckID": "T-4568","TruckType": "4-Wheel","GoodCondition": "40","DamageCondition": "0","ShortLand": "5","OverLand": "0","TransactionDate": "20180712003","Remark": "Remark","Picture": ""},{"PONo": "004","ShippingMark": "SM-20180712004","ReferenceNo": "REF-A123/4","SKUName": "Accessories","Dimission_W": "20","Dimission_H": "20","Dimission_L": "20","CBM": "250","PlanedQTY": "45","ReceivedQTY": "45","DiffQTY": "0","UOM": "BAG","Weight": "8","TruckID": "T-4568","TruckType": "4-Wheel","GoodCondition": "45","DamageCondition": "0",	"ShortLand": "0","OverLand": "0","TransactionDate": "20180712004","Remark": "Remark","Picture": ""}]';
 
   constructor(private route:ActivatedRoute,public backendservice:BackendService,private http: Http,private router: Router) 
   { 
     this.bookingnoplaceholder = "BookID";
-    this.agentplaceholder = 'Agent'
+    this.agentplaceholder = 'Agent';
+    //alert("call contructor");
+    //this.ngAfterViewInit();
     // this.countryplaceholder = "Country"
     // this.nooftrackplaceholder = "NoOfTruck";
     // this.noofcontainerplaceholder = "NoOfContainer";
     // this.remarkplaceholder = "Remark";
     // this.bindHeader();
-    // this.createGrid();       
+    // this.createGrid();  
+        
   }
   ngAfterViewInit() {
     var bookask;
@@ -118,7 +110,9 @@ export class SetcheckerforexportWComponent implements OnInit {
     })
 
     //alert(bookask);
-     this.getPRFEWarehouseList(bookask,agentask).then(data =>
+      this.bindTrackType();
+      this.bindUOM();
+      this.getPRFEWarehouseList(bookask,agentask).then(data =>
         {
             debugger
             this.bindTrackType();
@@ -175,17 +169,17 @@ export class SetcheckerforexportWComponent implements OnInit {
 
        this.backendservice.wsCall(body,this.backendservice.wsgetPRFEWarehouseList).then(data =>
         {
-            debugger
-            alert(JSON.stringify(body));
-            alert(JSON.stringify(data));
-            var json = data;
-            console.log('ws json is'+JSON.stringify(json));
+            debugger            
+            // alert(JSON.stringify(body));
+            // alert(JSON.stringify(data));
+            // var json = data;
+            // console.log('ws json is'+JSON.stringify(json));
             this.HeaderJson = data[0].BookingList;
             this.DetailJson = data[0].DetailList;   
-            alert(JSON.stringify(this.HeaderJson.toString()));
+            //alert(JSON.stringify(this.HeaderJson.toString()));
             if(this.HeaderJson.length)
             {            
-
+              //("data hearder "+ this.HeaderJson.length);  
             // this.HeaderJson = data[0].BookingList;
             // this.DetailJson = data[0].DetailList;       
             this.createGrid();
@@ -207,51 +201,53 @@ export class SetcheckerforexportWComponent implements OnInit {
     })
 
     }
-
   bindingcompleteTruckType(event:any)
   {
-      if(this.HeaderJson)
+      if(this.DetailJson)
       {
-          this.cboTrucType.selectItem(this.HeaderJson[0].TruckTypeAsk);          
+          this.cboTrucType.selectItem(this.DetailJson[0].TruckTypeAsk);          
       }      
   }
   bindingcompleteUOM(event:any)
   {
-      if(this.HeaderJson)
+      if(this.DetailJson)
       {
-          this.cboUOM.selectItem(this.HeaderJson[0].UOMAsk);          
+          this.cboUOM.selectItem(this.DetailJson[0].UOMAsk);          
       }      
   }
 
 bindTrackType()
 {   
-    this.getJsonParaUser.UserID = window.sessionStorage.getItem("userid");
-    this.getJsonParaUser.Password= window.sessionStorage.getItem("Password");
-    this.getJsonParaUser.ProductAsk="";
+   this.getJsonParaUser.UserID = window.sessionStorage.getItem("userid");
+    this.getJsonParaUser.Password= window.sessionStorage.getItem("password");
+    this.getJsonParaUser.ProductAsk="11";
+    //alert(JSON.stringify(this.getJsonParaUser));  
     this.backendservice.wsCall(this.getJsonParaUser,this.backendservice.wsgetTruckTypeList).then(data =>
         {
+         // alert(this.getJsonParaUser);         
             this.cboTruckTypeList = data;
+            //alert("truck type list ;; "+ JSON.stringify( this.cboTruckTypeList));
             this.cboTruckTypeSource =  {
                 dataType: 'json',
-                dataFields:[ {name: 'Description'}, {name:'Code'},{name:'Ask'} ],
+                dataFields:[ {name: 'Ask'},{name:'Code'},{name:'Description'},{name:'DisplaySequence'},{name:'Remark'},{name:'Status'},{name:'StockWeight'},
+                {name:'TS'},{name:'TareWeight'},{name:'TotalGrossW'},{name:'TotalVol'},{name:'TotalWeight'},{name:'UD'} ],
                 localdata: this.cboTruckTypeList,
             }
             this.cboTruckTypeAdapter = new jqx.dataAdapter(this.cboTruckTypeSource);   
         })  
 }
-
-
 bindUOM()
-{   
+{      
     this.getJsonParaUser.UserID = window.sessionStorage.getItem("userid");
-    this.getJsonParaUser.Password= window.sessionStorage.getItem("Password");
-    this.getJsonParaUser.ProductAsk="";
-    this.backendservice.wsCall(this.getJsonParaUser,this.backendservice.wsgetTruckTypeList).then(data =>
+    this.getJsonParaUser.Password= window.sessionStorage.getItem("password");
+    this.getJsonParaUser.ProductAsk="11";
+   // alert(this.getJsonParaUser); 
+    this.backendservice.wsCall(this.getJsonParaUser,this.backendservice.wsgetUOMList).then(data =>
         {
             this.cboUOMList = data;
             this.cboUOMSource =  {
                 dataType: 'json',
-                dataFields:[ {name: 'Description'}, {name:'Code'},{name:'Ask'} ],
+                dataFields:[ {name: 'Ask'},{name:'Details'},{name:'DisplaySequence'},{name:'Name'},{name:'Remark'},{name:'Status'}, {name:'TS'},{name:'UD'} ],
                 localdata: this.cboUOMList,
             }
             this.cboUOMAdapter = new jqx.dataAdapter(this.cboUOMSource);   
@@ -268,7 +264,8 @@ bindUOM()
     this.trdateplaceholder =  this.HeaderJson[0].transactiondate;//"Transactoin Date "+"- 10/01/2018";
   }
  createGrid()
-  {this.source  =
+  {
+    this.source  =
     {
       datafields: [
         { name: 'AgentAsk', type: 'string' },
@@ -328,21 +325,58 @@ bindUOM()
     this.dataAdapter = new jqx.dataAdapter(this.source);  
     this. columns= [
       //display column
-      { text: 'Booking', datafield: 'BookingID', width: 120,editable:false ,hidden:false },
-      { text: 'Shipping Mark', datafield: 'POShippingMark', width: 100,editable: false,hidden:false },
-      { text: 'PO', datafield: 'PONo', width: 120,editable: false,hidden:false },
-      { text: 'SKU', datafield: 'SKUName', width: 120,editable: false,hidden:false },
-      { text: 'D_L', datafield: 'SKUDimensionBase', width: 50,editable: false,hidden:false },
-      { text: 'D_H', datafield: 'SKUDimensionHeight',width: 50,editable: false,hidden:false },
-      { text: 'D_W', datafield: 'SKUDimensionWidth',width: 50,editable: false,hidden:false},                           
-      { text: 'Dimission',width: 80,editable: false,hidden:false},                 
-      { text: 'Quality', datafield: 'SKUPlanQty', width: 80,editable: false,hidden:false },
-      { text: 'Received', datafield: 'SKUReceivedQty',width: 80, editable: false,hidden:false },
-      { text: 'Diff',  width: 80,editable: false,hidden:false },
-      { text: 'UOM', datafield: 'SKUUOMAsk',width: 80,editable: false,hidden:false },
-      { text: 'Reference', datafield: 'POReferenceNo', width: 100,editable: false,hidden:false },
-      { text: 'Truck ID', datafield: 'TruckID',width: 100,editable: false,hidden:false },
-      { text: 'CBM', width: 80,editable: false,hidden:false },
+      { text: 'Booking', datafield: 'BookingID', width: 120,editable:true ,hidden:false },
+      { text: 'Shipping Mark', datafield: 'POShippingMark', width: 100,editable: true,hidden:false },
+      { text: 'PO', datafield: 'PONo', width: 120,editable: true,hidden:false },
+      { text: 'SKU', datafield: 'SKUName', width: 120,editable: true,hidden:false },
+      { text: 'D_L', datafield: 'SKUDimensionBase', width: 50,editable: true,hidden:false },
+      { text: 'D_H', datafield: 'SKUDimensionHeight',width: 50,editable: true,hidden:false },
+      { text: 'D_W', datafield: 'SKUDimensionWidth',width: 50,editable: true,hidden:false},                           
+      { text: 'Dimission',width: 80,editable: true,hidden:false},                 
+      { text: 'Quality', datafield: 'SKUPlanQty', width: 80,editable: true,hidden:false },
+      { text: 'Received', datafield: 'SKUReceivedQty',width: 80, editable: true,hidden:false },
+      { text: 'Diff',  width: 80,editable: true,hidden:false },
+      { text: 'UOM', datafield: 'SKUUOMAsk',width: 80, displayfield: 'Description', columntype: 'combobox',editable: true,hidden:false, 
+            cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => 
+            {
+                if (newvalue != oldvalue) {
+                  for(let k=0; k< this.cboUOMList.length; k++)
+                    {
+                        if(this.cboUOMList[k].Ask == newvalue.value)
+                        {
+                            this.myGrid.setcellvalue(row,'Weight',this.cboUOMList[k].Details);                        
+                        }
+                    }                                    
+                };
+            },
+              createeditor: (row: number, value: any, editor: any): void => {                   
+                editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboUOMAdapter, displayMember: 'Name', valueMember: 'Ask' })     
+            }          
+      },
+      { text: 'Weight', datafield: 'Track Weight', width: 100,editable: false,hidden:false },
+      { text: 'Reference', datafield: 'POReferenceNo', width: 100,editable: true,hidden:false },
+      { text: 'Truck ID', datafield: 'TruckID',width: 100,editable: true,hidden:false },
+      { text: 'TruckTypeAsk', datafield: 'TruckTypeAsk', width: 150, displayfield: 'Description', columntype: 'combobox',editable: true,hidden:false,
+            cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => 
+            {
+                if (newvalue != oldvalue) {
+                  for(let k=0; k< this.cboTruckTypeList.length; k++)
+                    {
+                        if(this.cboTruckTypeList[k].Ask == newvalue.value)
+                        {
+                            this.myGrid.setcellvalue(row,'Track Weight',this.cboTruckTypeList[k].Details);                        
+                        }
+                    }                                    
+                };
+            },
+              createeditor: (row: number, value: any, editor: any): void => 
+              {                   
+                editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboTruckTypeAdapter
+                , displayMember: 'Code', valueMember: 'Ask' })     
+              }          
+      },
+      { text: 'Track Weight', width: 80,editable: true,hidden:false },
+      { text: 'CBM', width: 80,editable: true,hidden:false },
       //hide column
       
       { text: 'AgentAsk', datafield: 'AgentAsk', width: 150,editable: false,hidden:true},
@@ -382,7 +416,7 @@ bindUOM()
       { text: 'TruckAsk', datafield: 'TruckAsk', width: 150,editable: false,hidden:true },
       { text: 'TruckRemark', datafield: 'TruckRemark',width: 150,editable: false,hidden:true },
       { text: 'TruckStatus', datafield: 'TruckStatus', width: 150,editable: false,hidden:true },
-      { text: 'TruckTypeAsk', datafield: 'TruckTypeAsk', width: 150,editable: false,hidden:true }
+      
     ]
   }
 
@@ -426,11 +460,62 @@ bindUOM()
     let mydatarow = this.MyGridRowGenearate();             
     this.myGrid.addrow(null, mydatarow);  
   }
+  isValidSaveParaJson()
+  {}
+  bindSaveParaJson()
+  {
+
+    let skugridarray = [];
+    skugridarray = this.myGrid.getrows();     
+    let skuarray = []; 
+   // for(let i=0; i < skugridarray.length;i++)
+    for(let i=0; i < 1 ;i++)
+    {
+      //this.saveJsonParamenter= null;
+      this.saveJsonParamenter.UserID= window.sessionStorage.getItem("userid");
+      this.saveJsonParamenter.Password= window.sessionStorage.getItem("password");
+      this.saveJsonParamenter.ProductAsk="11";
+      this.saveJsonParamenter.BookingAsk=skugridarray[i].BookingAsk;
+      this.saveJsonParamenter.AgentAsk=skugridarray[i].AgentAsk;
+      this.saveJsonParamenter.Ask=skugridarray[i].Ask;
+      this.saveJsonParamenter.SKUName=skugridarray[i].SKUName;
+      this.saveJsonParamenter.SKUDetails=skugridarray[i].SKUDetails;
+      this.saveJsonParamenter.DimensionWidth=skugridarray[i].DimensionWidth;
+      this.saveJsonParamenter.DimensionHeight=skugridarray[i].DimensionHeight;
+      this.saveJsonParamenter.DimensionBase=skugridarray[i].DimensionBase;
+      this.saveJsonParamenter.SKUWeight=skugridarray[i].SKUWeight;
+      this.saveJsonParamenter.PlanQty=skugridarray[i].PlanQty;
+      this.saveJsonParamenter.UOMAsk=skugridarray[i].UOMAsk;
+      this.saveJsonParamenter.ReceivedQty=skugridarray[i].ReceivedQty;
+      this.saveJsonParamenter.Reference=skugridarray[i].Reference;
+      this.saveJsonParamenter.TruckID=skugridarray[i].TruckID;
+      this.saveJsonParamenter.TruckType=skugridarray[i].TruckType;
+      this.saveJsonParamenter.GoodQty=skugridarray[i].GoodQty;
+      this.saveJsonParamenter.DamageQty=skugridarray[i].DamageQty;
+      this.saveJsonParamenter.ShortLandQty=skugridarray[i].ShortLandQty;
+      this.saveJsonParamenter.OverlandQty=skugridarray[i].OverlandQty;
+      this.saveJsonParamenter.Goodphoto=skugridarray[i].Goodphoto;
+      this.saveJsonParamenter.Damagephoto=skugridarray[i].Damagephoto;
+      this.saveJsonParamenter.ShortLandphoto=skugridarray[i].ShortLandphoto;
+      this.saveJsonParamenter.Overlandphoto=skugridarray[i].Overlandphoto;
+      alert(i);
+    }
+    //let skugridjson = JSON.stringify(skuarray);
+    //alert(JSON.stringify("list json --" + skugridjson)); 
+  }
   btnSave()
   { 
-   // this.router.navigate(['lstexportchecker']);     
-    //alert("save")
-  }
+    this.isValidSaveParaJson();
+    this.bindSaveParaJson();
+    alert(JSON.stringify("only json --" + JSON.stringify(this.saveJsonParamenter)));  
+    console.log("save json is "+JSON.stringify(this.saveJsonParamenter));   
+    this.backendservice.wsCall(this.saveJsonParamenter,this.backendservice.wssaveCheckerWarehouse).then(data =>
+      {
+          alert(JSON.stringify(data)); 
+          console.log("body is "+JSON.stringify(data));
+      }) 
+     
+}
   btnDelete()
   {  
     
@@ -442,6 +527,8 @@ bindUOM()
   }
   btnSubmit()
   {  
+    this.bindTrackType();
+    this.bindUOM();
     //alert("submit")
   } 
   
