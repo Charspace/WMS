@@ -188,8 +188,8 @@ bindAgent()
         "ShortLandQty":"",
         "OverlandQty":""
        }
-
-       this.backendservice.wsCall(body,this.backendservice.wsgetPRFEWarehouseList).then(data =>
+       console.log('ws json is'+JSON.stringify(body));
+       this.backendservice.wsCall(body,this.backendservice.wsgetPRFEWarehouse).then(data =>
         {
             debugger            
             // alert(JSON.stringify(body));
@@ -205,8 +205,8 @@ bindAgent()
             // this.HeaderJson = data[0].BookingList;
             // this.DetailJson = data[0].DetailList;       
             this.createGrid();
-            this.bindingcompleteTruckType(Event);
-            this.bindingcompleteUOM(Event);
+            // this.bindingcompleteTruckType(Event);
+            // this.bindingcompleteUOM(Event);
 
              this.bindHeader();
             // this.bookingid = this.HeaderJson[0].BookingID;
@@ -528,6 +528,11 @@ bindUOM()
     
     //alert("delete")
   }  
+  btnRefresh()
+  {  
+    
+    //alert("delete")
+  } 
   btnSuveyReport()
   {  
     //alert("suvey")

@@ -1,8 +1,14 @@
-<app-framelayout> </app-framelayout>
-<div style="width: 100%; height: 100%;">
+<app-framelayout id="ParentDiv" > </app-framelayout>
+<div  style="width: 100%; height: 100%;">
   <div style="width: 100%; height: 5%;"> 
     <table style="width: 100%;height: 10%"  border="0">
+        <tr>
+            <td colspan="5">  Checker (Export-Warehouse)
+              
+            </td>
+          </tr>
       <tr>
+       
           <td >
               <jqxInput  #txtBookingID  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
         </td>
@@ -67,12 +73,12 @@
             </td>      -->
           <td style="width: 100%">              
               <jqxGrid #HeaderGrid (onCelldoubleclick)="CellDoubleclick($event)"
-              [height]="365" [source]="HeaderAdapter" [columns]="columns" 
+              [height]="500" [source]="HeaderAdapter" [columns]="columns" 
               [rowdetails]="true" [rowsheight]="25" [initrowdetails]="initRowDetails"
               [ready]="ready" [rowdetailstemplate]="rowdetailstemplate"
               [width]="'100%'" [filterable]="true"  [editable]="false"  [altrows]="true"  
                 [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  
-                [altrows]="true" [autoheight]="true">
+                [altrows]="true">
 
           </jqxGrid>
           </td>
@@ -83,7 +89,7 @@
     <table width="100%" border="0">
         <tr>       
             <td>   
-              <jqxButton [width]='120' [height]='30' [hidden]='true' #button (onClick)="btnNew()" >       Check     </jqxButton>     
+              <jqxButton [width]='120' [height]='30' #button (onClick)="btnNew()" >       New Recive     </jqxButton>     
               <jqxButton [width]='120' [height]='30' #button (onClick)="btnSubmit()" >       Submit       </jqxButton>  
               <jqxButton [width]='120' [height]='30' #button (onClick)="btnPreview()" >       Preview       </jqxButton>    
               <jqxButton [width]='120' [height]='30' #button (onClick)="btnPrint()" >       Print       </jqxButton>   

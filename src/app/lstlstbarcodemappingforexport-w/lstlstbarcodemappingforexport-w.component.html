@@ -2,7 +2,12 @@
 <div style="width: 100%; height: 100%;">
   <div style="width: 100%; height: 5%;"> 
     <table style="width: 100%;height: 10%"  border="0">
-      <tr>
+            <tr>
+                    <td colspan="5">  Barcode Mapping (Export-Warehouse)
+                      
+                    </td>
+                  </tr>
+        <tr>
           <td >
               <jqxInput  #txtBookingID  [width]="200" [height]="25"    [minLength]="1" [placeHolder]="bookingnoplaceholder" [disabled]="false">             </jqxInput>              
         </td>
@@ -67,12 +72,12 @@
             </td>      -->
           <td style="width: 100%">              
               <jqxGrid #HeaderGrid (onCelldoubleclick)="CellDoubleclick($event)"
-              [height]="365" [source]="HeaderAdapter" [columns]="columns" 
+              [height]="500" [source]="HeaderAdapter" [columns]="columns" 
               [rowdetails]="true" [rowsheight]="25" [initrowdetails]="initRowDetails"
               [ready]="ready" [rowdetailstemplate]="rowdetailstemplate"
               [width]="'100%'" [filterable]="true"  [editable]="false"  [altrows]="true"  
                 [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="35"  
-                [altrows]="true" [autoheight]="true">
+                [altrows]="true" >
 
           </jqxGrid>
           </td>

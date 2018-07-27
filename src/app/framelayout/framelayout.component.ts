@@ -301,7 +301,7 @@ export class FramelayoutComponent implements OnInit {
     }
     else if(event.args.id == 15)
     {
-      this.Routeform('lstexportchecker');
+      this.Routeform('lstmaterialusageforexport-w');
     }
     else if(event.args.id == 16)
     {
@@ -347,7 +347,10 @@ export class FramelayoutComponent implements OnInit {
     {
       this.Routeform('lstmenugroup');
     }
- 
+    else if(event.args.id == 27)
+    {
+      this.Routeform('lstmaterialusageforexport-w');
+    }
   };
 
 

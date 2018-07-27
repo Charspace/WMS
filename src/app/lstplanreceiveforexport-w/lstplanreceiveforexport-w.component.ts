@@ -192,6 +192,8 @@ onTrStatusComboChange(event)
     this.HeaderSource  =
     {
         datafields: [
+            // { name: 'EDT', type: 'string' },
+            // { name: 'DEL', type: 'jqxButtonComponent' },
             { name: 'AgentAsk', type: 'string' },
             { name: 'AgentName', type: 'string' },
             { name: 'BookingStatus', type: 'string' },
@@ -230,9 +232,12 @@ onTrStatusComboChange(event)
     };
     this.HeaderAdapter = new jqx.dataAdapter(this.HeaderSource);  
     this.headercolumns =
-    [        
+    [  
+            
+        // { text: 'EDT', string:"EDT",  width: 50 },
+        // { text: 'DEL', datafield: '"DEL"', width: 50 },
         { text: 'AgentAsk', datafield: 'AgentAsk', width: 300 },
-        { text: 'Agent Name', datafield: 'AgentName', width: 300 },
+        { text: 'Agent Name', datafield: 'AgentName', width: 150 },
         { text: 'Status', datafield: 'BookingStatus', width: 300 },
         { text: 'Country Name', datafield: 'CountryName', width: 300 },
         { text: 'Shipper Name', datafield: 'ShipperName', width: 300 },
@@ -672,10 +677,12 @@ columns: any[] =
 [
    
     { text: 'Ask', datafield: 'Ask', width: 120, hidden:true },
+    // { text: 'EDT',  width: 50 , hidden:false }  ,
+    // { text: 'DEL',  width: 50 , hidden:false }  ,
     { text: 'Booking ID', datafield: 'BookingID', width: 120 , hidden:false }  ,
 
 
-    { text: 'Agent Name', datafield: 'AgentName', width: 200 , hidden:false },
+    { text: 'Agent Name', datafield: 'AgentName', width: 120 , hidden:false },
     { text: 'Shipper Name', datafield: 'ShipperName', width: 150, hidden:false  },
     { text: 'No Of Container', datafield: 'NoOfContainer', width: 120, hidden:false  }, 
     { text: 'No Of Truck', datafield: 'NoOfTruck', width: 120, hidden:false  },  
@@ -683,7 +690,7 @@ columns: any[] =
     // { text: 'Total Vol:', datafield: 'Remark', width: 150, hidden:false  }, 
     { text: 'Country Name', datafield: 'CountryName', width: 150, hidden:false },
     { text: 'Transaction Date', datafield: 'TransactionDate', width: 120, hidden:false  }, 
-    { text: 'Remark', datafield: 'Remark', width: 200, hidden:false  }, 
+    { text: 'Remark', datafield: 'Remark', width: 150, hidden:false  }, 
     { text: 'Status', datafield: 'BookingStatus', width: 150 , hidden:false} ,
     { text: 'Cargo Received Date', datafield: 'CargoReceivedDate', width: 250, hidden:true }  ,    
     { text: 'CustomIssued Date', datafield: 'CustomIssuedDate', width: 120, hidden:true  }, 

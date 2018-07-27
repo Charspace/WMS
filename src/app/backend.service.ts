@@ -23,8 +23,8 @@ export class BackendService {
 
 
   wsProtocol="http://"; // "http://" or "https://"
-  wsServere : any ="localhost:8588" ;
-  //wsServere : any ="zawpyaethan-001-site1.btempurl.com";
+  //wsServere : any ="localhost:8588" ;
+  wsServere : any ="zawpyaethan-001-site1.btempurl.com";
   wsPort : any = "";//":4200";
   wsName:any = "/WMS.svc";  
 

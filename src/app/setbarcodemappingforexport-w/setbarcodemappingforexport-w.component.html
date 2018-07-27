@@ -40,7 +40,7 @@
                 </jqxComboBox>  -->
   
                 <jqxComboBox #cboagentcombo style=" float: left"
-                (onSelect)="onAgentComboChange($event) " (onBindingComplete)="BindingcompleteAgent($event)"
+              
                  [source]="agentcombo_Adapter" [valueMember]="'Ask'"
                   [placeHolder]="agentplaceholder" [displayMember]="'AgentName'" [searchMode]="'containsignorecase'" [autoComplete]="true"  >
                </jqxComboBox>
