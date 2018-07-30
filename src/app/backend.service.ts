@@ -42,6 +42,7 @@ export class BackendService {
   wsgetSysUserList = "/getSysUserList";
   wsgetPRFEWarehouseList = "/getPRFEWarehouseList";
   wsgetPRFEWarehouse = "/getPRFEWarehouse";
+  //wsgetPRFEDirectList = "/getPRFEDirectList";
   wsgetSKUBarcodeList = "/getPRFEWarehouseList";
   wsgetCheckerWarehouseList = "/getPRFEWarehouseList";
   wsgetCountryList = "/getCountryList";
@@ -56,6 +57,7 @@ export class BackendService {
   wsgetCheckerDirect = "/getCheckerDirect";
 
   //Save web service method
+  wssavePRFEForDirect="/savePRFEForDirect";
   wssaveCheckerDirect = "/saveCheckerDirect";
   wssavePRFEDirect = "/savePRFEDirect";
   wssaveDeliverlist = "/saveDeliverlist";

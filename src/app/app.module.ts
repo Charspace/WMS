@@ -47,7 +47,8 @@ import { LstplanreceiveforexportWComponent } from './lstplanreceiveforexport-w/l
 import { LsttallycheckforexportWComponent } from './lsttallycheckforexport-w/lsttallycheckforexport-w.component';
 import { LstplanreceiveforimportComponent } from './lstplanreceiveforimport/lstplanreceiveforimport.component';
 import { SetuserComponent } from './setuser/setuser.component';
-import { SetplanreceiveforexportComponent } from './setplanreceiveforexport/setplanreceiveforexport.component';
+import {SetplanreceiveforexportComponent} from'./setplanreceiveforexport/setplanreceiveforexport.component';
+//import {setplanreceiveforexport} from './setplanreceiveforexport/setplanreceiveforexport.component';
 import { SetplanreceiveforexportWComponent } from './setplanreceiveforexport-w/setplanreceiveforexport-w.component';
 // import { LstallocationforexportWComponent } from './lstallocationforexport-w/lstallocationforexport-w.component';
 import { jqxDateTimeInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxdatetimeinput';
@@ -224,6 +225,24 @@ const appRoutes: Routes=[
 
   },
   {
+    path : 'setplanreceiveforexport/:bookingask/:agendask/:shipperask/:containerask',
+    component:SetplanreceiveforexportComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'
+  },
+  {
+    path : 'setplanreceiveforexport/:param1/:param2',
+    component:SetplanreceiveforexportComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'
+  },
+  {
+    path : 'setplanreceiveforexport',
+    component:SetplanreceiveforexportComponent,
+    outlet: 'modal'    
+    //outlet:'homepath'
+  },
+  {
     path : 'setplanreceiveforexport-w/:param1/:param2',
     component:SetplanreceiveforexportWComponent,
     outlet: 'modal'    
@@ -362,6 +381,7 @@ const appRoutes: Routes=[
     LstuserComponent,
     LstplanreceiveforimportComponent,
     SetuserComponent,
+    //SetplanreceiveforexportComponent,
     SetplanreceiveforexportComponent,
     SetplanreceiveforexportWComponent,
     SettallycheckforexportWComponent,
@@ -380,6 +400,7 @@ const appRoutes: Routes=[
     jqxWindowComponent,
     SetcheckerforexportWComponent,
     ModalComponent,
+    //SetplanreceiveforexportComponent,
     // LstallocationComponent,
     // LstallocationforexportWComponent
    

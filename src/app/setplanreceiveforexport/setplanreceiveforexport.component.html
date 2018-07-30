@@ -1,3 +1,292 @@
-<p>
-  setplanreceiveforexport works!
-</p>
+
+<app-modal>
+<div modal-body>
+<!-- <app-framelayout> </app-framelayout> -->
+  <table width="100%" border="0">
+    <tr>
+        <td style="text-align: center"> 
+          <jqxInput [width]="'100%'"  [height]="20" [placeHolder]="BookingPlaceHolder" [disabled]="false"   [(ngModel)]="txtBookingID" [minLength]="1" ></jqxInput>   
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <jqxGrid #BookingGrid (onRowselect)="BookingGridOnRowSelect($event)"
+            [source]="BookingGridAdaptor" (onCellvaluechanged)="BookingGridonCellvaluechanged($event)"  (onCellendedit)="BookingGridonCellendedit()"
+            [keyboardnavigation]="false" [columns]="BookingGridColumn"
+            [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+            [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
+        </td>
+    </tr>
+    <tr>
+      <td>
+
+      </td>
+    </tr>
+    <tr>
+        <td> 
+          <jqxInput [width]="'100%'"  [height]="20" [placeHolder]="ContainerPlaceHolder" [disabled]="false"   [(ngModel)]="txtContrainerID" [minLength]="1"></jqxInput>   
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <jqxGrid #ContainerGrid (onRowselect)="ContainerGridOnRowSelect($event)"
+            [source]="ContainerGridAdaptor" (onCellvaluechanged)="ContainerGridonCellvaluechanged($event)"  (onCellendedit)="ContainerGridonCellendedit()"
+            [keyboardnavigation]="false" [columns]="ContainerGridColumn"
+            [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+            [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
+        </td>
+    </tr>
+    <tr>
+        <td>
+          
+        </td>
+      </tr>
+    <tr>
+        <td> 
+          <jqxInput [width]="'100%'"  [height]="20" [placeHolder]="ShipperPlaceHolder" [disabled]="false"   [(ngModel)]="txtShipperID" [minLength]="1"></jqxInput>   
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <jqxGrid #ShipperGrid (onRowselect)="ShipperGridOnRowSelect($event)"
+            [source]="ShipperGridAdaptor" (onCellvaluechanged)="ShipperGridonCellvaluechanged($event)"  (onCellendedit)="ShipperGridonCellendedit()"
+            [keyboardnavigation]="false" [columns]="ShipperGridColumn"
+            [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+            [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
+        </td>
+    </tr> 
+    <tr>
+        <td>
+          
+        </td>
+      </tr> 
+  <tr>
+      <td> 
+        <jqxInput [width]="'100%'"  [height]="20" [placeHolder]="TruckPlaceHolder" [disabled]="false"   [(ngModel)]="txtTruckID" [minLength]="1"></jqxInput>   
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <jqxGrid #TruckGrid (onRowselect)="TruckGridOnRowSelect($event)" 
+          [source]="TruckGridAdaptor" (onCellvaluechanged)="TruckGridonCellvaluechanged($event)"  
+          (onCellendedit)="TruckGridonCellendedit()" 
+          [keyboardnavigation]="false" [columns]="TruckGridColumn" 
+          [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+          [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
+      </td>
+  </tr>
+  <tr>
+      <td>
+        
+      </td>
+    </tr>
+    <tr>
+        <td> 
+          <jqxInput [width]="'100%'"  [height]="20" [placeHolder]="POPlaceHolder" [disabled]="false"   [(ngModel)]="txtPOID" [minLength]="1"></jqxInput>   
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <jqxGrid #POGrid (onRowselect)="POGridOnRowSelect($event)"
+            [source]="POGridAdaptor" (onCellvaluechanged)="POGridonCellvaluechanged($event)"  (onCellendedit)="POGridonCellendedit()"
+            [keyboardnavigation]="false" [columns]="POGridColumn"
+            [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+            [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
+        </td>  
+    </tr> 
+    <tr>
+        <td>
+          
+        </td>
+      </tr>
+    <tr>
+        <td> 
+          <jqxInput [width]="'100%'"  [height]="20" [placeHolder]="SKUPlaceHolder" [disabled]="false"   [(ngModel)]="txtSKUID" [minLength]="1"></jqxInput>   
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <jqxGrid #SKUGrid (onRowselect)="SKUGridOnRowSelect($event)"
+            [source]="SKUGridAdaptor" (onCellvaluechanged)="SKUGridonCellvaluechanged($event)"  
+            (onCellendedit)="SKUGridonCellendedit()"
+            [keyboardnavigation]="false" [columns]="SKUGridColumn"
+            [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+            [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
+        </td>
+    </tr>
+    <tr class="framebutton">
+        <td>      
+            <jqxButton [width]='120' [height]='30' class="buttoncolor" #button (onClick)="btnNew()"  >
+              New
+            </jqxButton>      
+  
+            <jqxButton [width]='120' [height]='30' #button (onClick)="btnSave()"  >
+              Save
+            </jqxButton>      
+  
+            <jqxButton [width]='120' [height]='30' #button >
+              Edit
+            </jqxButton>
+      
+            <jqxButton [width]='120' [height]='30' #button  >
+              Delete
+            </jqxButton>  
+          
+            <jqxButton  (onClick)="btnPrint()" [width]='120' [height]='30' #button >
+              Print
+            </jqxButton>      
+          </td>
+    </tr>
+  </table>      
+</div>
+</app-modal>
+
+
+
+<!-- <div class="framebutton"  >                              
+  <table width="100%" border="0">
+    <tr>
+        <td>      
+          <jqxButton [width]='120' [height]='40' class="buttoncolor" #button (onClick)="btnNew()"  >
+            New
+          </jqxButton>      
+
+          <jqxButton [width]='120' [height]='40' #button (onClick)="btnSave()"  >
+            Save
+          </jqxButton>      
+
+          <jqxButton [width]='120' [height]='40' #button >
+            Edit
+          </jqxButton>
+    
+          <jqxButton [width]='120' [height]='40' #button  >
+            Delete
+          </jqxButton>  
+        
+          <jqxButton  (onClick)="btnPrint()" [width]='120' [height]='40' #button >
+            Print
+          </jqxButton>      
+        </td>
+    </tr>
+  </table>
+</div>
+
+  <table style="width: 100%"  border="0" >
+    <tr>   
+          <td colspan="1" >
+                  <jqxInput  [height]="25" [placeHolder]="bookidplaceholder" [disabled]="false"   [(ngModel)]="bookingid" [minLength]="1">
+                  </jqxInput>               
+          </td>
+     
+          <td colspan="1" >
+                  <jqxComboBox #agentcombo style=" float: left"
+                   (onSelect)="onAgentComboChange($event) " (onBindingComplete)="BindingcompleteAgent($event)"
+                    [source]="agentcombo_Adapter" [valueMember]="'Ask'"
+                  [placeHolder]="agentplaceholder" [displayMember]="'AgentName'" [searchMode]="'containsignorecase'" [autoComplete]="true"  >
+                  </jqxComboBox> 
+          </td>
+
+          <td colspan="1" >
+              <jqxComboBox #countrycombo style=" float: left"
+              (onSelect)="onCountryComboChange($event) "
+                [source]="countrycombo_Adapter" [valueMember]="'Ask'" (onBindingComplete)="BindingcompletCoutry($event)"
+              [placeHolder]="countryplaceholder" [displayMember]="'CountryName'" [searchMode]="'containsignorecase'" [autoComplete]="true" [disabled]="countrycombodisable" >
+              </jqxComboBox> 
+          </td>
+              
+          <td colspan="1" >
+                  <jqxInput [disabled]="false" [height]="25"  [(ngModel)]="nooftrack" [minLength]="1" [placeHolder]="nooftrackplaceholder">
+                  </jqxInput>               
+          </td>
+
+          <td colspan="1" >
+                  <jqxInput [disabled]="false" [height]="25"   [(ngModel)]="noofcontainer" [minLength]="1" [placeHolder]="noofcontainerplaceholder">
+                  </jqxInput>               
+          </td>            
+
+    </tr>
+    <tr>           
+        <td colspan="1">
+              <label >Transaction Date</label>
+            <jqxDateTimeInput #transactiondate class="label" 
+            (onValueChanged)="onTransactionDateChange($event)" [disabled]="false">
+          </jqxDateTimeInput>
+        </td>       
+        <td colspan="3">
+          <br>
+        <jqxTextArea  #myInput (onChange)="onremarkchange($event)"
+          [width]="'90%'" [height]="35" [(ngModel)]="remark" 
+          [placeHolder]="remarkplaceholder">
+        </jqxTextArea >
+        </td>  
+        <td colspan="1" hidden="true" >
+              <label >Cargo Received Date</label>
+          <jqxDateTimeInput #cargoreceiveddate class="label" 
+          (onValueChanged)="onCargoReceivedDatechange($event)" [disabled]="false" >
+          </jqxDateTimeInput>
+        </td>
+
+        <td colspan="1"  hidden="true">
+          <label >Customer Issued Date</label>
+          <jqxDateTimeInput #customerissueddate class="label" 
+          (onValueChanged)="onCustomerIssueddate($event)" [disabled]="false">
+        </jqxDateTimeInput>
+        </td>
+    </tr>
+  </table>
+
+<div style='margin-left:1px; margin-right:1px'>
+  <h3>Shipper</h3>
+  <jqxInput  [height]="25" [placeHolder]="bookidplaceholder" [disabled]="false"   [(ngModel)]="bookingid" [minLength]="1">
+  </jqxInput>    
+  <jqxGrid #shipperGrid (onRowselect)="shipperGridOnRowSelect($event)"
+        [source]="dataAdapter" (onCellvaluechanged)="CellvaluechangedShipper($event)"  (onCellendedit)="CellendeditShipper()"
+        [keyboardnavigation]="false" [columns]="columns"
+        [width]="'100%'" [source]="dataAdapter" [filterable]="true"  
+        [editable]="true" [altrows]="true"  
+        [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"  [autoheight]="true"
+        [rowdetails]="true" [rowsheight]="20" >
+  </jqxGrid>
+</div>
+
+
+<div style='margin-left:5px; margin-right:5px;'>
+<h3>Truck</h3>
+<jqxGrid #truckGrid  (onRowselect)="truckGridOnRowSelect($event)"  (onCellvaluechanged)="CellvaluechangedTruck($event)"  (onCellendedit)="CellendeditTruck()"    
+    [keyboardnavigation]="false" [columns]="columns2"
+    [width]="'100%'" [source]="dataAdapter2" [filterable]="true" 
+  [editable]="true" [altrows]="true"  
+  [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"   [autoheight]="true"
+  [rowdetails]="true" [rowsheight]="20"   >
+</jqxGrid>
+</div>
+
+<div style='margin-left:5px; margin-right:5px'>
+  <h3>PO</h3>
+<jqxGrid #poGrid      (onRowselect)="poGridOnRowSelect($event)"  (onCellvaluechanged)="CellvaluechangedPO($event)"  (onCellendedit)="CellendeditPO()"
+[keyboardnavigation]="false" [columns]="columns3"
+[width]="'100%'" [source]="dataAdapter3" [filterable]="true"  
+[editable]="true"  [altrows]="true"  
+[showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"  [autoheight]="true"
+[rowdetails]="true" [rowsheight]="20" 
+
+ 
+>
+</jqxGrid>
+</div>
+
+<div style='margin-left:5px; margin-right:5px'>
+<h3>SKU</h3>
+      <jqxGrid #skuGrid  
+      [keyboardnavigation]="false" [columns]="columns4"  (onCellvaluechanged)="CellvaluechangedSKU($event)"  (onCellendedit)="CellendeditSKU()"
+      [width]="'100%'" [source]="dataAdapter4" [filterable]="true"  
+    [editable]="true"  [altrows]="true"  
+    [showstatusbar]="true" [showaggregates]="true" [statusbarheight]="25"  [autoheight]="true"
+    [rowdetails]="true" [rowsheight]="20" 
+      >
+    </jqxGrid>
+    </div>
+  </div>
+  </app-modal> -->
+
+
