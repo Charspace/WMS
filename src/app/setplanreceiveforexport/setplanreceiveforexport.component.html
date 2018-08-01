@@ -13,7 +13,8 @@
             <jqxGrid #BookingGrid (onRowselect)="BookingGridOnRowSelect($event)"
             [source]="BookingGridAdaptor" (onCellvaluechanged)="BookingGridonCellvaluechanged($event)"  (onCellendedit)="BookingGridonCellendedit()"
             [keyboardnavigation]="false" [columns]="BookingGridColumn"
-            [width]="'100%'" [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
+            [width]="'100%'" [pageable]="true" [sortable]="true" 
+            [filterable]="true" [editable]="true" [altrows]="true" [showstatusbar]="false" [showaggregates]="false" 
             [statusbarheight]="25"  [autoheight]="true" [rowdetails]="true" [rowsheight]="25" ></jqxGrid>
         </td>
     </tr>

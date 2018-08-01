@@ -101,16 +101,175 @@ txtSKUID : any;
   //Para Json
   Authorization={"UserID":"","Password":"","ProductAsk":""}
   CritiaParaJson:any;
-  
+  AgentParaJson:any;
   BookingParaJson:any;
   ContainerParaJson:any;
   ShipperParaJson:any;
   TruckParaJson:any;
   POParaJson:any;
   SKUParaJson:any;
-  SKUJsonList:any;
+  SKUParaJsonList=[];
   SaveParaJson:any;
+bindDefaultSKU()
+{
+    this.SKUParaJson={  
+    "Ask":"0",
+    "TS":"0",
+    "UD":"0",
+    "SKUName":"",
+    "SKUDetails":"",
+    "DimensionWidth":"0",
+    "DimensionHeight":"0",
+    "DimensionBase":"0",
+    "SKUWeight":"0",
+    "PlanQty":"0",
+    "UOMAsk":"0",
+    "ReceivedQty":"",
+    "Reference":"",
+    "TruckID":"",
+    "TruckType":"0",
+    "GoodQty":"0",
+    "DamageQty":"0",
+    "ShortLandQty":"0",
+    "OverlandQty":"0",
+    "Goodphoto":"",
+    "Damagephoto":"",
+    "ShortLandphoto":"",
+    "Overlandphoto":"",
+    "Remark":""
+    }
+}
 
+bindDefaultValue()
+{
+   this.BookingParaJson={"Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "BookingID":"",
+        "AgentAsk":"0",
+        "Shipper":"",
+        "CountryAsk":"0",
+        "CargoReceivedDate":"",
+        "CustomIssuedDate":"",
+        "TransactionDate":"",
+        "Signature":"",
+        "SignatureDate":"",
+        "BookingStautsAsk":"0",
+        "NoOfTruck":"0",
+        "NoOfContainer":"0",
+        "DisplaySequence":"0",
+        "Remark":"",
+        "LogisticTypeAsk":"0",
+        "TotalGrossW":"0",
+        "TotalVol":"0"
+    }
+    this.AgentParaJson={  
+        "Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "AgentName":"",
+        "AgentDetails":"",
+        "NationalID":"",
+        "BillingAddress":"",
+        "ShippingAddress":"",
+        "CompanyName":"",
+        "Website":"",
+        "Mobile":"",
+        "Email":"",
+        "ContactPersonName":"",
+        "ContactPersonMobile":"",
+        "Address":"",
+        "DisplaySequence":"",
+        "Remark":""
+    }
+    this.ContainerParaJson={  
+        "Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "ContainerNo":"",
+        "ContainerDetails":"",
+        "SealNo":"",
+        "Width":"0",
+        "Height":"0",
+        "Base":"0",
+        "ContainerType":"0",
+        "Color":"",
+        "TruckTypeAsk":"0",
+        "Carrier":"",
+        "Voy":"",
+        "VesselNo":"",
+        "ETA":"",
+        "ETD":"",
+        "CutOffDate":"",
+        "PaperlessCode":"",
+        "ContainerPicture":"",
+        "CountryAsk":"0",
+        "TareWeight":"0",
+        "GrossWeight":"0",
+        "MattWeight":"0",
+        "TotalWeigt":"0",
+        "Status":"0",
+        "DisplaySequence":"0",
+        "Remark":""
+    }
+    this.ShipperParaJson={  
+        "Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "ShipperName":"",
+        "ShipperDetails":"",
+        "Status":"0",
+        "DisplaySequence":"0",
+        "Remark":""
+    }
+    this.TruckParaJson={  
+        "Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "TruckID":"",
+        "TruckTypeAsk":"0",
+        "Status":"0",
+        "DisplaySequence":"0",
+        "Remark":""
+    }
+    this.POParaJson={  
+        "Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "PONo":"",
+        "ShippingMark":"",
+        "ReferenceNo":"",
+        "Remark":" "
+    }
+    this.SKUParaJson={  
+        "Ask":"0",
+        "TS":"0",
+        "UD":"0",
+        "SKUName":"",
+        "SKUDetails":"",
+        "DimensionWidth":"0",
+        "DimensionHeight":"0",
+        "DimensionBase":"0",
+        "SKUWeight":"0",
+        "PlanQty":"0",
+        "UOMAsk":"0",
+        "ReceivedQty":"",
+        "Reference":"",
+        "TruckID":"",
+        "TruckType":"0",
+        "GoodQty":"0",
+        "DamageQty":"0",
+        "ShortLandQty":"0",
+        "OverlandQty":"0",
+        "Goodphoto":"",
+        "Damagephoto":"",
+        "ShortLandphoto":"",
+        "Overlandphoto":"",
+        "Remark":""
+    }
+  
+
+}
   //Return Json
   BookingReturnJson:any;
   AgentReturnJson:any;
@@ -348,6 +507,7 @@ txtSKUID : any;
         debugger
         this.bindAuthorizationJson();
         this.bindPlaceHolder();
+        this.bindDefaultValue();
         this.bindcboAgent();
         this.bindcboCountry();
         this.bindcboTrsStatus();
@@ -400,7 +560,6 @@ txtSKUID : any;
             this.agendask = +params['agendask']; 
             this.shipperask = +params['shipperask']; 
             this.containerask = +params['containerask']; })  
-             
             this.getJsonbyCriteria().then(data =>
             {            
                 // this.bindcboCountry();
@@ -410,7 +569,6 @@ txtSKUID : any;
                 this.bindGrid(); 
             })
     }
-
     bindPlaceHolder()
     {
         this.BookingPlaceHolder ="Booking";        
@@ -793,7 +951,7 @@ txtSKUID : any;
         [
             //{ text: 'R', width: 20, hidden:false },
             //{ text: 'C', width: 20,hidden:false },
-            { text: 'Ask', datafield: 'Ask', width: 120, hidden:true },
+            { text: 'Ask', datafield: 'Ask', width: 120, hidden:false },
             { text: 'TS', datafield: 'TS', width: 120, hidden:true }, 
             { text: 'UD', datafield: 'UD', width: 120, hidden:true }, 
             { text: 'Booking ID', datafield: 'BookingID', width: 120, hidden:false },
@@ -1637,231 +1795,354 @@ txtSKUID : any;
     }
     prepareSaveJson()
     {
-         
+        this.bindDefaultValue();
         //alert(JSON.stringify( this.BookingGrid.getboundrows()));
-        var BookingGridRowData = this.BookingGrid.getrowdata(this.BookingGrid.getselectedrowindex());      
-        var ContainerGridRowData = this.ContainerGrid.getrowdata(this.ContainerGrid.getselectedrowindex());
-        var ShipperGridRowData = this.ShipperGrid.getrowdata(this.ShipperGrid.getselectedrowindex());
-        var TruckGridRowData = this.TruckGrid.getrowdata(this.TruckGrid.getselectedrowindex());
-        var POGridRowData = this.POGrid.getrowdata(this.POGrid.getselectedrowindex());
-        var SKUGridRowData = this.SKUGrid.getrowdata(this.SKUGrid.getselectedrowindex()); 
+        var BookingGridRowData = this.BookingGrid.getrows();      
+        var ContainerGridRowData = this.ContainerGrid.getrows();   
+        var ShipperGridRowData = this.ShipperGrid.getrows();   
+        var TruckGridRowData = this.TruckGrid.getrows();   
+        var POGridRowData = this.POGrid.getrows();   
+        var SKUGridRowData = this.SKUGrid.getrows();   
         console.log("grid dataa - "+ JSON.stringify(BookingGridRowData));
         //alert("grid index - "+JSON.stringify(this.BookingGrid.getselectedrowindex())); 
         //alert(JSON.stringify(BookingGridRowData)); 
 
-        let skugridarray = [];
-        skugridarray = this.SKUGrid.getrows(); 
+       // let skugridarray = [];
+        //skugridarray = this.SKUGrid.getrows(); 
         //alert(JSON.stringify( skugridarray));
 
-        this.BookingParaJson=JSON.stringify(BookingGridRowData);
-        this.ContainerParaJson=JSON.stringify(ContainerGridRowData);
-        this.ShipperParaJson=JSON.stringify(ShipperGridRowData);
-        this.TruckParaJson=JSON.stringify(TruckGridRowData);
-        this.POParaJson=JSON.stringify(POGridRowData);
-        this.SKUParaJson=JSON.stringify(SKUGridRowData);
-        this.SKUJsonList=JSON.stringify(skugridarray);
+        // this.BookingParaJson=JSON.stringify(BookingGridRowData);
+        // this.ContainerParaJson=JSON.stringify(ContainerGridRowData);
+        // this.ShipperParaJson=JSON.stringify(ShipperGridRowData);
+        // this.TruckParaJson=JSON.stringify(TruckGridRowData);
+        // this.POParaJson=JSON.stringify(POGridRowData);
+        // this.SKUParaJson=JSON.stringify(SKUGridRowData);
+        // this.SKUJsonList=JSON.stringify(skugridarray);
+debugger
+        //bind booking data
+        //alert( JSON.stringify( BookingGridRowData[0].Ask)) ;
+        this.BookingParaJson.Ask= BookingGridRowData[0].Ask ;
+
+        this.BookingParaJson.AgentAsk = BookingGridRowData[0].agendask;
+        this.BookingParaJson.BookingID = BookingGridRowData[0].BookingID;
+        this.BookingParaJson.BookingStautsAsk= BookingGridRowData[0].BookingStatusAsk;
+        this.BookingParaJson.CargoReceivedDate= BookingGridRowData[0].CargoReceivedDate;
+        this.BookingParaJson.CountryAsk= BookingGridRowData[0].CountryAsk;
+        this.BookingParaJson.CustomIssuedDate= BookingGridRowData[0].CustomIssuedDate;
+        this.BookingParaJson.DisplaySequence= BookingGridRowData[0].DisplaySequence;
+        this.BookingParaJson.LogisticTypeAsk= BookingGridRowData[0].LogisticTypeAsk;
+        this.BookingParaJson.NoOfContainer= BookingGridRowData[0].NoOfContainer;
+        this.BookingParaJson.NoOfTruck= BookingGridRowData[0].NoOfTruck;
+        this.BookingParaJson.Remark= BookingGridRowData[0].Remark;
+        this.BookingParaJson.Shipper= BookingGridRowData[0].Shipper;
+        this.BookingParaJson.Signature= BookingGridRowData[0].Signature;
+        this.BookingParaJson.SignatureDate= BookingGridRowData[0].SignatureDate;
+        this.BookingParaJson.TotalGrossW= BookingGridRowData[0].TotalGrossW;
+        this.BookingParaJson.TotalVol= BookingGridRowData[0].TotalVol;
+        this.BookingParaJson.TransactionDate= BookingGridRowData[0].TransactionDate;
+        this.BookingParaJson.TS = BookingGridRowData[0].TS;
+        this.BookingParaJson.UD= BookingGridRowData[0].UD;
+
+        //bind container
+        this.ContainerParaJson.Ask = ContainerGridRowData[0].Ask ;
+        this.ContainerParaJson.Base = ContainerGridRowData[0].Base ;
+        this.ContainerParaJson.Carrier = ContainerGridRowData[0].Carrier ;
+        this.ContainerParaJson.Color = ContainerGridRowData[0].Color ;
+        this.ContainerParaJson.ContainerDetails = ContainerGridRowData[0].ContainerDetails ;
+        this.ContainerParaJson.ContainerNo = ContainerGridRowData[0].ContainerNo ;
+        this.ContainerParaJson.ContainerPicture = ContainerGridRowData[0].ContainerPicture ;
+        this.ContainerParaJson.ContainerType = ContainerGridRowData[0].ContainerType ;
+        this.ContainerParaJson.CountryAsk = ContainerGridRowData[0].CountryAsk ;
+        this.ContainerParaJson.CutOffDate = ContainerGridRowData[0].CutOffDate ;
+        this.ContainerParaJson.DisplaySequence = ContainerGridRowData[0].DisplaySequence ;
+        this.ContainerParaJson.ETA = ContainerGridRowData[0].ETA ;
+        this.ContainerParaJson.ETD = ContainerGridRowData[0].ETD ;
+        this.ContainerParaJson.GrossWeight = ContainerGridRowData[0].GrossWeight ;
+        this.ContainerParaJson.Height = ContainerGridRowData[0].Height ;
+        this.ContainerParaJson.MattWeight = ContainerGridRowData[0].MattWeight ;
+        this.ContainerParaJson.PaperlessCode = ContainerGridRowData[0].PaperlessCode ;
+        this.ContainerParaJson.Remark = ContainerGridRowData[0].Remark ;
+        this.ContainerParaJson.SealNo = ContainerGridRowData[0].SealNo ;
+        this.ContainerParaJson.Status = ContainerGridRowData[0].Status;
+        this.ContainerParaJson.TareWeight = ContainerGridRowData[0].TareWeight ;
+        this.ContainerParaJson.TotalWeigt = ContainerGridRowData[0].TotalWeigt ;
+        this.ContainerParaJson.TruckTypeAsk = ContainerGridRowData[0].TruckTypeAsk ;
+        this.ContainerParaJson.TS = ContainerGridRowData[0].TS ;
+        this.ContainerParaJson.UD = ContainerGridRowData[0].UD ;
+        this.ContainerParaJson.VesselNo = ContainerGridRowData[0].VesselNo ;
+        this.ContainerParaJson.Voy = ContainerGridRowData[0].Voy ;
+        this.ContainerParaJson.Width = ContainerGridRowData[0].Width ;
+
+
+        //bind Shipper
+        this.ShipperParaJson.Ask = ShipperGridRowData[0].Ask ; 
+        this.ShipperParaJson.DisplaySequence = ShipperGridRowData[0].DisplaySequence ;
+        this.ShipperParaJson.Remark = ShipperGridRowData[0].Remark ;
+        this.ShipperParaJson.ShipperDetails = ShipperGridRowData[0].ShipperDetails ;
+        this.ShipperParaJson.ShipperName = ShipperGridRowData[0].ShipperName ;
+        this.ShipperParaJson.Status = ShipperGridRowData[0].Status ;
+        this.ShipperParaJson.TS = ShipperGridRowData[0].TS ;
+        this.ShipperParaJson.UD =ShipperGridRowData[0].UD ;
+        
+        //bind truck
+        this.TruckParaJson.Ask = TruckGridRowData[0].Ask ;
+        this.TruckParaJson.DisplaySequence = TruckGridRowData[0].DisplaySequence ;
+        this.TruckParaJson.Remark = TruckGridRowData[0].Remark ;
+        this.TruckParaJson.Status = TruckGridRowData[0].Status ;
+        this.TruckParaJson.TruckID = TruckGridRowData[0].TruckID ;
+        this.TruckParaJson.TruckTypeAsk = TruckGridRowData[0].TruckTypeAsk ;
+        this.TruckParaJson.TS = TruckGridRowData[0].TS ;
+        this.TruckParaJson.UD =TruckGridRowData[0].UD ;
+
+        //bind po
+        this.POParaJson.Ask =POGridRowData[0].Ask ;
+        this.POParaJson.PONo = POGridRowData[0].PONo ;
+        this.POParaJson.ReferenceNo = POGridRowData[0].ReferenceNo ;
+        this.POParaJson.Remark = POGridRowData[0].Remark ;
+        this.POParaJson.ShippingMark = POGridRowData[0].ShippingMark ;
+        this.POParaJson.TS = POGridRowData[0].TS ;
+        this.POParaJson.UD =POGridRowData[0].UD ;
+debugger
+        //bind SKU
+        //alert(SKUGridRowData.length);
+        for(let i=0; i < SKUGridRowData.length;i++)
+        {
+            this.bindDefaultSKU();
+            this.SKUParaJson.Ask = SKUGridRowData[i].Ask ; 
+            this.SKUParaJson.Damagephoto = SKUGridRowData[i].Damagephoto ; 
+            this.SKUParaJson.DamageQty = SKUGridRowData[i].DamageQty ; 
+            this.SKUParaJson.DimensionBase = SKUGridRowData[i].DimensionBase ; 
+            this.SKUParaJson.DimensionHeight = SKUGridRowData[i].DimensionHeight ; 
+            this.SKUParaJson.DimensionWidth = SKUGridRowData[i].DimensionWidth ; 
+            this.SKUParaJson.Goodphoto = SKUGridRowData[i].Goodphoto ; 
+            this.SKUParaJson.GoodQty = SKUGridRowData[i].GoodQty ; 
+            this.SKUParaJson.Overlandphoto = SKUGridRowData[i].Overlandphoto ; 
+            this.SKUParaJson.OverlandQty = SKUGridRowData[i].OverlandQty ; 
+            this.SKUParaJson.PlanQty = SKUGridRowData[i].PlanQty ; 
+            this.SKUParaJson.ReceivedQty = SKUGridRowData[i].ReceivedQty ; 
+            this.SKUParaJson.Reference = SKUGridRowData[i].Reference ; 
+            this.SKUParaJson.Remark = SKUGridRowData[i].Remark ; 
+            this.SKUParaJson.ShortLandphoto = SKUGridRowData[i].ShortLandphoto ;
+            this.SKUParaJson.ShortLandQty = SKUGridRowData[i].ShortLandQty ;
+            this.SKUParaJson.SKUDetails = SKUGridRowData[i].SKUDetails ;
+            this.SKUParaJson.SKUName = SKUGridRowData[i].SKUName ;
+            this.SKUParaJson.SKUWeight = SKUGridRowData[i].SKUWeight ;
+            this.SKUParaJson.TruckID = SKUGridRowData[i].TruckID ;
+            this.SKUParaJson.TruckType = SKUGridRowData[i].TruckType ;
+            this.SKUParaJson.TS = SKUGridRowData[i].TS ;
+            this.SKUParaJson.UD = SKUGridRowData[i].UD ; 
+            this.SKUParaJson.UOMAsk =SKUGridRowData[i].UOMAsk ;
+            this.SKUParaJsonList.push(this.SKUParaJson);
+            //alert(JSON.stringify(this.SKUParaJsonList));
+        }   
 
 
 
-        var allgridjson =  '{"Authorization":'+JSON.stringify( this.Authorization); 
-        +',"Agent":'+this.BookingParaJson
-        +",\"Booking\""+":"+this.BookingParaJson
-        +",\"Container\""+":"+this.ContainerParaJson
-        +",\"Shipper\""+":"+this.ShipperParaJson
-        +",\"Truck\""+":"+this.TruckParaJson
-        +",\"PO\""+":"+this.POParaJson
-        +",\"SKUList\""+":"+this.SKUParaJson+"}";
+debugger
+        this.SaveParaJson=  '{"Authorization":'+JSON.stringify( this.Authorization)
+        +',"Agent":'+JSON.stringify(this.BookingParaJson)
+        +",\"Booking\""+":"+JSON.stringify(this.BookingParaJson)
+        +",\"Container\""+":"+JSON.stringify(this.ContainerParaJson)
+        +",\"Shipper\""+":"+JSON.stringify(this.ShipperParaJson)
+        +",\"Truck\""+":"+JSON.stringify(this.TruckParaJson)
+        +",\"PO\""+":"+JSON.stringify(this.POParaJson)
+        +",\"SKUList\""+":"+JSON.stringify(this.SKUParaJsonList)+"}";
 
-        console.log("save para dataa - "+ JSON.stringify(allgridjson));
-        //alert(JSON.stringify(allgridjson));
-        this.SaveParaJson= {  
-            "Authorization":{  
-               "UserID":"admin",
-               "Password":"123",
-               "ProductAsk":"11"
-            },
-            "Booking":{  
-               "Ask":"0",
-               "TS":"0",
-               "UD":"0",
-               "BookingID":"B0001",
-               "AgentAsk":"1",
-               "Shipper":"",
-               "CountryAsk":"1",
-               "CargoReceivedDate":"",
-               "CustomIssuedDate":"",
-               "TransactionDate":"",
-               "Signature":"",
-               "SignatureDate":"",
-               "BookingStautsAsk":"2",
-               "NoOfTruck":"2",
-               "NoOfContainer":"2",
-               "DisplaySequence":"1",
-               "Remark":"e",
-               "LogisticTypeAsk":"2",
-               "TotalGrossW":"5",
-               "TotalVol":"4"
-            },
-            "Agent":{  
-               "Ask":"0",
-               "TS":"0",
-               "UD":"0",
-               "AgentName":"D_Ageng_1",
-               "AgentDetails":"D_Ageng_1",
-               "NationalID":"",
-               "BillingAddress":"",
-               "ShippingAddress":"",
-               "CompanyName":"",
-               "Website":"",
-               "Mobile":"",
-               "Email":"",
-               "ContactPersonName":"",
-               "ContactPersonMobile":"",
-               "Address":"",
-               "DisplaySequence":"",
-               "Remark":""
-            },
-            "Container":{  
-               "Ask":"0",
-               "TS":"0",
-               "UD":"0",
-               "ContainerNo":"C_001",
-               "ContainerDetails":"ContainerDetailsDirect002",
-               "SealNo":"Sear-0001",
-               "Width":"44.0",
-               "Height":"44.0",
-               "Base":"55.0",
-               "ContainerType":"1",
-               "Color":"Blue",
-               "TruckTypeAsk":"2",
-               "Carrier":"Thura",
-               "Voy":"V0001",
-               "VesselNo":"VS001",
-               "ETA":"2018/01/01",
-               "ETD":"2018/01/01",
-               "CutOffDate":"2018/01/01",
-               "PaperlessCode":"PC001",
-               "ContainerPicture":"",
-               "CountryAsk":"2",
-               "TareWeight":"0.31",
-               "GrossWeight":"12.0",
-               "MattWeight":"33.0",
-               "TotalWeigt":"011.0",
-               "Status":"0",
-               "DisplaySequence":"",
-               "Remark":""
-            },
-            "Shipper":{  
-               "Ask":"0",
-               "TS":"0",
-               "UD":"0",
-               "ShipperName":"THURA",
-               "ShipperDetails":"THURA",
-               "Status":"0",
-               "DisplaySequence":"0",
-               "Remark":"ShipperRemarkDirect002"
-            },
-            "Truck":{  
-               "Ask":"0",
-               "TS":"0",
-               "UD":"0",
-               "TruckID":"TD0001",
-               "TruckTypeAsk":"1",
-               "Status":"0",
-               "DisplaySequence":"0",
-               "Remark":"TruckIDDirect002 Remark"
-            },
-            "PO":{  
-               "Ask":"0",
-               "TS":"0",
-               "UD":"0",
-               "PONo":"PO_D_001",
-               "ShippingMark":"SM_D_001",
-               "ReferenceNo":"REF_D_001",
-               "Remark":"PONoDirect002 Remark"
-            },
-            "SKUList":[  
-               {  
-                  "Ask":"0",
-                  "TS":"0",
-                  "UD":"0",
-                  "SKUName":"SALT",
-                  "SKUDetails":"",
-                  "DimensionWidth":"3",
-                  "DimensionHeight":"4",
-                  "DimensionBase":"4",
-                  "SKUWeight":"5",
-                  "PlanQty":"6",
-                  "UOMAsk":"1",
-                  "ReceivedQty":"",
-                  "Reference":"AEFE",
-                  "TruckID":"DD",
-                  "TruckType":"1",
-                  "GoodQty":"",
-                  "DamageQty":"",
-                  "ShortLandQty":"",
-                  "OverlandQty":"",
-                  "Goodphoto":"",
-                  "Damagephoto":"",
-                  "ShortLandphoto":"",
-                  "Overlandphoto":"",
-                  "Remark":"SKUNameDirect0021 Remark"
-               },
-               {  
-                  "Ask":"0",
-                  "TS":"0",
-                  "UD":"0",
-                  "SKUName":"POOL SALT",
-                  "SKUDetails":"",
-                  "DimensionWidth":"8",
-                  "DimensionHeight":"7",
-                  "DimensionBase":"5",
-                  "SKUWeight":"4",
-                  "PlanQty":"777",
-                  "UOMAsk":"2",
-                  "ReceivedQty":"",
-                  "Reference":"",
-                  "TruckID":"",
-                  "TruckType":"",
-                  "GoodQty":"",
-                  "DamageQty":"",
-                  "ShortLandQty":"",
-                  "OverlandQty":"",
-                  "Goodphoto":"",
-                  "Damagephoto":"",
-                  "ShortLandphoto":"",
-                  "Overlandphoto":"",
-                  "Remark":"SKUNameDirect0022 Remark"
-               },
-               {  
-                  "Ask":"0",
-                  "TS":"0",
-                  "UD":"0",
-                  "SKUName":"REFIND SAALT",
-                  "SKUDetails":"",
-                  "DimensionWidth":"5",
-                  "DimensionHeight":"3",
-                  "DimensionBase":"2",
-                  "SKUWeight":"45",
-                  "PlanQty":"555",
-                  "UOMAsk":"2",
-                  "ReceivedQty":"",
-                  "Reference":"",
-                  "TruckID":"",
-                  "TruckType":"",
-                  "GoodQty":"",
-                  "DamageQty":"",
-                  "ShortLandQty":"",
-                  "OverlandQty":"",
-                  "Goodphoto":"",
-                  "Damagephoto":"",
-                  "ShortLandphoto":"",
-                  "Overlandphoto":"",
-                  "Remark":"SKUNameDirect0023 Remark"
-               }
-            ]
-         };
-    }
+
+      //  alert(this.SaveParaJson);
+        console.log("save para dataa - "+ JSON.stringify(this.SaveParaJson));
+        // //alert(JSON.stringify(allgridjson));
+        // this.SaveParaJson= {  
+        //     "Authorization":{  
+        //        "UserID":"admin",
+        //        "Password":"123",
+        //        "ProductAsk":"11"
+        //     },
+        //     "Booking":{  
+        //        "Ask":"0",
+        //        "TS":"0",
+        //        "UD":"0",
+        //        "BookingID":"B0001",
+        //        "AgentAsk":"1",
+        //        "Shipper":"",
+        //        "CountryAsk":"1",
+        //        "CargoReceivedDate":"",
+        //        "CustomIssuedDate":"",
+        //        "TransactionDate":"",
+        //        "Signature":"",
+        //        "SignatureDate":"",
+        //        "BookingStautsAsk":"2",
+        //        "NoOfTruck":"2",
+        //        "NoOfContainer":"2",
+        //        "DisplaySequence":"1",
+        //        "Remark":"e",
+        //        "LogisticTypeAsk":"2",
+        //        "TotalGrossW":"5",
+        //        "TotalVol":"4"
+        //     },
+        //     "Agent":{  
+        //        "Ask":"0",
+        //        "TS":"0",
+        //        "UD":"0",
+        //        "AgentName":"D_Ageng_1",
+        //        "AgentDetails":"D_Ageng_1",
+        //        "NationalID":"",
+        //        "BillingAddress":"",
+        //        "ShippingAddress":"",
+        //        "CompanyName":"",
+        //        "Website":"",
+        //        "Mobile":"",
+        //        "Email":"",
+        //        "ContactPersonName":"",
+        //        "ContactPersonMobile":"",
+        //        "Address":"",
+        //        "DisplaySequence":"",
+        //        "Remark":""
+        //     },
+        //     "Container":{  
+        //        "Ask":"0",
+        //        "TS":"0",
+        //        "UD":"0",
+        //        "ContainerNo":"C_001",
+        //        "ContainerDetails":"ContainerDetailsDirect002",
+        //        "SealNo":"Sear-0001",
+        //        "Width":"44.0",
+        //        "Height":"44.0",
+        //        "Base":"55.0",
+        //        "ContainerType":"1",
+        //        "Color":"Blue",
+        //        "TruckTypeAsk":"2",
+        //        "Carrier":"Thura",
+        //        "Voy":"V0001",
+        //        "VesselNo":"VS001",
+        //        "ETA":"2018/01/01",
+        //        "ETD":"2018/01/01",
+        //        "CutOffDate":"2018/01/01",
+        //        "PaperlessCode":"PC001",
+        //        "ContainerPicture":"",
+        //        "CountryAsk":"2",
+        //        "TareWeight":"0.31",
+        //        "GrossWeight":"12.0",
+        //        "MattWeight":"33.0",
+        //        "TotalWeigt":"011.0",
+        //        "Status":"0",
+        //        "DisplaySequence":"",
+        //        "Remark":""
+        //     },
+        //     "Shipper":{  
+        //        "Ask":"0",
+        //        "TS":"0",
+        //        "UD":"0",
+        //        "ShipperName":"THURA",
+        //        "ShipperDetails":"THURA",
+        //        "Status":"0",
+        //        "DisplaySequence":"0",
+        //        "Remark":"ShipperRemarkDirect002"
+        //     },
+        //     "Truck":{  
+        //        "Ask":"0",
+        //        "TS":"0",
+        //        "UD":"0",
+        //        "TruckID":"TD0001",
+        //        "TruckTypeAsk":"1",
+        //        "Status":"0",
+        //        "DisplaySequence":"0",
+        //        "Remark":"TruckIDDirect002 Remark"
+        //     },
+        //     "PO":{  
+        //        "Ask":"0",
+        //        "TS":"0",
+        //        "UD":"0",
+        //        "PONo":"PO_D_001",
+        //        "ShippingMark":"SM_D_001",
+        //        "ReferenceNo":"REF_D_001",
+        //        "Remark":"PONoDirect002 Remark"
+        //     },
+        //     "SKUList":[  
+        //        {  
+        //           "Ask":"0",
+        //           "TS":"0",
+        //           "UD":"0",
+        //           "SKUName":"SALT",
+        //           "SKUDetails":"",
+        //           "DimensionWidth":"3",
+        //           "DimensionHeight":"4",
+        //           "DimensionBase":"4",
+        //           "SKUWeight":"5",
+        //           "PlanQty":"6",
+        //           "UOMAsk":"1",
+        //           "ReceivedQty":"",
+        //           "Reference":"AEFE",
+        //           "TruckID":"DD",
+        //           "TruckType":"1",
+        //           "GoodQty":"",
+        //           "DamageQty":"",
+        //           "ShortLandQty":"",
+        //           "OverlandQty":"",
+        //           "Goodphoto":"",
+        //           "Damagephoto":"",
+        //           "ShortLandphoto":"",
+        //           "Overlandphoto":"",
+        //           "Remark":"SKUNameDirect0021 Remark"
+        //        },
+        //        {  
+        //           "Ask":"0",
+        //           "TS":"0",
+        //           "UD":"0",
+        //           "SKUName":"POOL SALT",
+        //           "SKUDetails":"",
+        //           "DimensionWidth":"8",
+        //           "DimensionHeight":"7",
+        //           "DimensionBase":"5",
+        //           "SKUWeight":"4",
+        //           "PlanQty":"777",
+        //           "UOMAsk":"2",
+        //           "ReceivedQty":"",
+        //           "Reference":"",
+        //           "TruckID":"",
+        //           "TruckType":"",
+        //           "GoodQty":"",
+        //           "DamageQty":"",
+        //           "ShortLandQty":"",
+        //           "OverlandQty":"",
+        //           "Goodphoto":"",
+        //           "Damagephoto":"",
+        //           "ShortLandphoto":"",
+        //           "Overlandphoto":"",
+        //           "Remark":"SKUNameDirect0022 Remark"
+        //        },
+        //        {  
+        //           "Ask":"0",
+        //           "TS":"0",
+        //           "UD":"0",
+        //           "SKUName":"REFIND SAALT",
+        //           "SKUDetails":"",
+        //           "DimensionWidth":"5",
+        //           "DimensionHeight":"3",
+        //           "DimensionBase":"2",
+        //           "SKUWeight":"45",
+        //           "PlanQty":"555",
+        //           "UOMAsk":"2",
+        //           "ReceivedQty":"",
+        //           "Reference":"",
+        //           "TruckID":"",
+        //           "TruckType":"",
+        //           "GoodQty":"",
+        //           "DamageQty":"",
+        //           "ShortLandQty":"",
+        //           "OverlandQty":"",
+        //           "Goodphoto":"",
+        //           "Damagephoto":"",
+        //           "ShortLandphoto":"",
+        //           "Overlandphoto":"",
+        //           "Remark":"SKUNameDirect0023 Remark"
+        //        }
+        //     ]
+        //  };
+   
+
+   
+        }
 //       for(let i=0; i < shippergridarray.length;i++)
 //       {
 //         shipperarray.push({'Ask':'0','ShipperName':shippergridarray[i].ShipperName,'ShipperDetails':shippergridarray[i].ShipperDetails});       
@@ -1927,6 +2208,7 @@ txtSKUID : any;
         console.log("para is "+JSON.stringify(this.SaveParaJson));
         this.backendservice.wsCall(this.SaveParaJson,this.backendservice.wssavePRFEForDirect).then(data =>
         {
+            debugger
             console.log("return is "+JSON.stringify(JSON.stringify( data)));
             //alert(JSON.stringify(data)); 
             this.AgentReturnJson= data[0].Agent;
@@ -1936,14 +2218,15 @@ txtSKUID : any;
             this.TruckReturnJson = data[0].Truck;  
             this.POReturnJson = data[0].PO;     
             this.SKUReturnJson = data[0].SKU;
-        }) 
+        })
+        this.bindGrid(); 
         //console.log("body is "+JSON.stringify(this.Authorization));
     }
     btnPrint()
     {
         debugger
          
-          this.BookingReturnJson=[{  
+        this.BookingReturnJson=[{  
             "Ask":"0",
             "TS":"0",
             "UD":"0",
@@ -2130,28 +2413,3 @@ txtSKUID : any;
 }
 
  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
