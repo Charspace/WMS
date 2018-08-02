@@ -54,6 +54,7 @@ export class BackendService {
   wsgetSelectCreatePickList = "/getSelectCreatePickList";
   wsgetDeliverlist = "/getDeliverlist";
   wsgetPRFEDirectList = "/getPRFEDirectList";
+  wsgetPRFEForDirect = "/getPRFEForDirect";
   wsgetCheckerDirect = "/getCheckerDirect";
 
   //Save web service method

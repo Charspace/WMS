@@ -11,6 +11,6 @@ import { jqxButtonComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbu
 export class AppComponent {
   constructor(private router:Router)
     {
-     this.router.navigate(['lstplanreceiveforexport-w']);    
+     this.router.navigate(['login']);    
     }
 }
