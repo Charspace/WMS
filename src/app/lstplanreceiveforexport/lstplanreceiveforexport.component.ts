@@ -1089,7 +1089,8 @@ columns: any[] =
     { text: 'Agent Name', datafield: 'AgentName', width: 200 , hidden:false },
     { text: 'Shipper Name', datafield: 'ShipperName', width: 150, hidden:false  },
     { text: 'No Of Container', datafield: 'NoOfContainer', width: 120, hidden:false  }, 
-    { text: 'No Of Truck', datafield: 'NoOfTruck', width: 120, hidden:false  },  
+    { text: 'No Of Truck', datafield: 'NoOfTruck', width: 120, hidden:false  }, 
+    { text: 'ContainerAsk', datafield: 'ContainerAsk', width: 150, hidden:false  }, 
     { text: 'ContainerNo', datafield: 'ContainerNo', width: 150, hidden:false  }, 
     { text: 'Cont Type', datafield: 'ContainerType', width: 150, hidden:false  }, 
     
@@ -1183,7 +1184,8 @@ CellDoubleclick(event:any)
     // this.HeaderGrid.disabled(true); 
 
     //this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' }},
-    this.router.navigate([ {outlets: { modal: ['setplanreceiveforexport',rowdata.Ask,rowdata.AgentAsk,rowdata.ShipperAsk,rowdata.ContainerAsk] } } ]);
+    alert(JSON.stringify(rowdata.ContainerAsk));
+    this.router.navigate([ {outlets: { modal: ['setplanreceiveforexport',rowdata.Ask,rowdata.AgentAsk,rowdata.ShipperAsk,"0"] } } ]);
     //{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk} ]);
     //this.HeaderGrid.disabled(false) 
     
