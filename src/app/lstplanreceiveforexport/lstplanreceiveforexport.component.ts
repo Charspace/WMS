@@ -1115,7 +1115,7 @@ columns: any[] =
 btnNew()
 { 
     this.HeaderGrid.disabled(true); 
-    this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' } } ]);
+    this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport' } } ]);
     this.HeaderGrid.disabled(false)    
 }
 btnRefresh()
@@ -1184,7 +1184,7 @@ CellDoubleclick(event:any)
     // this.HeaderGrid.disabled(true); 
 
     //this.router.navigate([ {outlets: { modal: 'setplanreceiveforexport-w' }},
-    alert(JSON.stringify(rowdata.ContainerAsk));
+    //alert(JSON.stringify(rowdata.ContainerAsk));
     this.router.navigate([ {outlets: { modal: ['setplanreceiveforexport',rowdata.Ask,rowdata.AgentAsk,rowdata.ShipperAsk,"0"] } } ]);
     //{BookingAsk: rowdata.Ask,AgentAsk: rowdata.AgentAsk} ]);
     //this.HeaderGrid.disabled(false) 

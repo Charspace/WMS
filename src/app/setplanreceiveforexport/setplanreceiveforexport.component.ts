@@ -515,7 +515,7 @@ bindDefaultValue()
         this.bindcboUOM();         
         //this.createGrid();       
         //this.bindLabel();
-        this.bindGrid();
+       //this.bindGrid();
     }  
     bindAuthorizationJson()
     {
