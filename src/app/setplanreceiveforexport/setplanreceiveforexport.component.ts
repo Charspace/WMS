@@ -540,31 +540,37 @@ bindDefaultValue()
     containerask ="0";
     ngAfterViewInit() 
     {debugger
-        
+       
         this.route.params.subscribe(params => {
                 if (params['bookingask']!=null) { this.bookingask = params['bookingask']; }
                 if(params['agendask']!=null){this.agendask = params['agendask']; }
                 if(params['shipperask']!=null){this.shipperask =params['shipperask']; }
                 if(params['containerask']!=null){ this.containerask =params['containerask']; }
            }) 
-           alert(JSON.stringify(this.containerask));
-            this.getJsonbyCriteria().then(data =>
-            {          
-                debugger 
-                // this.AgentReturnJson= data[0].Agent;
-                // this.BookingReturnJson = data[0].Booking;
-                // this.ContainerReturnJson = data[0].Container;
-                // this.ShipperReturnJson = data[0].Shipper;  
-                // this.TruckReturnJson = data[0].Truck;  
-                // this.POReturnJson = data[0].PO;     
-                // this.SKUReturnJson = data[0].SKU;
+           if (this.bookingask!="0")
+           {
+               debugger
 
-                // this.bindcboCountry();
-                // this.bindcboTrsStatus();
-                // this.bindcboTruckType();  
-                // this.bindcboUOM();      
-                this.bindGrid(); 
-            })
+                //alert(JSON.stringify(this.containerask));
+                this.getJsonbyCriteria().then(data =>
+                {          
+                    debugger 
+                    // this.AgentReturnJson= data[0].Agent;
+                    // this.BookingReturnJson = data[0].Booking;
+                    // this.ContainerReturnJson = data[0].Container;
+                    // this.ShipperReturnJson = data[0].Shipper;  
+                    // this.TruckReturnJson = data[0].Truck;  
+                    // this.POReturnJson = data[0].PO;     
+                    // this.SKUReturnJson = data[0].SKU;
+
+                    // this.bindcboCountry();
+                    // this.bindcboTrsStatus();
+                    // this.bindcboTruckType();  
+                    // this.bindcboUOM();      
+                    this.bindGrid(); 
+                })
+            }
+            this.bindGrid();
     }
     bindPlaceHolder()
     {
@@ -596,15 +602,64 @@ bindDefaultValue()
     {         
         this.backendservice.wsCall(this.Authorization,this.backendservice.wsgetUOMList).then(data =>
         {
-            this.cboUOMList = data;
+            
+           // this.cboUOMList = data;
+            this.cboUOMList =  [
+                {
+                    "SKUUOMAsk": "0",
+                    "Details": "",
+                    "DisplaySequence": "0",
+                    "Name": "Others",
+                    "Remark": "",
+                    "Status": "0",
+                    "TS": "1",
+                    "UD": "1"
+                },
+                {
+                    "SKUUOMAsk": "1",
+                    "Details": "",
+                    "DisplaySequence": "0",
+                    "Name": "PCS",
+                    "Remark": "",
+                    "Status": "0",
+                    "TS": "1",
+                    "UD": "1"
+                },
+                {
+                    "SKUUOMAsk": "2",
+                    "Details": "",
+                    "DisplaySequence": "0",
+                    "Name": "BOX",
+                    "Remark": "",
+                    "Status": "0",
+                    "TS": "1",
+                    "UD": "1"
+                },
+                {
+                    "SKUUOMAsk": "3",
+                    "Details": "",
+                    "DisplaySequence": "0",
+                    "Name": "CTN",
+                    "Remark": "",
+                    "Status": "0",
+                    "TS": "1",
+                    "UD": "1"
+                }
+            ]
             //alert(JSON.stringify( this.cboUOMList));
             this.cboUOMSource =
             {
                 dataType: 'json',
                 datafield:[                  
-                {name:'Ask'},
-                {name:'Name'},
-                {name: 'Details'}],
+                {name:'SKUUOMAsk'},
+                {name:'Details'},
+                {name: 'DisplaySequence'},
+                {name: 'Name'},
+                {name: 'Remark'},
+                {name: 'Status'},
+                {name: 'TS'},
+                {name: 'UD'}],
+                
                 localdata: this.cboUOMList,
             }
             this.cboUOMAdaptor = new jqx.dataAdapter(this.cboUOMSource);   
@@ -1089,7 +1144,7 @@ bindDefaultValue()
                     };
                 },
                 createeditor: (row: number, value: any, editor: any): void => {
-                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboUOMAdaptor, displayMember: 'Name', valueMember: 'Ask' })     
+                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboUOMAdaptor, displayMember: 'Name', valueMember: 'UOMAsk' })     
                 }          
             },
             { text: 'Received Qty', datafield: 'ReceivedQty', width: 120, hidden:false }, 
@@ -1161,7 +1216,7 @@ bindDefaultValue()
                 };
             },
                 createeditor: (row: number, value: any, editor: any): void => {
-                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboAgentAdaptor, displayMember: 'AgentName', valueMember: 'Ask' })     
+                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboAgentAdaptor, displayMember: 'AgentName', valueMember: 'AgentAsk' })     
                 }          
             },
             { text: 'Shipper', datafield: 'Shipper', width: 120, hidden:true }, 
@@ -1179,7 +1234,7 @@ bindDefaultValue()
                     };
                 },
                     createeditor: (row: number, value: any, editor: any): void => {
-                        editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboCountryAdaptor, displayMember: 'CountryName', valueMember: 'Ask' })     
+                        editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboCountryAdaptor, displayMember: 'CountryName', valueMember: 'CountryAsk' })     
                     }          
             }, 
            // { text: 'CargoReceivedDate', datafield: 'CargoReceivedDate', width: 120, hidden:true }, 
@@ -1205,7 +1260,7 @@ bindDefaultValue()
                     };
                 },
                     createeditor: (row: number, value: any, editor: any): void => {
-                        editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboTrsStatusAdaptor, displayMember: 'StatusName', valueMember: 'Ask' })     
+                        editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboTrsStatusAdaptor, displayMember: 'StatusName', valueMember: 'BookingStatusAsk' })     
                     }          
             },
             { text: 'NoOfTruck', datafield: 'NoOfTruck', width: 120, hidden:false },   
@@ -1341,7 +1396,7 @@ bindDefaultValue()
                     };
                 },
                 createeditor: (row: number, value: any, editor: any): void => {
-                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboTruckTypeAdaptor, displayMember: 'Description', valueMember: 'Ask' })     
+                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboTruckTypeAdaptor, displayMember: 'Description', valueMember: 'TruckTypeAsk' })     
                 }          
             },
             { text: 'weight', datafield: 'weight', width: 200  },
@@ -1392,7 +1447,7 @@ bindDefaultValue()
                 { name: 'DimensionBase', type: 'number'},
                 { name: 'SKUWeight', type: 'number'},
                 { name: 'PlanQty', type: 'number'},
-                { name: 'UOMAsk', type: 'string'},
+                { name: 'SKUUOMAsk', type: 'string'},
                 { name: 'ReceivedQty', type: 'number'},
                 { name: 'Reference', type: 'string'},
                 { name: 'TruckID', type: 'string'},
@@ -1423,7 +1478,7 @@ bindDefaultValue()
             { text: 'SKU Weight', datafield: 'SKUWeight', width: 120, hidden:false },
             { text: 'Plan Qty', datafield: 'PlanQty', width: 120, hidden:false },
             //{ text: 'UOMAsk', datafield: 'UOMAsk', width: 120, hidden:false },
-            { text: 'UOM', datafield: 'UOMAsk', width: '10%',displayfield: 'Name', columntype: 'combobox',
+            { text: 'UOM', datafield: 'SKUUOMAsk', width: '10%',  displayMember: 'Name', columntype: 'combobox',
                 cellvaluechanging: (row: number, datafield: string, columntype: any, oldvalue: any, newvalue: any): void => {
                     if (newvalue != oldvalue) {
                         for(let k=0; k< this.cboUOMList.length; k++)
@@ -1436,7 +1491,7 @@ bindDefaultValue()
                     };
                 },
                 createeditor: (row: number, value: any, editor: any): void => {
-                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboUOMAdaptor, displayMember: 'Name', valueMember: 'Ask' })     
+                    editor.jqxComboBox({ searchMode:'containsignorecase', autoComplete:true, source: this.cboUOMAdaptor, displayMember: 'Name', valueMember: 'SKUUOMAsk' })     
                 }          
             },
             { text: 'Received Qty', datafield: 'ReceivedQty', width: 120, hidden:false }, 
@@ -1594,12 +1649,27 @@ bindDefaultValue()
     {
        
     }
-    SKUGridonCellendedit()
+    SKUGridonCellendedit(event:any)
     {
+        alert("SKUGridonCellendedit");
+        var index = this.SKUGrid.getselectedrowindex();
+        var rowdata = this.SKUGrid.getrowdata(index);   
+        var columnname = event.args.datafield;
+        if(columnname == "ShipperName")
+        {
+            let oldvalue = event.args.oldvalue;
+            let newvalue = event.args.newvalue;
+            if(oldvalue != newvalue)
+            {
+                //this.shipperGrid.endcelledit(this.shipperGrid.getselectedrowindex(),"ShipperName",true);
+                //this.CellendeditShipper();
+            }
 
+        }
     }
     cellvaluechangedSKU(event:any)
     {
+        alert("cellvaluechangedSKU");
         var index = this.SKUGrid.getselectedrowindex();
         var rowdata = this.SKUGrid.getrowdata(index);   
         var columnname = event.args.datafield;
@@ -1617,6 +1687,7 @@ bindDefaultValue()
     }
     CellendeditSKU()
     {
+        alert("CellendeditSKU");
         var index = this.SKUGrid.getselectedrowindex();
         var rowdata = this.SKUGrid.getrowdata(index);   
         if(rowdata.ShipperName)
@@ -1626,6 +1697,7 @@ bindDefaultValue()
     }
     addNewRowSKU()
     {
+        alert("addNewRowSKU");
         var index = this.SKUGrid.getselectedrowindex();
         var rowcount = this.SKUGrid.getrows();
         var rowlength = rowcount.length - 1;
